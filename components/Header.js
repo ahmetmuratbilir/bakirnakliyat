@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { site } from "@/data/site";
 import { services } from "@/data/services";
 
@@ -8,6 +8,7 @@ const navLinks = [
   { href: "/", label: "Anasayfa" },
   {
     label: "Kurumsal",
+    href: "/kurumsal",
     children: [
       { href: "/hakkimizda", label: "Hakkımızda" },
       { href: "/kurumsal", label: "Şirket Profili & Filo" },
@@ -30,6 +31,42 @@ const navLinks = [
 export default function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
+  const timeoutRef = useRef(null);
+
+  // Mouse menünün üzerine geldiğinde
+  const handleMouseEnter = (label) => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setOpenDropdown(label);
+  };
+
+  // Mouse ayrıldığında 200ms tolerans veriyoruz ki imleç kaydığında anında kapanmasın
+  const handleMouseLeave = () => {
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      setOpenDropdown(null);
+    }, 220);
+  };
+
+  // Başlığa tıklandığında aç/kapat
+  const handleToggleClick = (label, e) => {
+    e.stopPropagation();
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setOpenDropdown((cur) => (cur === label ? null : label));
+  };
+
+  // Sayfa dışına tıklandığında menüyü kapat
+  useEffect(() => {
+    const handleDocClick = (e) => {
+      if (!e.target.closest(".nav-dropdown-container")) {
+        setOpenDropdown(null);
+      }
+    };
+    document.addEventListener("click", handleDocClick);
+    return () => {
+      document.removeEventListener("click", handleDocClick);
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-xs border-b border-slate-200">
@@ -89,34 +126,44 @@ export default function Header() {
             item.children ? (
               <div
                 key={item.label}
-                className="relative"
-                onMouseEnter={() => setOpenDropdown(item.label)}
-                onMouseLeave={() => setOpenDropdown((cur) => (cur === item.label ? null : cur))}
+                className="relative nav-dropdown-container group"
+                onMouseEnter={() => handleMouseEnter(item.label)}
+                onMouseLeave={handleMouseLeave}
               >
                 <button
                   type="button"
-                  className={`flex items-center gap-1.5 px-3 py-2 rounded-lg transition ${
+                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg transition cursor-pointer select-none ${
                     openDropdown === item.label
                       ? "text-[#1d4ed8] bg-blue-50"
                       : "text-[#334155] hover:text-[#1d4ed8] hover:bg-slate-50"
                   }`}
                   aria-expanded={openDropdown === item.label}
-                  onClick={() =>
-                    setOpenDropdown((cur) => (cur === item.label ? null : item.label))
-                  }
+                  onClick={(e) => handleToggleClick(item.label, e)}
                 >
-                  {item.label}
-                  <span className="text-[10px] opacity-60">
-                    {openDropdown === item.label ? "▲" : "▼"}
+                  <span>{item.label}</span>
+                  <span
+                    className={`text-[10px] transition-transform duration-200 ${
+                      openDropdown === item.label ? "rotate-180 text-[#1d4ed8]" : "opacity-60"
+                    }`}
+                  >
+                    ▼
                   </span>
                 </button>
 
-                {openDropdown === item.label && (
-                  <div className="absolute left-0 top-full mt-1 bg-white rounded-xl py-2 w-64 shadow-xl border border-slate-100 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                {/* 
+                  Görünmez Köprü (pt-1.5) ile buton ile menü arasında hiçbir boşluk kalmaz;
+                  böylece imleç aşağı kayarken menü asla kapanmaz.
+                */}
+                <div
+                  className={`absolute left-0 top-full pt-1.5 w-64 z-50 transition-all duration-150 ${
+                    openDropdown === item.label ? "block" : "hidden group-hover:block"
+                  }`}
+                >
+                  <div className="bg-white rounded-2xl py-2.5 shadow-2xl border border-slate-200/90 overflow-hidden">
                     {item.href && (
                       <Link
                         href={item.href}
-                        className="block px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-[#1d4ed8] border-b border-slate-100 hover:bg-blue-50/60 transition"
+                        className="block px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#1d4ed8] bg-blue-50/60 hover:bg-blue-100/70 border-b border-slate-100 transition"
                         onClick={() => setOpenDropdown(null)}
                       >
                         Tümünü İncele →
@@ -126,20 +173,20 @@ export default function Header() {
                       <Link
                         key={child.href}
                         href={child.href}
-                        className="block px-4 py-2 text-sm text-[#475569] hover:text-[#1d4ed8] hover:bg-blue-50/50 hover:pl-5 transition-all font-medium"
+                        className="block px-4 py-2.5 text-sm text-[#475569] hover:text-[#1d4ed8] hover:bg-blue-50/60 hover:pl-5 transition-all font-medium"
                         onClick={() => setOpenDropdown(null)}
                       >
                         {child.label}
                       </Link>
                     ))}
                   </div>
-                )}
+                </div>
               </div>
             ) : (
               <Link
                 key={item.href}
                 href={item.href}
-                className="px-3 py-2 rounded-lg text-[#334155] hover:text-[#1d4ed8] hover:bg-slate-50 transition"
+                className="px-3.5 py-2 rounded-lg text-[#334155] hover:text-[#1d4ed8] hover:bg-slate-50 transition"
               >
                 {item.label}
               </Link>
