@@ -25,6 +25,9 @@ export const metadata = {
   creator: site.name,
   publisher: site.name,
   robots: { index: true, follow: true },
+  verification: {
+    google: "fhxUi9_eLgiiBRn21GClXacd7P7UEsGudhsYO5CyZE0",
+  },
   openGraph: {
     type: "website",
     locale: "tr_TR",
