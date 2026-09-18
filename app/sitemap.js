@@ -14,7 +14,6 @@ export default function sitemap() {
     "/hizmetlerimiz",
     "/istanbul-nakliye",
     "/sehirler-arasi-nakliyat",
-    "/resimler",
     "/blog",
     "/iletisim",
   ].map((path) => ({

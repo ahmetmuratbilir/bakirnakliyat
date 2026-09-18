@@ -306,13 +306,6 @@ export default function HomePage() {
                 Özmal araçlarımız, forkliftli palet yükleme ve güvenli ambalajlama operasyonlarımız.
               </p>
             </div>
-            <Link
-              href="/resimler"
-              className="text-sm font-bold text-[#1d4ed8] hover:text-[#1e40af] flex items-center gap-1.5 group"
-            >
-              <span>Tüm Fotoğrafları İncele</span>
-              <span className="group-hover:translate-x-1 transition">→</span>
-            </Link>
           </div>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { site } from "@/data/site";
 import { services } from "@/data/services";
 
@@ -10,8 +11,14 @@ export default function Footer() {
         {/* Sütun 1 — Marka & Güven */}
         <div>
           <div className="flex items-center gap-3 mb-5">
-            <div className="flex items-center justify-center w-10 h-10 rounded-xl font-extrabold text-lg bg-[#1d4ed8] text-white shadow-md">
-              B
+            <div className="relative flex items-center justify-center w-10 h-10 rounded-xl overflow-hidden shadow-md">
+              <Image
+                src="/icon.png"
+                alt="Bakır Nakliyat Logo"
+                width={40}
+                height={40}
+                className="object-cover w-full h-full"
+              />
             </div>
             <div>
               <div className="font-extrabold text-lg text-white leading-tight tracking-tight">
@@ -75,7 +82,6 @@ export default function Footer() {
               { href: "/kurumsal", label: "Kurumsal & Araç Filosu" },
               { href: "/misyonumuz", label: "Misyonumuz" },
               { href: "/vizyonumuz", label: "Vizyonumuz" },
-              { href: "/resimler", label: "Fotoğraf Galerisi" },
               { href: "/blog", label: "Blog & Rehberler" },
               { href: "/iletisim", label: "İletişim & Teklif" },
             ].map((link) => (

@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 import { site } from "@/data/site";
 import { services } from "@/data/services";
@@ -23,7 +24,6 @@ const navLinks = [
   },
   { href: "/istanbul-nakliye", label: "İstanbul Nakliye" },
   { href: "/sehirler-arasi-nakliyat", label: "Şehirlerarası" },
-  { href: "/resimler", label: "Galeri" },
   { href: "/blog", label: "Blog" },
   { href: "/iletisim", label: "İletişim" },
 ];
@@ -107,8 +107,15 @@ export default function Header() {
       <div className="container-page flex items-center justify-between py-3.5">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 shrink-0 group">
-          <div className="flex items-center justify-center w-11 h-11 rounded-xl font-extrabold text-xl bg-gradient-to-br from-[#1d4ed8] to-[#0b1f3a] text-white shadow-md shadow-blue-500/20 group-hover:scale-105 transition">
-            B
+          <div className="relative flex items-center justify-center w-11 h-11 rounded-xl overflow-hidden shadow-md shadow-blue-500/20 group-hover:scale-105 transition bg-[#0b1f3a]">
+            <Image
+              src="/icon.png"
+              alt="Bakır Nakliyat Logo"
+              width={44}
+              height={44}
+              className="object-cover w-full h-full"
+              priority
+            />
           </div>
           <div>
             <div className="font-extrabold text-xl tracking-tight text-[#0b1f3a] leading-tight">
