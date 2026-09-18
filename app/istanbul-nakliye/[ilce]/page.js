@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import PageHero from "@/components/PageHero";
-import Placeholder from "@/components/Placeholder";
 import CtaBand from "@/components/CtaBand";
 import { districts, getDistrict } from "@/data/districts";
 import { services } from "@/data/services";
@@ -43,8 +43,26 @@ export default async function DistrictPage({ params }) {
       <section className="container-page py-16 grid lg:grid-cols-12 gap-10">
         {/* Sol İçerik */}
         <div className="lg:col-span-8 space-y-8">
-          <div className="bg-white rounded-2xl p-2 border border-slate-200 shadow-xs">
-            <Placeholder label={`${district.name} Nakliyat`} className="h-64 sm:h-72" />
+          <div className="bg-white rounded-3xl p-2.5 border border-slate-200 shadow-sm overflow-hidden">
+            <div className="relative h-64 sm:h-80 w-full rounded-2xl overflow-hidden bg-slate-100">
+              <Image
+                src="/images/bakir-nakliyat-filo-araci.webp"
+                alt={`${district.name} Evden Eve Nakliyat Aracı`}
+                fill
+                sizes="(max-width: 1024px) 100vw, 800px"
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0b1f3a]/80 via-transparent to-transparent" />
+              <div className="absolute bottom-5 left-5 right-5 text-white">
+                <span className="text-xs font-bold uppercase tracking-wider text-blue-300">
+                  {district.name} Bölgesi Hizmet Ekibi
+                </span>
+                <h2 className="text-xl sm:text-2xl font-extrabold mt-0.5">
+                  {district.name} Evden Eve & Ofis Taşımacılığı
+                </h2>
+              </div>
+            </div>
           </div>
 
           <div className="p-8 rounded-2xl bg-slate-50 border border-slate-200 space-y-4 text-[#334155] leading-relaxed text-base">

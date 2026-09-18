@@ -1,3 +1,4 @@
+import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import CtaBand from "@/components/CtaBand";
 import { site } from "@/data/site";
@@ -38,8 +39,24 @@ export default function HakkimizdaPage() {
           </p>
         </div>
 
+        {/* Kurumsal Filo Görseli */}
+        <div className="my-10 relative h-72 sm:h-96 rounded-3xl overflow-hidden border border-slate-200 shadow-md">
+          <Image
+            src="/images/bakir-nakliyat-filo-araci.webp"
+            alt="Bakır Nakliyat Araç Filosu"
+            fill
+            sizes="(max-width: 1024px) 100vw, 800px"
+            className="object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0b1f3a]/80 via-transparent to-transparent" />
+          <div className="absolute bottom-6 left-6 right-6 text-white">
+            <span className="text-xs font-bold uppercase tracking-wider text-blue-300">Özmal Araç Filosu</span>
+            <h3 className="text-lg sm:text-xl font-extrabold mt-1">Kapalı Kasa Güvenli Sevkiyat Araçlarımız</h3>
+          </div>
+        </div>
+
         {/* Kurumsal Değerler */}
-        <div className="mt-14 pt-12 border-t border-slate-200">
+        <div className="pt-8 border-t border-slate-200">
           <h2 className="text-2xl font-extrabold text-[#0b1f3a] mb-8 tracking-tight">
             Temel Değerlerimiz
           </h2>

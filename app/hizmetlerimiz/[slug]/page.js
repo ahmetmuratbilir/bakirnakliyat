@@ -1,10 +1,20 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import PageHero from "@/components/PageHero";
-import Placeholder from "@/components/Placeholder";
 import CtaBand from "@/components/CtaBand";
 import { services, getService } from "@/data/services";
 import { site } from "@/data/site";
 import Link from "next/link";
+
+const serviceImages = {
+  "evden-eve-nakliyat": "/images/bakir-nakliyat-filo-araci.webp",
+  "ofis-ve-buro-tasima": "/images/bakir-nakliyat-palet-yukleme.webp",
+  "sehir-ici-nakliye": "/images/bakir-nakliyat-koli-istifleme.webp",
+  "sehirler-arasi-nakliyat": "/images/bakir-nakliyat-gece-sevkiyat.webp",
+  "asansorlu-nakliyat": "/images/bakir-nakliyat-filo-araci.webp",
+  "esya-depolama": "/images/bakir-nakliyat-guvenli-ambalaj.webp",
+  "parca-esya-tasima": "/images/bakir-nakliyat-koli-istifleme.webp",
+};
 
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
@@ -42,8 +52,24 @@ export default async function ServicePage({ params }) {
       <section className="container-page py-16 grid lg:grid-cols-12 gap-10">
         {/* Ana Açıklama Alanı */}
         <div className="lg:col-span-8 space-y-8">
-          <div className="bg-white rounded-2xl p-2 border border-slate-200 shadow-xs">
-            <Placeholder label={service.title} className="h-72 sm:h-80" />
+          <div className="bg-white rounded-3xl p-2.5 border border-slate-200 shadow-sm overflow-hidden">
+            <div className="relative h-72 sm:h-96 w-full rounded-2xl overflow-hidden bg-slate-100">
+              <Image
+                src={serviceImages[slug] || "/images/bakir-nakliyat-filo-araci.webp"}
+                alt={service.title}
+                fill
+                sizes="(max-width: 1024px) 100vw, 800px"
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0b1f3a]/80 via-transparent to-transparent" />
+              <div className="absolute bottom-5 left-5 right-5 text-white">
+                <span className="text-xs font-bold uppercase tracking-wider text-blue-300">
+                  Bakır Nakliyat Operasyon
+                </span>
+                <h2 className="text-xl sm:text-2xl font-extrabold mt-0.5">{service.title}</h2>
+              </div>
+            </div>
           </div>
 
           <div className="p-8 rounded-2xl bg-slate-50 border border-slate-200">

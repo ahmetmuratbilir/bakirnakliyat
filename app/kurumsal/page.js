@@ -1,3 +1,4 @@
+import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import CtaBand from "@/components/CtaBand";
 import { site } from "@/data/site";
@@ -36,6 +37,47 @@ export default function KurumsalPage() {
           <p>
             Müşterilerimizin can ve mal güvenliğini en üstte tutarak; araçlarımızın periyodik muayeneleri, kasko ve nakliyat emtea sigortaları düzenli olarak güncellenmektedir.
           </p>
+        </div>
+
+        {/* Gerçek Filo Görselleri */}
+        <div className="grid sm:grid-cols-2 gap-6">
+          <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm group">
+            <div className="relative h-64 sm:h-72 w-full">
+              <Image
+                src="/images/bakir-nakliyat-filo-araci.webp"
+                alt="Bakır Nakliyat Özmal Kapalı Kasa Aracı"
+                fill
+                sizes="(max-width: 768px) 100vw, 400px"
+                className="object-cover group-hover:scale-105 transition duration-500"
+              />
+              <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-[#0b1f3a]">
+                34 RIL 010 • Özmal Filo
+              </div>
+            </div>
+            <div className="p-4 bg-slate-50 border-t border-slate-100">
+              <h3 className="font-bold text-sm text-[#0b1f3a]">Şehir İçi & Şehirlerarası Kapalı Kasa Nakliye Aracı</h3>
+              <p className="text-xs text-[#64748b] mt-0.5">Sarsıntı önleyici iç sabitleme donanımlı</p>
+            </div>
+          </div>
+
+          <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm group">
+            <div className="relative h-64 sm:h-72 w-full">
+              <Image
+                src="/images/bakir-nakliyat-palet-yukleme.webp"
+                alt="Forklift ile Paletli Yükleme Operasyonu"
+                fill
+                sizes="(max-width: 768px) 100vw, 400px"
+                className="object-cover group-hover:scale-105 transition duration-500"
+              />
+              <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-[#0b1f3a]">
+                Depolama & Yükleme
+              </div>
+            </div>
+            <div className="p-4 bg-slate-50 border-t border-slate-100">
+              <h3 className="font-bold text-sm text-[#0b1f3a]">Ağır Yük & Kurumsal Sevkiyat Desteği</h3>
+              <p className="text-xs text-[#64748b] mt-0.5">Forklift ve rampa uyumlu araç kasası</p>
+            </div>
+          </div>
         </div>
 
         {/* Araç Filosu Tablosu */}

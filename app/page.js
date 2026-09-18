@@ -1,6 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
 import CtaBand from "@/components/CtaBand";
-import Placeholder from "@/components/Placeholder";
 import { site } from "@/data/site";
 import { services } from "@/data/services";
 
@@ -131,37 +131,56 @@ export default function HomePage() {
 
             {/* Sağ Görsel Kart Alanı */}
             <div className="lg:col-span-5">
-              <div className="relative bg-white rounded-2xl p-6 shadow-xl border border-slate-200/80">
-                <div className="relative h-64 sm:h-80 rounded-xl overflow-hidden bg-gradient-to-br from-slate-100 to-blue-50 border border-slate-200 flex flex-col items-center justify-center text-center p-6">
-                  <div className="w-16 h-16 rounded-2xl bg-white shadow-md flex items-center justify-center text-3xl mb-4 border border-blue-100">
-                    🚚
+              <div className="relative bg-white rounded-3xl p-3 sm:p-4 shadow-2xl border border-slate-200/90">
+                <div className="relative h-72 sm:h-96 rounded-2xl overflow-hidden border border-slate-200 group">
+                  <Image
+                    src="/images/bakir-nakliyat-filo-araci.webp"
+                    alt="Bakır Nakliyat Özmal Kapalı Kasa Taşıma Aracı"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 500px"
+                    className="object-cover group-hover:scale-105 transition duration-500"
+                    priority
+                  />
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b1f3a]/90 via-transparent to-black/20" />
+
+                  {/* Rozetler */}
+                  <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-bold text-[#0b1f3a] shadow-md flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span>34 RIL 010 • Özmal Nakliyat Filosu</span>
                   </div>
-                  <p className="font-extrabold text-xl text-[#0b1f3a]">
-                    Bakır Nakliyat Operasyon
-                  </p>
-                  <p className="text-xs text-[#64748b] mt-1 max-w-xs">
-                    Özel donanımlı kapalı kasa araç filosu ve bina dışı teleskopik asansör sistemleri.
-                  </p>
-                  <div className="mt-4 inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold border border-emerald-200">
-                    <span>●</span> Aktif Sevkiyatlar Devam Ediyor
+
+                  {/* Alt Bilgi */}
+                  <div className="absolute bottom-4 left-4 right-4 text-white">
+                    <div className="text-xs font-semibold text-blue-200 uppercase tracking-wider">
+                      Güvenli & Korumalı Taşımacılık
+                    </div>
+                    <div className="text-base sm:text-lg font-extrabold mt-0.5">
+                      Kapalı Kasa Araçlarımızla Hasarsız Sevkiyat
+                    </div>
                   </div>
                 </div>
 
                 {/* Öne Çıkan Bilgi Kartı */}
-                <div className="mt-5 p-4 rounded-xl bg-[#eff6ff] border border-blue-200 flex items-center justify-between">
-                  <div>
-                    <div className="text-xs font-bold uppercase tracking-wider text-[#1d4ed8]">
-                      Aynı Gün Taşıma
+                <div className="mt-4 p-3.5 rounded-xl bg-blue-50/80 border border-blue-200 flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-9 h-9 rounded-lg bg-[#1d4ed8] text-white flex items-center justify-center font-bold text-sm">
+                      ✓
                     </div>
-                    <div className="text-sm font-extrabold text-[#0b1f3a] mt-0.5">
-                      İstanbul İçi Hızlı Sevkiyat
+                    <div>
+                      <div className="text-xs font-bold text-[#0b1f3a]">
+                        Aynı Gün İstanbul İçi Taşıma
+                      </div>
+                      <div className="text-[11px] text-[#475569]">
+                        Özel sabitlemeli kasa ve asansör desteği
+                      </div>
                     </div>
                   </div>
                   <a
                     href={`tel:${site.phoneTel}`}
-                    className="text-xs font-bold px-3 py-2 rounded-lg bg-[#1d4ed8] text-white hover:bg-blue-700 transition"
+                    className="text-xs font-bold px-3 py-2 rounded-lg bg-[#1d4ed8] text-white hover:bg-blue-700 transition shrink-0"
                   >
-                    Bilgi Al
+                    Hemen Ara
                   </a>
                 </div>
               </div>
@@ -272,7 +291,78 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4 Adımda Kolay Taşınma Süreci */}
+      {/* Sahadan Canlı Operasyon Kareleri */}
+      <section className="py-20 bg-slate-50 border-t border-slate-200">
+        <div className="container-page">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+            <div>
+              <div className="text-xs font-bold uppercase tracking-wider text-[#1d4ed8] bg-blue-50 px-3 py-1 rounded-md border border-blue-100 inline-block mb-3">
+                Sahadan Canlı Kareler
+              </div>
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0b1f3a] tracking-tight">
+                Gerçekleşen Sevkiyatlarımız
+              </h2>
+              <p className="mt-2 text-sm text-[#475569]">
+                Özmal araçlarımız, forkliftli palet yükleme ve güvenli ambalajlama operasyonlarımız.
+              </p>
+            </div>
+            <Link
+              href="/resimler"
+              className="text-sm font-bold text-[#1d4ed8] hover:text-[#1e40af] flex items-center gap-1.5 group"
+            >
+              <span>Tüm Fotoğrafları İncele</span>
+              <span className="group-hover:translate-x-1 transition">→</span>
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+            {[
+              {
+                src: "/images/bakir-nakliyat-palet-yukleme.webp",
+                title: "Forklift ile Paletli Yükleme",
+                badge: "Depolama & Fabrika",
+              },
+              {
+                src: "/images/bakir-nakliyat-koli-istifleme.webp",
+                title: "Korumalı Koli Yerleşimi",
+                badge: "Özenli İstif",
+              },
+              {
+                src: "/images/bakir-nakliyat-gece-sevkiyat.webp",
+                title: "7/24 Kesintisiz Sefer",
+                badge: "Şehirlerarası",
+              },
+              {
+                src: "/images/bakir-nakliyat-guvenli-ambalaj.webp",
+                title: "Özel Fuar & Palet Ambalajı",
+                badge: "%100 Hasarsız",
+              },
+            ].map((photo) => (
+              <div
+                key={photo.title}
+                className="group relative rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-xs hover:shadow-xl hover:border-blue-300 transition-all duration-300 flex flex-col"
+              >
+                <div className="relative h-64 sm:h-72 overflow-hidden">
+                  <Image
+                    src={photo.src}
+                    alt={photo.title}
+                    fill
+                    sizes="(max-width: 768px) 50vw, 25vw"
+                    className="object-cover group-hover:scale-105 transition duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
+                  <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full text-[11px] font-extrabold text-[#0b1f3a] shadow-xs">
+                    {photo.badge}
+                  </div>
+                  <div className="absolute bottom-3 left-3 right-3 text-white">
+                    <p className="text-xs sm:text-sm font-bold leading-snug">{photo.title}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
       <section className="py-20 bg-[#f8fafc] border-t border-slate-200">
         <div className="container-page">
           <div className="text-center max-w-2xl mx-auto mb-14">

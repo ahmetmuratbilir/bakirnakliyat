@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import PageHero from "@/components/PageHero";
-import Placeholder from "@/components/Placeholder";
 import CtaBand from "@/components/CtaBand";
 import { cities, getCity } from "@/data/cities";
 import { site } from "@/data/site";
@@ -41,8 +41,18 @@ export default async function CityPage({ params }) {
 
       <section className="container-page py-16 grid lg:grid-cols-12 gap-10">
         <div className="lg:col-span-8 space-y-8">
-          <div className="bg-white rounded-2xl p-2 border border-slate-200 shadow-xs">
-            <Placeholder label={`İstanbul - ${city.name} Seferi`} className="h-64 sm:h-72" />
+          <div className="relative h-64 sm:h-80 rounded-2xl overflow-hidden border border-slate-200 shadow-xs">
+            <Image
+              src="/images/bakir-nakliyat-gece-sevkiyat.webp"
+              alt={`Bakır Nakliyat İstanbul ${city.name} Şehirlerarası Sefer Aracı`}
+              fill
+              className="object-cover"
+              sizes="(max-width: 1024px) 100vw, 800px"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+            <div className="absolute bottom-3 left-4 text-white text-xs font-semibold bg-black/50 backdrop-blur-xs px-3 py-1.5 rounded-lg">
+              🛣️ İstanbul &ndash; {city.name} Gece &amp; Gündüz Kesintisiz Sefer
+            </div>
           </div>
 
           <div className="p-8 rounded-2xl bg-slate-50 border border-slate-200 space-y-4 text-[#334155] leading-relaxed text-base">
