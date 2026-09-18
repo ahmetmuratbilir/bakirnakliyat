@@ -29,7 +29,7 @@ export default function CtaBand() {
             href={site.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 font-bold px-6 py-4 rounded-xl bg-[#25d366] text-white hover:bg-emerald-600 transition shadow-xl text-base"
+            className="flex items-center gap-2 font-bold px-6 py-4 rounded-xl bg-[#128c4a] text-white hover:bg-[#0f7a3f] transition shadow-xl text-base"
           >
             <span>💬</span>
             <span>WhatsApp Teklif</span>

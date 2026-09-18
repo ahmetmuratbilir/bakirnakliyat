@@ -136,9 +136,9 @@ export default function HomePage() {
                   <div className="w-16 h-16 rounded-2xl bg-white shadow-md flex items-center justify-center text-3xl mb-4 border border-blue-100">
                     🚚
                   </div>
-                  <h3 className="font-extrabold text-xl text-[#0b1f3a]">
+                  <p className="font-extrabold text-xl text-[#0b1f3a]">
                     Bakır Nakliyat Operasyon
-                  </h3>
+                  </p>
                   <p className="text-xs text-[#64748b] mt-1 max-w-xs">
                     Özel donanımlı kapalı kasa araç filosu ve bina dışı teleskopik asansör sistemleri.
                   </p>

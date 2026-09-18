@@ -69,7 +69,7 @@ export default function ContactForm() {
           <button
             type="button"
             onClick={handleWhatsAppSend}
-            className="w-full sm:w-auto font-bold px-6 py-3.5 rounded-xl bg-[#25d366] text-white hover:bg-emerald-600 transition text-sm shadow-md"
+            className="w-full sm:w-auto font-bold px-6 py-3.5 rounded-xl bg-[#128c4a] text-white hover:bg-[#0f7a3f] transition text-sm shadow-md"
           >
             💬 WhatsApp ile Hemen İlet
           </button>
@@ -162,7 +162,7 @@ export default function ContactForm() {
         <button
           type="button"
           onClick={handleWhatsAppSend}
-          className="font-bold py-4 px-6 rounded-xl bg-[#25d366] hover:bg-emerald-600 text-white transition text-sm sm:text-base shadow-lg shadow-emerald-600/25 cursor-pointer flex items-center justify-center gap-2"
+          className="font-bold py-4 px-6 rounded-xl bg-[#128c4a] hover:bg-[#0f7a3f] text-white transition text-sm sm:text-base shadow-lg shadow-emerald-600/25 cursor-pointer flex items-center justify-center gap-2"
         >
           <span>💬</span>
           <span>WhatsApp Teklif</span>

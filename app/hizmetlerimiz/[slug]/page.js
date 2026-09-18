@@ -103,7 +103,7 @@ export default async function ServicePage({ params }) {
                 href={site.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full font-bold py-3 rounded-xl bg-[#25d366] text-white hover:bg-emerald-600 transition text-sm shadow-md"
+                className="flex items-center justify-center gap-2 w-full font-bold py-3 rounded-xl bg-[#128c4a] text-white hover:bg-[#0f7a3f] transition text-sm shadow-md"
               >
                 <span>💬</span>
                 <span>WhatsApp Ekspertiz</span>

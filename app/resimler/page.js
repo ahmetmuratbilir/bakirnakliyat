@@ -33,7 +33,7 @@ export default function ResimlerPage() {
             href={site.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block font-bold px-6 py-3 rounded-xl bg-[#25d366] text-white hover:bg-emerald-600 transition text-sm shadow-md"
+            className="inline-block font-bold px-6 py-3 rounded-xl bg-[#128c4a] text-white hover:bg-[#0f7a3f] transition text-sm shadow-md"
           >
             WhatsApp&apos;tan Referans İste
           </a>

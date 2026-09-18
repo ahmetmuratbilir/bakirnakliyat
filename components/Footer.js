@@ -47,15 +47,15 @@ export default function Footer() {
 
         {/* Sütun 2 — Temel Hizmetler */}
         <div>
-          <h4 className="font-bold text-white text-base mb-5 tracking-tight border-l-2 border-[#1d4ed8] pl-2.5">
+          <h3 className="font-bold text-white text-base mb-5 tracking-tight border-l-2 border-[#1d4ed8] pl-2.5">
             Hizmetlerimiz
-          </h4>
+          </h3>
           <ul className="space-y-2.5 text-xs sm:text-sm">
             {services.slice(0, 6).map((s) => (
               <li key={s.slug}>
                 <Link
                   href={`/hizmetlerimiz/${s.slug}`}
-                  className="text-slate-400 hover:text-white hover:translate-x-1 inline-block transition"
+                  className="text-slate-400 hover:text-white hover:translate-x-1 inline-block py-1 transition"
                 >
                   {s.title}
                 </Link>
@@ -66,9 +66,9 @@ export default function Footer() {
 
         {/* Sütun 3 — Kurumsal */}
         <div>
-          <h4 className="font-bold text-white text-base mb-5 tracking-tight border-l-2 border-[#1d4ed8] pl-2.5">
+          <h3 className="font-bold text-white text-base mb-5 tracking-tight border-l-2 border-[#1d4ed8] pl-2.5">
             Kurumsal
-          </h4>
+          </h3>
           <ul className="space-y-2.5 text-xs sm:text-sm">
             {[
               { href: "/hakkimizda", label: "Hakkımızda" },
@@ -82,7 +82,7 @@ export default function Footer() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="text-slate-400 hover:text-white hover:translate-x-1 inline-block transition"
+                  className="text-slate-400 hover:text-white hover:translate-x-1 inline-block py-1 transition"
                 >
                   {link.label}
                 </Link>
@@ -93,9 +93,9 @@ export default function Footer() {
 
         {/* Sütun 4 — Hızlı İletişim & Lokasyonlar */}
         <div>
-          <h4 className="font-bold text-white text-base mb-5 tracking-tight border-l-2 border-[#1d4ed8] pl-2.5">
+          <h3 className="font-bold text-white text-base mb-5 tracking-tight border-l-2 border-[#1d4ed8] pl-2.5">
             Hızlı Ulaşım
-          </h4>
+          </h3>
           <div className="space-y-3">
             <a
               href={`tel:${site.phoneTel}`}
@@ -108,7 +108,7 @@ export default function Footer() {
               href={site.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl bg-emerald-600 text-white font-bold text-xs hover:bg-emerald-500 transition shadow-md"
+              className="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl bg-[#128c4a] text-white font-bold text-xs hover:bg-[#0f7a3f] transition shadow-md"
             >
               <span>💬</span>
               <span>WhatsApp Teklif Hattı</span>
@@ -116,12 +116,12 @@ export default function Footer() {
 
             <div className="pt-2 text-xs text-slate-400 space-y-1.5">
               <div>
-                <Link href="/istanbul-nakliye" className="hover:text-white underline">
+                <Link href="/istanbul-nakliye" className="inline-block py-1.5 hover:text-white underline">
                   İstanbul 39 İlçe Nakliye Rehberi
                 </Link>
               </div>
               <div>
-                <Link href="/sehirler-arasi-nakliyat" className="hover:text-white underline">
+                <Link href="/sehirler-arasi-nakliyat" className="inline-block py-1.5 hover:text-white underline">
                   Şehirlerarası Nakliyat Seferleri
                 </Link>
               </div>

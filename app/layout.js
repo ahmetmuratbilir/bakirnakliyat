@@ -1,8 +1,23 @@
 import "./globals.css";
+import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingContact from "@/components/FloatingContact";
 import { site } from "@/data/site";
+
+const plusJakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-jakarta",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export const metadata = {
   metadataBase: new URL(site.domain),
@@ -68,7 +83,7 @@ const jsonLd = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="tr" className="h-full">
+    <html lang="tr" className={`h-full ${plusJakarta.variable} ${inter.variable}`}>
       <body className="min-h-full flex flex-col pb-16 sm:pb-0">
         <script
           type="application/ld+json"
