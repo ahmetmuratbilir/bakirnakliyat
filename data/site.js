@@ -1,6 +1,11 @@
 export const site = {
   name: "Bakır Nakliyat",
-  domain: "https://www.bakirnakliyat.net",
+  // Gerçek domain: bakırnakliyat.com (Türkçe ı). DNS/URL standartlarında
+  // Türkçe karakterli domainler Punycode (ASCII) forma çevrilir; tüm
+  // meta etiketler, sitemap ve canonical URL'lerin tutarlı olması için
+  // burada doğrudan Punycode halini kullanıyoruz. Tarayıcıda ziyaretçiler
+  // yine "bakırnakliyat.com" olarak görecek.
+  domain: "https://xn--bakrnakliyat-34b.com",
   phoneDisplay: "0538 411 09 60",
   phoneTel: "05384110960",
   whatsapp: "https://wa.me/905384110960?text=Merhaba,%20nakliyat%20hizmeti%20ve%20fiyat%20teklifi%20almak%20istiyorum.",
