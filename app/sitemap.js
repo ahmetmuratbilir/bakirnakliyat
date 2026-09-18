@@ -4,6 +4,8 @@ import { services } from "@/data/services";
 import { posts } from "@/data/posts";
 import { site } from "@/data/site";
 
+export const dynamic = "force-static";
+
 export default function sitemap() {
   const staticRoutes = [
     "",
