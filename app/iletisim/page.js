@@ -1,33 +1,12 @@
 import PageHero from "@/components/PageHero";
 import CtaBand from "@/components/CtaBand";
+import ContactForm from "@/components/ContactForm";
 import { site } from "@/data/site";
 
 export const metadata = {
   title: "İletişim & Teklif Formu | Bakır Nakliyat",
   description: `${site.name} ile iletişime geçin. Ücretsiz ekspertiz, sabit fiyat teklifi ve nakliye randevusu için hemen arayın veya formu doldurun.`,
   alternates: { canonical: `${site.domain}/iletisim` },
-};
-
-async function handleSubmit(formData) {
-  "use server";
-  const data = {
-    name: formData.get("name"),
-    phone: formData.get("phone"),
-    serviceType: formData.get("serviceType"),
-    message: formData.get("message"),
-  };
-  console.log("İletişim Formu Talebi:", data);
-}
-
-const inputStyle = {
-  width: "100%",
-  padding: "0.85rem 1rem",
-  borderRadius: "0.75rem",
-  border: "1px solid #cbd5e1",
-  background: "#ffffff",
-  color: "#0f172a",
-  fontSize: "0.875rem",
-  outline: "none",
 };
 
 export default function IletisimPage() {
@@ -66,7 +45,7 @@ export default function IletisimPage() {
               {
                 icon: "💬",
                 title: "WhatsApp Destek",
-                val: "WhatsApp'tan Yazın",
+                val: "WhatsApp'tan Yazın (0538 411 09 60)",
                 sub: "Fotoğraf & Konum Gönderimi İçin",
                 href: site.whatsapp,
               },
@@ -74,7 +53,7 @@ export default function IletisimPage() {
                 icon: "✉️",
                 title: "Kurumsal E-Posta",
                 val: site.email,
-                sub: "Kurumsal Teklif & Faturalandırma",
+                sub: "Tıklayarak Doğrudan E-Posta Gönderin",
                 href: `mailto:${site.email}`,
               },
               {
@@ -141,82 +120,10 @@ export default function IletisimPage() {
               Hızlı Teklif Formu
             </h3>
             <p className="text-xs sm:text-sm text-[#64748b] mt-1.5 mb-8">
-              Bilgilerinizi girin, ekibimiz size özel fiyat teklifini hazırlayıp hemen dönsün.
+              Bilgilerinizi girin, form <strong>{site.email}</strong> adresimize iletilsin veya tek tıkla WhatsApp üzerinden aktarın.
             </p>
 
-            <form action={handleSubmit} className="space-y-5">
-              <div className="grid sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-xs font-bold text-[#334155] mb-2 uppercase tracking-wider">
-                    Adınız & Soyadınız <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    required
-                    placeholder="Örn: Ahmet Yılmaz"
-                    style={inputStyle}
-                    className="focus:border-[#1d4ed8] focus:ring-2 focus:ring-blue-100 transition"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-bold text-[#334155] mb-2 uppercase tracking-wider">
-                    Telefon Numaranız <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    type="tel"
-                    name="phone"
-                    required
-                    placeholder="05XX XXX XX XX"
-                    style={inputStyle}
-                    className="focus:border-[#1d4ed8] focus:ring-2 focus:ring-blue-100 transition"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-[#334155] mb-2 uppercase tracking-wider">
-                  Hizmet Türü
-                </label>
-                <select
-                  name="serviceType"
-                  style={inputStyle}
-                  className="focus:border-[#1d4ed8] focus:ring-2 focus:ring-blue-100 transition"
-                >
-                  <option value="evden-eve">Evden Eve Nakliyat</option>
-                  <option value="ofis-tasima">Ofis ve Büro Taşımacılığı</option>
-                  <option value="sehirler-arasi">Şehirlerarası Nakliyat</option>
-                  <option value="asansorlu">Asansörlü Taşımacılık</option>
-                  <option value="parca-esya">Parça Eşya Taşıma</option>
-                  <option value="depolama">Eşya Depolama</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-xs font-bold text-[#334155] mb-2 uppercase tracking-wider">
-                  Taşınma Detayları (Nereden & Nereye, Oda Sayısı, Kat)
-                </label>
-                <textarea
-                  name="message"
-                  rows={4}
-                  placeholder="Örn: Kadıköy 3. kattan Başakşehir 5. kata taşınacak 2+1 ev eşyası..."
-                  style={{ ...inputStyle, resize: "vertical" }}
-                  className="focus:border-[#1d4ed8] focus:ring-2 focus:ring-blue-100 transition"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full font-bold py-4 rounded-xl bg-[#1d4ed8] hover:bg-[#1e40af] text-white transition text-base shadow-lg shadow-blue-600/25 cursor-pointer"
-              >
-                Ücretsiz Teklif Talebini Gönder →
-              </button>
-
-              <div className="flex items-center justify-center gap-2 text-xs text-[#64748b] text-center pt-2">
-                <span>🔒</span>
-                <span>Bilgileriniz üçüncü şahıslarla asla paylaşılmaz.</span>
-              </div>
-            </form>
+            <ContactForm />
           </div>
         </div>
       </section>

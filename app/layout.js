@@ -1,6 +1,7 @@
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import FloatingContact from "@/components/FloatingContact";
 import { site } from "@/data/site";
 
 export const metadata = {
@@ -68,7 +69,7 @@ const jsonLd = {
 export default function RootLayout({ children }) {
   return (
     <html lang="tr" className="h-full">
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col pb-16 sm:pb-0">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -76,6 +77,7 @@ export default function RootLayout({ children }) {
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <FloatingContact />
       </body>
     </html>
   );

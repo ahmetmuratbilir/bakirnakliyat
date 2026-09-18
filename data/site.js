@@ -1,10 +1,10 @@
 export const site = {
   name: "Bakır Nakliyat",
   domain: "https://www.bakirnakliyat.net",
-  phoneDisplay: "0532 000 00 00",
-  phoneTel: "05320000000",
-  whatsapp: "https://wa.me/905320000000",
-  email: "info@bakirnakliyat.net",
+  phoneDisplay: "0538 411 09 60",
+  phoneTel: "05384110960",
+  whatsapp: "https://wa.me/905384110960?text=Merhaba,%20nakliyat%20hizmeti%20ve%20fiyat%20teklifi%20almak%20istiyorum.",
+  email: "bakirnakliyatsirketi@gmail.com",
   founded: "2009",
   address: {
     line1: "Merkez Mahallesi, Nakliyat Caddesi No:12",
