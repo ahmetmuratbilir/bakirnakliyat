@@ -1,65 +1,71 @@
 import PageHero from "@/components/PageHero";
 import CtaBand from "@/components/CtaBand";
 import { site } from "@/data/site";
-
-export const metadata = {
-  title: "Hizmetlerimiz",
-  description: `${site.name}'ın sunduğu nakliyat hizmetleri: evden eve, ofis taşıma, asansörlü taşıma, eşya depolama ve daha fazlası.`,
-};
-
 import { services } from "@/data/services";
 import Link from "next/link";
 
+export const metadata = {
+  title: "Hizmetlerimiz",
+  description: `${site.name} profesyonel taşımacılık hizmetleri: evden eve nakliyat, ofis taşıma, asansörlü taşıma, eşya depolama ve şehir içi/şehirlerarası çözümler.`,
+  alternates: { canonical: `${site.domain}/hizmetlerimiz` },
+};
+
 export default function HizmetlerimizPage() {
   return (
-    <>
+    <div className="bg-white">
       <PageHero
         title="Hizmetlerimiz"
-        subtitle="Her ihtiyaca özel, sigortalı ve sözleşmeli nakliyat çözümleri. Profesyonel ekip, şeffaf fiyat."
+        subtitle="İstanbul içi ve şehirlerarası taşımacılıkta sigortalı, asansörlü ve marangozlu anahtar teslim çözümler."
         breadcrumb={[{ label: "Hizmetlerimiz" }]}
       />
+
       <section className="container-page py-16 md:py-20">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((s) => (
-            <Link
+            <div
               key={s.slug}
-              href={`/hizmetlerimiz/${s.slug}`}
-              className="block p-6 rounded-xl card-hover"
-              style={{
-                background: "var(--color-dark-card)",
-                border: "1px solid var(--color-dark-border)",
-              }}
+              className="flex flex-col p-7 rounded-2xl bg-white border border-slate-200 shadow-xs hover:shadow-xl hover:border-[#1d4ed8] transition-all group"
             >
               <div className="text-4xl mb-4">{s.icon}</div>
-              <h2 className="text-lg font-bold mb-2" style={{ color: "var(--color-text)" }}>
+              <h2 className="text-xl font-bold text-[#0b1f3a] mb-2.5 group-hover:text-[#1d4ed8] transition">
                 {s.title}
               </h2>
-              <p className="text-sm leading-relaxed mb-5" style={{ color: "var(--color-text-muted)" }}>
+              <p className="text-sm text-[#475569] leading-relaxed mb-6 flex-1">
                 {s.short}
               </p>
-              <div className="flex flex-wrap gap-2 mb-5">
+
+              <div className="flex flex-wrap gap-2 mb-6">
                 {s.bullets.slice(0, 3).map((b) => (
                   <span
                     key={b}
-                    className="text-xs px-2.5 py-1 rounded-full"
-                    style={{
-                      background: "rgba(196,119,63,0.1)",
-                      border: "1px solid rgba(196,119,63,0.25)",
-                      color: "var(--color-gold)",
-                    }}
+                    className="text-xs px-2.5 py-1 rounded-md bg-blue-50 text-[#1d4ed8] font-semibold border border-blue-100"
                   >
-                    {b}
+                    ✓ {b}
                   </span>
                 ))}
               </div>
-              <span className="text-sm font-semibold" style={{ color: "var(--color-gold)" }}>
-                Detaylı Bilgi →
-              </span>
-            </Link>
+
+              <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                <Link
+                  href={`/hizmetlerimiz/${s.slug}`}
+                  className="text-sm font-bold text-[#1d4ed8] hover:text-[#1e40af] flex items-center gap-1.5"
+                >
+                  <span>Detaylı Bilgi</span>
+                  <span className="group-hover:translate-x-1 transition">→</span>
+                </Link>
+                <a
+                  href={`tel:${site.phoneTel}`}
+                  className="text-xs font-bold text-slate-600 hover:text-[#1d4ed8]"
+                >
+                  Fiyat Al
+                </a>
+              </div>
+            </div>
           ))}
         </div>
       </section>
+
       <CtaBand />
-    </>
+    </div>
   );
 }

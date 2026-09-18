@@ -12,9 +12,7 @@ const categories = [
   "Eşya Depolama",
 ];
 
-// Yer tutucu galeri öğeleri — gerçek fotoğraflar eklendiğinde
-// her öğeye bir görsel yolu (src) eklenip Placeholder yerine <Image> kullanılabilir.
-const items = Array.from({ length: 18 }, (_, i) => ({
+const items = Array.from({ length: 16 }, (_, i) => ({
   id: i,
   category: categories[1 + (i % (categories.length - 1))],
 }));
@@ -27,7 +25,8 @@ export default function GalleryGrid() {
 
   return (
     <div>
-      <div className="flex flex-wrap gap-2 mb-10">
+      {/* Kategori Filtre Butonları */}
+      <div className="flex flex-wrap gap-2.5 mb-10">
         {categories.map((cat) => {
           const isActive = active === cat;
           return (
@@ -35,16 +34,11 @@ export default function GalleryGrid() {
               key={cat}
               type="button"
               onClick={() => setActive(cat)}
-              className="px-3 py-1.5 rounded-full text-sm font-medium transition"
-              style={
+              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all shadow-xs cursor-pointer ${
                 isActive
-                  ? { background: "var(--copper)", color: "var(--bg-main)" }
-                  : {
-                      background: "var(--bg-card)",
-                      border: "1px solid var(--border)",
-                      color: "var(--text-secondary)",
-                    }
-              }
+                  ? "bg-[#1d4ed8] text-white shadow-md shadow-blue-500/25"
+                  : "bg-white border border-slate-200 text-slate-700 hover:border-blue-300 hover:text-[#1d4ed8]"
+              }`}
             >
               {cat}
             </button>
@@ -53,13 +47,15 @@ export default function GalleryGrid() {
       </div>
 
       {filtered.length === 0 ? (
-        <p className="text-sm text-center py-10" style={{ color: "var(--text-secondary)" }}>
+        <p className="text-sm text-center py-10 text-slate-500">
           Bu kategoride henüz görsel eklenmedi.
         </p>
       ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5">
           {filtered.map((item) => (
-            <Placeholder key={item.id} label={item.category} className="aspect-square rounded-xl" />
+            <div key={item.id} className="bg-white rounded-xl p-2 border border-slate-200 shadow-xs hover:shadow-md transition">
+              <Placeholder label={item.category} className="aspect-square" />
+            </div>
           ))}
         </div>
       )}

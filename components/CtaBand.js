@@ -2,32 +2,25 @@ import { site } from "@/data/site";
 
 export default function CtaBand() {
   return (
-    <section
-      style={{
-        background: "linear-gradient(135deg, var(--color-gold-dark) 0%, var(--color-gold) 50%, var(--color-gold-light) 100%)",
-      }}
-    >
-      <div className="container-page py-14 flex flex-col md:flex-row items-center justify-between gap-8">
+    <section className="bg-gradient-to-r from-[#0b1f3a] via-[#1e3a8a] to-[#1d4ed8] text-white py-14 border-t border-slate-200">
+      <div className="container-page flex flex-col lg:flex-row items-center justify-between gap-8">
         <div>
-          <h2
-            className="text-2xl md:text-3xl font-bold"
-            style={{ color: "var(--color-dark)" }}
-          >
-            Ücretsiz Ekspertiz ve Fiyat Teklifi Alın
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 text-blue-200 text-xs font-bold mb-3 border border-blue-400/30">
+            <span>🛡️</span>
+            <span>Ücretsiz Keşif & Sabit Fiyat Garantisi</span>
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            Taşınma Planınızı Birlikte Yapalım
           </h2>
-          <p className="mt-2 text-base" style={{ color: "rgba(13,17,23,0.75)" }}>
-            Arayın, ekibimiz en kısa sürede size özel bir teklif hazırlasın. Sürpriz ücret yok, şeffaf fiyat.
+          <p className="mt-2 text-sm sm:text-base text-blue-100 max-w-xl leading-relaxed">
+            Hemen arayın veya WhatsApp&apos;tan oda fotoğraflarınızı gönderin; dakikalar içinde kesin ve net fiyat teklifinizi iletelim.
           </p>
         </div>
-        <div className="flex flex-wrap gap-3 shrink-0">
+
+        <div className="flex flex-wrap items-center gap-3.5 shrink-0">
           <a
             href={`tel:${site.phoneTel}`}
-            className="inline-flex items-center gap-2 font-bold px-7 py-3.5 rounded-lg transition"
-            style={{
-              background: "var(--color-dark)",
-              color: "var(--color-gold)",
-              boxShadow: "0 4px 16px rgba(0,0,0,0.3)",
-            }}
+            className="flex items-center gap-2 font-extrabold px-7 py-4 rounded-xl bg-white text-[#0b1f3a] hover:bg-slate-100 transition shadow-xl text-base"
           >
             <span>📞</span>
             <span>{site.phoneDisplay}</span>
@@ -36,15 +29,10 @@ export default function CtaBand() {
             href={site.whatsapp}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 font-bold px-7 py-3.5 rounded-lg transition"
-            style={{
-              background: "#fff",
-              color: "var(--whatsapp)",
-              boxShadow: "0 4px 16px rgba(0,0,0,0.15)",
-            }}
+            className="flex items-center gap-2 font-bold px-6 py-4 rounded-xl bg-[#25d366] text-white hover:bg-emerald-600 transition shadow-xl text-base"
           >
             <span>💬</span>
-            <span>WhatsApp</span>
+            <span>WhatsApp Teklif</span>
           </a>
         </div>
       </div>

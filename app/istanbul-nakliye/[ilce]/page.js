@@ -16,8 +16,8 @@ export async function generateMetadata({ params }) {
   const district = getDistrict(ilce);
   if (!district) return {};
   return {
-    title: `${district.name} Nakliye`,
-    description: `${site.name} ile ${district.name} bölgesinde sigortalı, asansörlü evden eve nakliyat ve ofis taşıma hizmeti. Ücretsiz ekspertiz ve şeffaf fiyat için hemen arayın.`,
+    title: `${district.name} Nakliye | ${site.name}`,
+    description: `${site.name} ile ${district.name} bölgesinde sigortalı, asansörlü evden eve nakliyat ve ofis taşıma hizmeti. Ücretsiz ekspertiz ve sabit fiyat için hemen arayın.`,
     alternates: { canonical: `${site.domain}/istanbul-nakliye/${ilce}` },
   };
 }
@@ -27,124 +27,104 @@ export default async function DistrictPage({ params }) {
   const district = getDistrict(ilce);
   if (!district) return notFound();
 
-  const nearbyDistricts = districts.filter((d) => d.slug !== ilce).slice(0, 8);
+  const nearbyDistricts = districts.filter((d) => d.slug !== ilce).slice(0, 10);
 
   return (
-    <>
-      <style>{`
-        .ilce-service-link { color: var(--color-text-muted); font-size: 0.875rem; display:flex; align-items:center; gap:0.5rem; text-decoration:none; }
-        .ilce-service-link:hover { color: var(--color-gold); }
-        .ilce-nearby-tag { background: var(--color-dark-elevated); border: 1px solid var(--color-dark-border); color: var(--color-text-muted); padding: 0.375rem 0.75rem; border-radius: 0.5rem; font-size:0.875rem; transition: all 0.15s; text-decoration:none; }
-        .ilce-nearby-tag:hover { border-color: var(--color-gold); color: var(--color-gold); }
-      `}</style>
+    <div className="bg-white">
       <PageHero
-        title={`${district.name} Nakliye Hizmeti`}
-        subtitle={`${district.name} bölgesinde profesyonel, sigortalı ve asansörlü evden eve nakliyat`}
+        title={`${district.name} Evden Eve Nakliyat`}
+        subtitle={`${district.name} ve çevresinde sigortalı, marangozlu ve asansörlü profesyonel taşımacılık hizmeti`}
         breadcrumb={[
           { href: "/istanbul-nakliye", label: "İstanbul Nakliye" },
           { label: district.name },
         ]}
       />
 
-      <section className="container-page py-16 grid md:grid-cols-3 gap-10">
-        <div className="md:col-span-2 space-y-6">
-          <Placeholder label={`${district.name} Nakliye`} className="h-64 rounded-xl" />
+      <section className="container-page py-16 grid lg:grid-cols-12 gap-10">
+        {/* Sol İçerik */}
+        <div className="lg:col-span-8 space-y-8">
+          <div className="bg-white rounded-2xl p-2 border border-slate-200 shadow-xs">
+            <Placeholder label={`${district.name} Nakliyat`} className="h-64 sm:h-72" />
+          </div>
 
-          <div className="space-y-4 text-base leading-relaxed" style={{ color: "var(--color-text-muted)" }}>
+          <div className="p-8 rounded-2xl bg-slate-50 border border-slate-200 space-y-4 text-[#334155] leading-relaxed text-base">
             <p>
-              <strong style={{ color: "var(--color-text)" }}>{site.name}</strong> olarak{" "}
-              {district.name} bölgesinde yıllardır düzenli nakliyat hizmeti sunmaktayız. Semtin
-              sokak yapısını ve bina karakteristiklerini bilen deneyimli ekiplerimiz, {district.name}&apos;daki
-              her taşımayı başarıyla tamamlamıştır.
+              <strong className="text-[#0b1f3a] font-bold">{site.name}</strong> olarak, {district.name} ilçesinde yıllardır yüzlerce başarılı taşınma operasyonu gerçekleştirdik. Semtin sokak yapısı, site yönetimi kuralları ve otopark koşullarını çok iyi bilen deneyimli ekibimizle sürecin aksamadan ilerlemesini sağlıyoruz.
             </p>
             <p>
-              {district.name} ilçesindeki evden eve nakliyat hizmetlerimiz; ambalajlı paketleme,
-              marangoz sökme-montaj ve nakliye sigortasını kapsar. Ofis taşımaları için özel
-              planlama ve mesai dışı çalışma seçeneğimiz mevcuttur.
-            </p>
-            <p>
-              {district.name} ve çevresinde asansörlü taşıma araçlarımızla yüksek katlardaki
-              eşyaları güvenle indirip bindiriyoruz.
+              {district.name} nakliye hizmetimizde eşyalarınız birinci sınıf koruyucu ambalaj malzemeleriyle sarılır, mobilyalarınız marangozlarımız tarafından sökülür ve yeni evinizde istediğiniz odaya kurularak teslim edilir.
             </p>
           </div>
 
-          <div
-            className="p-5 rounded-xl"
-            style={{ background: "var(--color-dark-card)", border: "1px solid var(--color-dark-border)" }}
-          >
-            <h3 className="font-bold mb-3" style={{ color: "var(--color-text)" }}>
-              {district.name} Bölgesi Avantajlarımız
+          {/* Bölge Avantajları */}
+          <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs">
+            <h3 className="font-extrabold text-xl text-[#0b1f3a] mb-5 tracking-tight">
+              {district.name} Bölgesinde Standart Sunduklarımız
             </h3>
-            <ul className="space-y-2">
+            <div className="grid sm:grid-cols-2 gap-3.5">
               {[
-                `${district.name} ilçesinde bölge bilgili ekip`,
-                "Aynı gün veya planlı taşıma seçeneği",
-                "Dar sokak ve park sorunu çözüm desteği",
-                "Sigortalı, sözleşmeli ve faturalı hizmet",
-                "Ücretsiz ekspertiz ve sabit fiyat teklifi",
+                `${district.name} için aynı gün ücretsiz ekspertiz`,
+                "Bina dışı modüler asansör kurulumu",
+                "Mobilya söküm ve anahtar teslim montaj",
+                "Beyaz eşya sökümü ve tesisat bağlantısı",
+                "%100 resmi sözleşme ve nakliye sigortası",
+                "Sürprizsiz, sabit ve şeffaf fiyat garantisi",
               ].map((item) => (
-                <li key={item} className="flex items-center gap-3 text-sm">
-                  <span style={{ color: "var(--color-gold)" }}>✓</span>
-                  <span style={{ color: "var(--color-text-muted)" }}>{item}</span>
-                </li>
+                <div key={item} className="flex items-center gap-2.5 text-sm text-[#334155] p-2.5 rounded-lg bg-slate-50 border border-slate-100">
+                  <span className="w-5 h-5 rounded-full bg-blue-100 text-[#1d4ed8] font-bold text-xs flex items-center justify-center shrink-0">
+                    ✓
+                  </span>
+                  <span>{item}</span>
+                </div>
               ))}
-            </ul>
+            </div>
           </div>
         </div>
 
-        <div className="space-y-5">
-          {/* Teklif Kutusu */}
-          <div
-            className="p-5 rounded-xl"
-            style={{ background: "var(--color-dark-elevated)", border: "1px solid var(--color-gold-dark)" }}
-          >
-            <h3 className="font-bold mb-2" style={{ color: "var(--color-gold)" }}>
-              {district.name} İçin Teklif Alın
+        {/* Sağ Panel */}
+        <div className="lg:col-span-4 space-y-6">
+          <div className="p-6 rounded-2xl bg-gradient-to-br from-[#0b1f3a] to-[#1e3a8a] text-white shadow-xl">
+            <div className="text-xs font-bold uppercase tracking-wider text-blue-300 mb-1">
+              Bölgesel Fiyat Teklifi
+            </div>
+            <h3 className="text-xl font-extrabold text-white mb-2">
+              {district.name} Nakliye Fiyatı
             </h3>
-            <p className="text-sm mb-4" style={{ color: "var(--color-text-muted)" }}>
-              Ücretsiz ekspertiz ve net fiyat teklifi için hemen arayın.
+            <p className="text-xs text-slate-200 mb-5 leading-relaxed">
+              Oda sayısı ve kat durumuna göre en uygun teklif için hemen bizi arayın.
             </p>
-            <div className="space-y-2">
+            <div className="space-y-2.5">
               <a
                 href={`tel:${site.phoneTel}`}
-                className="flex items-center justify-center gap-2 w-full font-bold py-3 rounded-lg text-sm"
-                style={{ background: "var(--color-gold)", color: "var(--color-dark)" }}
+                className="flex items-center justify-center gap-2 w-full font-bold py-3.5 rounded-xl bg-white text-[#0b1f3a] hover:bg-slate-100 transition text-sm shadow-md"
               >
-                📞 {site.phoneDisplay}
+                <span>📞</span>
+                <span>{site.phoneDisplay}</span>
               </a>
               <a
                 href={site.whatsapp}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full font-semibold py-3 rounded-lg text-sm"
-                style={{ background: "var(--whatsapp)", color: "#fff" }}
+                className="flex items-center justify-center gap-2 w-full font-bold py-3 rounded-xl bg-[#25d366] text-white hover:bg-emerald-600 transition text-sm shadow-md"
               >
-                💬 WhatsApp&apos;tan Yaz
+                <span>💬</span>
+                <span>WhatsApp&apos;tan Fiyat Al</span>
               </a>
-              <Link
-                href="/iletisim"
-                className="flex items-center justify-center gap-2 w-full font-semibold py-3 rounded-lg text-sm"
-                style={{
-                  background: "var(--color-dark-card)",
-                  border: "1px solid var(--color-dark-border)",
-                  color: "var(--color-text)",
-                }}
-              >
-                📝 Form Doldur
-              </Link>
             </div>
           </div>
 
           {/* İlgili Hizmetler */}
-          <div
-            className="p-5 rounded-xl"
-            style={{ background: "var(--color-dark-card)", border: "1px solid var(--color-dark-border)" }}
-          >
-            <h3 className="font-semibold mb-3" style={{ color: "var(--color-text)" }}>Hizmetlerimiz</h3>
-            <ul className="space-y-2">
+          <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs">
+            <h3 className="font-bold text-[#0b1f3a] text-base mb-4 border-b border-slate-100 pb-3">
+              {district.name} Hizmet Seçenekleri
+            </h3>
+            <ul className="space-y-2.5">
               {services.slice(0, 5).map((s) => (
                 <li key={s.slug}>
-                  <Link href={`/hizmetlerimiz/${s.slug}`} className="ilce-service-link">
+                  <Link
+                    href={`/hizmetlerimiz/${s.slug}`}
+                    className="flex items-center gap-2 text-sm text-[#475569] hover:text-[#1d4ed8] font-medium"
+                  >
                     <span>{s.icon}</span>
                     <span>{s.title}</span>
                   </Link>
@@ -156,26 +136,32 @@ export default async function DistrictPage({ params }) {
       </section>
 
       {/* Yakın İlçeler */}
-      <section
-        className="py-10"
-        style={{ background: "var(--color-dark-card)", borderTop: "1px solid var(--color-dark-border)" }}
-      >
+      <section className="py-12 bg-slate-50 border-t border-slate-200">
         <div className="container-page">
-          <h3 className="font-bold mb-5" style={{ color: "var(--color-text)" }}>Diğer İstanbul İlçeleri</h3>
+          <h3 className="font-bold text-[#0b1f3a] mb-4 text-base">
+            Diğer İstanbul İlçelerindeki Hizmetlerimiz
+          </h3>
           <div className="flex flex-wrap gap-2">
             {nearbyDistricts.map((d) => (
-              <Link key={d.slug} href={`/istanbul-nakliye/${d.slug}`} className="ilce-nearby-tag">
-                {d.name}
+              <Link
+                key={d.slug}
+                href={`/istanbul-nakliye/${d.slug}`}
+                className="px-3.5 py-1.5 rounded-lg bg-white border border-slate-200 text-xs font-semibold text-[#334155] hover:border-[#1d4ed8] hover:text-[#1d4ed8] transition"
+              >
+                {d.name} Nakliye
               </Link>
             ))}
-            <Link href="/istanbul-nakliye" className="px-3 py-1.5 text-sm font-medium" style={{ color: "var(--color-gold)" }}>
-              Tüm İlçeleri Gör →
+            <Link
+              href="/istanbul-nakliye"
+              className="px-3.5 py-1.5 rounded-lg bg-blue-50 text-xs font-bold text-[#1d4ed8] hover:bg-blue-100 transition"
+            >
+              Tüm İlçeler →
             </Link>
           </div>
         </div>
       </section>
 
       <CtaBand />
-    </>
+    </div>
   );
 }

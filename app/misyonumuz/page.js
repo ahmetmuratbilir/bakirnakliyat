@@ -3,52 +3,39 @@ import CtaBand from "@/components/CtaBand";
 import { site } from "@/data/site";
 
 export const metadata = {
-  title: "Misyonumuz",
-  description: `${site.name}'ın misyonu: Taşıma süreçlerini kolaylaştırmak, müşteri haklarını korumak ve nakliyat sektöründe güven standardı oluşturmak.`,
+  title: "Misyonumuz | Bakır Nakliyat",
+  description: `${site.name} misyonu: Taşınma sürecini stres ve belirsizlikten arındırarak güvenli ve konforlu bir deneyime dönüştürmek.`,
   alternates: { canonical: `${site.domain}/misyonumuz` },
 };
 
 export default function MisyonumuzPage() {
   return (
-    <>
+    <div className="bg-white">
       <PageHero
         title="Misyonumuz"
-        subtitle="Neden varız ve ne için çalışıyoruz?"
+        subtitle="Neden varız ve müşterilerimize hangi değerleri taahhüt ediyoruz?"
         breadcrumb={[{ label: "Misyonumuz" }]}
       />
+
       <section className="container-page py-16 max-w-3xl space-y-8">
-        <div
-          className="p-8 rounded-2xl text-center"
-          style={{
-            background: "linear-gradient(135deg, var(--color-dark-elevated), var(--color-dark-card))",
-            border: "1px solid var(--color-gold-dark)",
-          }}
-        >
-          <div className="text-5xl mb-4">🎯</div>
-          <p className="text-xl font-semibold leading-relaxed" style={{ color: "var(--color-text)" }}>
-            &quot;Taşınmayı bir stres kaynağı olmaktan çıkarıp, hayatın yeni bir bölümüne güvenli geçiş
-            deneyimine dönüştürmek.&quot;
-          </p>
+        <div className="p-8 sm:p-10 rounded-3xl bg-blue-50 border border-blue-200 text-center">
+          <div className="text-4xl mb-4">🎯</div>
+          <blockquote className="text-xl sm:text-2xl font-extrabold text-[#0b1f3a] leading-snug">
+            &quot;Taşınmayı zorlu ve yıpratıcı bir süreç olmaktan çıkarıp; sözleşmeli, sigortalı ve dakik bir güven yolculuğuna dönüştürmek.&quot;
+          </blockquote>
         </div>
 
-        <div className="space-y-5 text-base leading-relaxed" style={{ color: "var(--color-text-muted)" }}>
+        <div className="space-y-5 text-base sm:text-lg text-[#334155] leading-relaxed">
           <p>
-            Nakliyat sektörü, ne yazık ki tüketiciler açısından güvensizliğin yüksek olduğu bir alan.
-            Sonradan çıkan ücretler, kırılan eşyalar, zamanında gelmeyen ekipler… Bu sorunların tamamı
-            sistemsel bir şeffaflık eksikliğinden kaynaklanır.
+            Nakliyat sektöründe yıllardır yaşanan en temel problem, güven eksikliği ve belirsizliktir. Müşterilerimizin taşınma günü neyle karşılaşacağını bilmemesi, ek ücret talepleri veya kırılan eşyalar bu sektörün kronik sorunları haline gelmiştir.
           </p>
           <p>
-            {site.name} olarak misyonumuz bu tabloyu değiştirmektir. Sözleşmeli çalışma, önceden
-            belirlenen ve değişmeyen fiyatlar, sigorta güvencesi ve net iletişim; bu dört ilke
-            firmamızın DNA&apos;sını oluşturur.
-          </p>
-          <p>
-            Her müşterimize sadece eşyalarını taşımıyoruz; onların güvenini taşıyoruz. Bu sorumluluk
-            bizi her geçen gün daha iyi yapmaya zorluyor ve motivasyon kaynağı olmaya devam ediyor.
+            {site.name} olarak misyonumuz, bu olumsuz deneyimleri tamamen ortadan kaldırmaktır. Her müşterimize başlangıçta ne söz verdiysek, süreç sonunda aynı memnuniyeti yaşatmak adına teknolojik araç takip sistemlerinden profesyonel ambalajlama tekniklerine kadar tüm gücümüzle çalışıyoruz.
           </p>
         </div>
       </section>
+
       <CtaBand />
-    </>
+    </div>
   );
 }

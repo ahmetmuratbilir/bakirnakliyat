@@ -3,96 +3,70 @@ import CtaBand from "@/components/CtaBand";
 import { site } from "@/data/site";
 
 export const metadata = {
-  title: "Kurumsal",
-  description: `${site.name} kurumsal yapısı, araç filosu, lisans ve sertifikaları hakkında bilgi edinin.`,
+  title: "Kurumsal & Araç Filosu | Bakır Nakliyat",
+  description: `${site.name} şirket profili, yasal taşımacılık lisansları ve araç filosu bilgileri.`,
   alternates: { canonical: `${site.domain}/kurumsal` },
 };
 
 const fleet = [
-  { type: "Kapalı Kasa Kamyonet", count: "5 Adet", use: "Şehir içi küçük taşımalar" },
-  { type: "Orta Boy Kamyon", count: "8 Adet", use: "Evden eve ve ofis taşımaları" },
-  { type: "Büyük Kamyon", count: "4 Adet", use: "Şehirlerarası taşımalar" },
-  { type: "Asansörlü Kamyon", count: "3 Adet", use: "Yüksek kat ve dar merdiven taşımaları" },
-  { type: "Hafriyat Kamyonu", count: "4 Adet", use: "İnşaat ve tadilat atıkları" },
+  { type: "Kapalı Kasa Panelvan & Kamyonet", count: "6 Adet", use: "Şehir içi parça eşya ve dar sokak taşımaları" },
+  { type: "Orta Boy Kapalı Kasa Kamyon", count: "9 Adet", use: "Standart 2+1 ve 3+1 evden eve nakliyat operasyonları" },
+  { type: "Büyük Boy Şehirlerarası Kamyon", count: "5 Adet", use: "Uzun mesafe komple ev ve ofis taşımacılığı" },
+  { type: "Bina Dışı Teleskopik Asansör Aracı", count: "4 Adet", use: "20. kata kadar dış cepheden güvenli eşya indirme-bindirme" },
+  { type: "Ağır Yük & Hafriyat Kamyonu", count: "4 Adet", use: "Şantiye, moloz ve tadilat atığı sevkiyatı" },
 ];
 
 export default function KurumsalPage() {
   return (
-    <>
+    <div className="bg-white">
       <PageHero
-        title="Kurumsal"
-        subtitle={`${site.name}'ın kurumsal yapısı, araç filosu ve sertifikaları`}
+        title="Kurumsal Profil & Araç Filomuz"
+        subtitle={`${site.name} olarak yasal yetki belgeleri, modern araç parkı ve uzman teknik kadromuzla hizmetinizdeyiz.`}
         breadcrumb={[{ label: "Kurumsal" }]}
       />
+
       <section className="container-page py-16 max-w-4xl space-y-12">
-        <div>
-          <h2 className="text-xl font-bold mb-4 gold-line inline-block" style={{ color: "var(--color-text)" }}>
-            Şirket Profili
+        <div className="space-y-4 text-base sm:text-lg text-[#334155] leading-relaxed">
+          <h2 className="text-2xl font-extrabold text-[#0b1f3a] tracking-tight">
+            Şirket Profili & Standartlarımız
           </h2>
-          <div className="mt-6 space-y-4 text-sm leading-relaxed" style={{ color: "var(--color-text-muted)" }}>
-            <p>
-              {site.name}, {site.founded} yılından bu yana İstanbul ve çevre illerde faaliyet gösteren,
-              profesyonel nakliyat ve lojistik hizmetleri sunan bir nakliyat şirketidir. Kurucularımızın
-              sektörde 20 yılı aşan birikimi, firmamızın temel taşını oluşturmaktadır.
-            </p>
-            <p>
-              Şirketimiz; Taşımacılık İşletme Belgesi, Karayolu Taşıma Yetki Belgesi ve Hafriyat Taşıma
-              Lisansı dahil tüm yasal izin ve sertifikalara sahiptir. Operasyonlarımız, ilgili Bakanlık
-              yönetmeliklerine tam uyum içinde sürdürülmektedir.
-            </p>
-          </div>
+          <p>
+            {site.name}, Karayolu Taşıma Kanunu ve ilgili yönetmeliklerin gerektirdiği K3 Yetki Belgesi&apos;ne sahip, Ticaret Odası kayıtlı resmi bir taşımacılık şirketidir.
+          </p>
+          <p>
+            Müşterilerimizin can ve mal güvenliğini en üstte tutarak; araçlarımızın periyodik muayeneleri, kasko ve nakliyat emtea sigortaları düzenli olarak güncellenmektedir.
+          </p>
         </div>
 
+        {/* Araç Filosu Tablosu */}
         <div>
-          <h2 className="text-xl font-bold mb-6 gold-line inline-block" style={{ color: "var(--color-text)" }}>
-            Araç Filosu
+          <h2 className="text-2xl font-extrabold text-[#0b1f3a] mb-6 tracking-tight">
+            Özmal Araç Filomuz
           </h2>
-          <div className="mt-8 overflow-x-auto rounded-xl" style={{ border: "1px solid var(--color-dark-border)" }}>
-            <table className="w-full text-sm">
-              <thead>
-                <tr style={{ background: "var(--color-dark-elevated)", borderBottom: "1px solid var(--color-dark-border)" }}>
-                  <th className="text-left px-5 py-3 font-semibold" style={{ color: "var(--color-text)" }}>Araç Tipi</th>
-                  <th className="text-left px-5 py-3 font-semibold" style={{ color: "var(--color-text)" }}>Adet</th>
-                  <th className="text-left px-5 py-3 font-semibold" style={{ color: "var(--color-text)" }}>Kullanım Alanı</th>
+          <div className="overflow-x-auto rounded-2xl border border-slate-200 shadow-xs">
+            <table className="w-full text-left text-sm">
+              <thead className="bg-slate-50 border-b border-slate-200 text-[#0b1f3a] text-xs font-bold uppercase tracking-wider">
+                <tr>
+                  <th className="px-6 py-4">Araç Türü</th>
+                  <th className="px-6 py-4">Adet</th>
+                  <th className="px-6 py-4">Kullanım Amacı</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="divide-y divide-slate-100 text-[#334155]">
                 {fleet.map((item, i) => (
-                  <tr
-                    key={item.type}
-                    style={{
-                      background: i % 2 === 0 ? "var(--color-dark-card)" : "var(--color-dark-elevated)",
-                      borderBottom: "1px solid var(--color-dark-border)",
-                    }}
-                  >
-                    <td className="px-5 py-3" style={{ color: "var(--color-text)" }}>{item.type}</td>
-                    <td className="px-5 py-3 font-semibold" style={{ color: "var(--color-gold)" }}>{item.count}</td>
-                    <td className="px-5 py-3" style={{ color: "var(--color-text-muted)" }}>{item.use}</td>
+                  <tr key={item.type} className={i % 2 === 0 ? "bg-white" : "bg-slate-50/50"}>
+                    <td className="px-6 py-4 font-bold text-[#0b1f3a]">{item.type}</td>
+                    <td className="px-6 py-4 font-extrabold text-[#1d4ed8]">{item.count}</td>
+                    <td className="px-6 py-4 text-[#64748b]">{item.use}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
         </div>
-
-        <div className="grid sm:grid-cols-3 gap-4">
-          {[
-            { label: "Kuruluş Yılı", value: site.founded },
-            { label: "Toplam Müşteri", value: "5.000+" },
-            { label: "Araç Kapasitesi", value: "24 Araç" },
-          ].map((stat) => (
-            <div
-              key={stat.label}
-              className="text-center p-6 rounded-xl"
-              style={{ background: "var(--color-dark-card)", border: "1px solid var(--color-dark-border)" }}
-            >
-              <div className="text-3xl font-bold" style={{ color: "var(--color-gold)" }}>{stat.value}</div>
-              <div className="mt-1 text-sm" style={{ color: "var(--color-text-muted)" }}>{stat.label}</div>
-            </div>
-          ))}
-        </div>
       </section>
+
       <CtaBand />
-    </>
+    </div>
   );
 }

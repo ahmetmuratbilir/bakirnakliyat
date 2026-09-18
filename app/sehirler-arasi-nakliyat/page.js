@@ -5,76 +5,74 @@ import { cities } from "@/data/cities";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Şehirlerarası Nakliyat",
-  description: `${site.name} ile İstanbul çıkışlı şehirlerarası nakliyat. Ankara, İzmir, Bursa ve daha fazla şehre sigortalı, güvenli taşıma.`,
+  title: "Şehirlerarası Nakliyat | 81 İle Sigortalı Taşıma",
+  description: `${site.name} ile İstanbul çıkışlı Türkiye'nin tüm illerine garantili, sigortalı ve profesyonel şehirlerarası nakliyat hizmeti.`,
   alternates: { canonical: `${site.domain}/sehirler-arasi-nakliyat` },
 };
 
-export default function SehirlerarasiPage() {
+export default function SehirlerArasiPage() {
   return (
-    <>
+    <div className="bg-white">
       <PageHero
-        title="Şehirlerarası Nakliyat"
-        subtitle="İstanbul'dan Türkiye'nin dört bir yanına güvenli, sigortalı ve profesyonel taşımacılık"
+        title="Şehirlerarası Nakliyat Seferleri"
+        subtitle="İstanbul'dan tüm Türkiye'ye düzenli kapalı kasa araç filosu ve tam kasko sigortasıyla güvenli taşımacılık."
         breadcrumb={[{ label: "Şehirlerarası Nakliyat" }]}
       />
 
       <section className="container-page py-16">
-        <div className="max-w-2xl mb-10 space-y-4 text-sm leading-relaxed" style={{ color: "var(--color-text-muted)" }}>
+        <div className="max-w-3xl mb-12 text-sm text-[#475569] leading-relaxed">
           <p>
-            Şehirlerarası taşımacılıkta mesafe uzadıkça risk de artar. Bu yüzden {site.name} olarak
-            uzun mesafe taşımalarında standartlarımızı daha da yüksek tutuyoruz. Özel sürücü rotasyonu,
-            güçlendirilmiş ambalaj ve kapsamlı nakliye sigortası, şehirlerarası hizmetlerimizin
-            vazgeçilmez unsurlarıdır.
+            Uzun mesafe nakliyatta eşyalarınızın güvenliği en kritik konudur. Özel sabitleme aparatlı kapalı kasa araçlarımız, çift katmanlı patpat ambalajlama standartlarımız ve güzergah boyunca araç takip sistemimiz ile eşyalarınızı Türkiye&apos;nin her noktasına hasarsız ulaştırıyoruz.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {cities.map((c) => (
             <Link
               key={c.slug}
               href={`/sehirler-arasi-nakliyat/${c.slug}`}
-              className="flex items-center gap-4 p-5 rounded-xl card-hover"
-              style={{
-                background: "var(--color-dark-card)",
-                border: "1px solid var(--color-dark-border)",
-              }}
+              className="flex items-center justify-between p-6 rounded-2xl bg-white border border-slate-200 shadow-xs hover:border-[#1d4ed8] hover:shadow-lg transition group"
             >
-              <div className="text-3xl">🚛</div>
-              <div>
-                <div className="font-semibold" style={{ color: "var(--color-text)" }}>
-                  İstanbul → {c.name}
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-2xl group-hover:scale-110 transition">
+                  🚛
                 </div>
-                <div className="text-xs mt-0.5" style={{ color: "var(--color-gold)" }}>
-                  Detayları İncele →
+                <div>
+                  <div className="font-extrabold text-base text-[#0b1f3a] group-hover:text-[#1d4ed8] transition">
+                    İstanbul ⇄ {c.name}
+                  </div>
+                  <div className="text-xs text-[#64748b] mt-0.5">
+                    Sigortalı Düzenli Sefer
+                  </div>
                 </div>
               </div>
+              <span className="text-sm font-bold text-[#1d4ed8] group-hover:translate-x-1 transition">
+                →
+              </span>
             </Link>
           ))}
         </div>
 
-        <div
-          className="mt-12 p-6 rounded-xl max-w-2xl"
-          style={{ background: "var(--color-dark-card)", border: "1px solid var(--color-dark-border)" }}
-        >
-          <h3 className="font-bold mb-3" style={{ color: "var(--color-text)" }}>
-            Listede Olmayan Bir Şehir mi?
-          </h3>
-          <p className="text-sm mb-4" style={{ color: "var(--color-text-muted)" }}>
-            Türkiye&apos;nin her şehrine nakliyat yapıyoruz. Listemizde görmediğiniz bir şehir için
-            bizimle doğrudan iletişime geçin; size özel fiyat teklifi hazırlayalım.
-          </p>
+        {/* Özel Güzergah Kutusu */}
+        <div className="mt-14 p-8 rounded-3xl bg-slate-50 border border-slate-200 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div>
+            <h3 className="text-xl font-bold text-[#0b1f3a]">
+              Aradığınız Şehir Listede Yok mu?
+            </h3>
+            <p className="text-sm text-[#475569] mt-1.5 max-w-xl">
+              81 il ve tüm ilçelerine özel komple araç veya parça eşya seferlerimiz mevcuttur. Rota ve tarih için hemen müşteri temsilcimizle görüşün.
+            </p>
+          </div>
           <a
             href={`tel:${site.phoneTel}`}
-            className="inline-flex items-center gap-2 font-bold px-6 py-3 rounded-lg text-sm"
-            style={{ background: "var(--color-gold)", color: "var(--color-dark)" }}
+            className="font-bold px-6 py-3.5 rounded-xl bg-[#1d4ed8] text-white hover:bg-[#1e40af] transition shrink-0 text-sm shadow-md"
           >
-            📞 Hemen Arayın
+            Özel Fiyat Al: {site.phoneDisplay}
           </a>
         </div>
       </section>
 
       <CtaBand />
-    </>
+    </div>
   );
 }

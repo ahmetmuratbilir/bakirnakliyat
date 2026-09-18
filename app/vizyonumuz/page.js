@@ -3,55 +3,49 @@ import CtaBand from "@/components/CtaBand";
 import { site } from "@/data/site";
 
 export const metadata = {
-  title: "Vizyonumuz",
-  description: `${site.name}'ın vizyonu: Türkiye'nin en güvenilir nakliyat markası olmak ve taşıma süreçlerini dijital teknoloji ile dönüştürmek.`,
+  title: "Vizyonumuz | Bakır Nakliyat",
+  description: `${site.name} vizyonu: Türkiye'nin en saygın, teknolojik ve müşteri odaklı lojistik markası olmak.`,
   alternates: { canonical: `${site.domain}/vizyonumuz` },
 };
 
-const goals = [
-  { icon: "🏆", title: "Sektör Liderliği", text: "2030 yılına kadar İstanbul merkezli nakliyat sektöründe marka bilinirliği ve müşteri memnuniyeti endekslerinde lider konuma ulaşmak." },
-  { icon: "📱", title: "Dijital Dönüşüm", text: "Online ekspertiz, gerçek zamanlı araç takibi ve dijital taşıma sözleşmesi altyapısını tüm müşterilere sunmak." },
-  { icon: "🌍", title: "Coğrafi Genişleme", text: "İstanbul ve Marmara Bölgesi'nin ötesinde Türkiye genelinde güvenilir nakliyat ağını kurmak." },
-  { icon: "♻️", title: "Yeşil Operasyon", text: "Araç filosunun %50'sini elektrikli ve düşük emisyonlu araçlara dönüştürerek çevre dostu nakliyatta öncü olmak." },
+const pillars = [
+  { icon: "🌐", title: "Teknolojik Entegrasyon", text: "Online canlı ekspertiz, dijital sözleşme ve anlık SMS araç takip altyapısını Türkiye genelinde yaygınlaştırmak." },
+  { icon: "🌱", title: "Yeşil Lojistik", text: "Karbon ayak izini azaltan Euro 6 çevre dostu motorlu araçlar ve geri dönüştürülebilir ambalaj malzemeleri kullanmak." },
+  { icon: "🏅", title: "Kurumsal Referans Liderliği", text: "İstanbul ve çevre illerde kurumsal ofis ve fabrika taşımacılığında ilk akla gelen güvenilir çözüm ortağı olmak." },
+  { icon: "🤝", title: "Eğitimli Personel Kültürü", text: "Tüm taşıma ve marangoz ekibimize düzenli iş güvenliği, müşteri iletişimi ve hassas eşya taşıma eğitimleri vermek." },
 ];
 
 export default function VizyonumuzPage() {
   return (
-    <>
+    <div className="bg-white">
       <PageHero
-        title="Vizyonumuz"
-        subtitle="Nereye gidiyoruz ve geleceği nasıl şekillendireceğiz?"
+        title="Gelecek Vizyonumuz"
+        subtitle="Lojistik ve taşımacılık standartlarını ileriye taşıyan yenilikçi hedeflerimiz."
         breadcrumb={[{ label: "Vizyonumuz" }]}
       />
-      <section className="container-page py-16 max-w-4xl">
-        <div className="space-y-5 text-base leading-relaxed mb-12" style={{ color: "var(--color-text-muted)" }}>
+
+      <section className="container-page py-16 max-w-4xl space-y-12">
+        <div className="space-y-4 text-base sm:text-lg text-[#334155] leading-relaxed">
           <p>
-            Vizyonumuz yalnızca büyümek değil, doğru büyümektir. Müşteri güveni, operasyonel mükemmellik
-            ve çevresel sorumluluk üçgeninde, Türkiye&apos;nin en güvenilir nakliyat markası olmak için
-            çalışıyoruz.
-          </p>
-          <p>
-            Teknoloji, bu yolculuğumuzun merkezindedir. Yapay zeka destekli ekspertiz sistemleri, IoT
-            tabanlı araç takibi ve müşteri memnuniyeti algoritmaları ile nakliyat deneyimini yeniden
-            tasarlıyoruz.
+            Vizyonumuz; taşımacılık sektöründe geleneksel ve denetimsiz yöntemleri geride bırakarak, kurumsal şirket disiplini ile müşteri memnuniyetini en üst düzeyde buluşturan ulusal bir marka olmaktır.
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-5">
-          {goals.map((g) => (
+        <div className="grid sm:grid-cols-2 gap-6">
+          {pillars.map((p) => (
             <div
-              key={g.title}
-              className="p-6 rounded-xl"
-              style={{ background: "var(--color-dark-card)", border: "1px solid var(--color-dark-border)" }}
+              key={p.title}
+              className="p-7 rounded-2xl bg-slate-50 border border-slate-200"
             >
-              <div className="text-3xl mb-3">{g.icon}</div>
-              <h3 className="font-bold mb-2" style={{ color: "var(--color-text)" }}>{g.title}</h3>
-              <p className="text-sm leading-relaxed" style={{ color: "var(--color-text-muted)" }}>{g.text}</p>
+              <div className="text-3xl mb-3">{p.icon}</div>
+              <h3 className="font-extrabold text-lg text-[#0b1f3a] mb-2">{p.title}</h3>
+              <p className="text-sm text-[#475569] leading-relaxed">{p.text}</p>
             </div>
           ))}
         </div>
       </section>
+
       <CtaBand />
-    </>
+    </div>
   );
 }

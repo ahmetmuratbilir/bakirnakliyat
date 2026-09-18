@@ -14,7 +14,7 @@ export async function generateMetadata({ params }) {
   const post = getPost(slug);
   if (!post) return {};
   return {
-    title: post.title,
+    title: `${post.title} | ${site.name}`,
     description: post.summary,
     alternates: { canonical: `${site.domain}/blog/${slug}` },
   };
@@ -28,49 +28,62 @@ export default async function BlogPostPage({ params }) {
   const otherPosts = posts.filter((p) => p.slug !== slug).slice(0, 3);
 
   return (
-    <>
+    <div className="bg-white">
       <PageHero
         title={post.title}
         subtitle={`${post.category} · ${post.readTime} okuma · ${new Date(post.date).toLocaleDateString("tr-TR", { year: "numeric", month: "long", day: "numeric" })}`}
         breadcrumb={[{ href: "/blog", label: "Blog" }, { label: post.title }]}
       />
 
-      <section className="container-page py-16 grid md:grid-cols-3 gap-10">
-        <article className="md:col-span-2 space-y-5">
+      <section className="container-page py-16 grid lg:grid-cols-12 gap-12">
+        {/* Sol Makale Alanı */}
+        <article className="lg:col-span-8 space-y-6 text-[#334155] leading-relaxed text-base sm:text-lg">
           {post.content.map((para, i) => (
-            <p key={i} className="text-base leading-relaxed" style={{ color: "var(--color-text-muted)" }}>
+            <p key={i} className="text-[#334155]">
               {para}
             </p>
           ))}
 
-          <div className="pt-6">
+          <div className="pt-8 mt-10 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4">
+            <div className="text-xs text-[#64748b]">
+              Yayınlayan: <strong className="text-[#0b1f3a]">{site.name} Editör Masası</strong>
+            </div>
             <Link
               href="/iletisim"
-              className="inline-block font-semibold px-7 py-3 rounded-lg transition"
-              style={{ background: "var(--color-gold)", color: "var(--color-dark)" }}
+              className="inline-block font-bold px-6 py-3.5 rounded-xl bg-[#1d4ed8] text-white hover:bg-[#1e40af] transition text-sm shadow-md"
             >
-              Ücretsiz Teklif Al →
+              Taşınma Teklifi Al →
             </Link>
           </div>
         </article>
 
-        <aside className="space-y-4">
-          <h3 className="font-semibold" style={{ color: "var(--color-text)" }}>Diğer Yazılar</h3>
-          {otherPosts.map((p) => (
-            <Link
-              key={p.slug}
-              href={`/blog/${p.slug}`}
-              className="block p-4 rounded-lg card-hover"
-              style={{ background: "var(--color-dark-card)", border: "1px solid var(--color-dark-border)" }}
-            >
-              <div className="text-xs font-semibold mb-1" style={{ color: "var(--color-gold)" }}>{p.category}</div>
-              <div className="text-sm font-semibold leading-snug" style={{ color: "var(--color-text)" }}>{p.title}</div>
-            </Link>
-          ))}
+        {/* Sağ Yan Panel */}
+        <aside className="lg:col-span-4 space-y-6">
+          <div className="p-6 rounded-2xl bg-slate-50 border border-slate-200">
+            <h3 className="font-extrabold text-[#0b1f3a] text-base mb-4 border-b border-slate-200 pb-3">
+              Diğer Faydalı Yazılar
+            </h3>
+            <div className="space-y-4">
+              {otherPosts.map((p) => (
+                <Link
+                  key={p.slug}
+                  href={`/blog/${p.slug}`}
+                  className="block p-4 rounded-xl bg-white border border-slate-200 hover:border-[#1d4ed8] hover:shadow-md transition group"
+                >
+                  <div className="text-[11px] font-bold uppercase tracking-wider text-[#1d4ed8] mb-1">
+                    {p.category}
+                  </div>
+                  <div className="text-sm font-bold text-[#0b1f3a] group-hover:text-[#1d4ed8] transition leading-snug">
+                    {p.title}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
         </aside>
       </section>
 
       <CtaBand />
-    </>
+    </div>
   );
 }

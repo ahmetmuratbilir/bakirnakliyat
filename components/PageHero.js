@@ -1,39 +1,35 @@
-import { site } from "@/data/site";
 import Link from "next/link";
 
 export default function PageHero({ title, subtitle, breadcrumb }) {
   return (
-    <section
-      style={{
-        background: "linear-gradient(180deg, var(--color-dark-elevated) 0%, var(--color-dark-card) 100%)",
-        borderBottom: "1px solid var(--color-dark-border)",
-      }}
-    >
-      <div className="container-page py-14 md:py-18">
+    <section className="bg-gradient-to-b from-[#f0f7ff] via-[#f8fafc] to-white border-b border-slate-200 py-12 md:py-16">
+      <div className="container-page">
         {breadcrumb && (
-          <nav className="mb-4 text-sm" style={{ color: "var(--color-text-subtle)" }}>
-            <Link href="/" style={{ color: "var(--color-text-subtle)" }} className="hover:opacity-80">
+          <nav className="flex items-center gap-2 text-xs font-semibold text-[#64748b] mb-4">
+            <Link href="/" className="hover:text-[#1d4ed8] transition">
               Anasayfa
             </Link>
-            {breadcrumb.map((crumb) => (
-              <span key={crumb.label}>
-                <span className="mx-2">›</span>
+            {breadcrumb.map((crumb, idx) => (
+              <span key={idx} className="flex items-center gap-2">
+                <span>/</span>
                 {crumb.href ? (
-                  <Link href={crumb.href} style={{ color: "var(--color-text-subtle)" }} className="hover:opacity-80">
+                  <Link href={crumb.href} className="hover:text-[#1d4ed8] transition">
                     {crumb.label}
                   </Link>
                 ) : (
-                  <span style={{ color: "var(--color-text-muted)" }}>{crumb.label}</span>
+                  <span className="text-[#1d4ed8] font-bold">{crumb.label}</span>
                 )}
               </span>
             ))}
           </nav>
         )}
-        <h1 className="text-3xl md:text-4xl font-bold gold-line" style={{ color: "var(--color-text)" }}>
+
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0b1f3a] tracking-tight">
           {title}
         </h1>
+
         {subtitle && (
-          <p className="mt-5 text-base md:text-lg max-w-2xl" style={{ color: "var(--color-text-muted)" }}>
+          <p className="mt-3.5 text-base sm:text-lg text-[#475569] max-w-2xl leading-relaxed">
             {subtitle}
           </p>
         )}
