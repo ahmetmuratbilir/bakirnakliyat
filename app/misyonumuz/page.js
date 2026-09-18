@@ -44,7 +44,7 @@ export default function MisyonumuzPage() {
           </p>
           <p>
             Her müşterimize sadece eşyalarını taşımıyoruz; onların güvenini taşıyoruz. Bu sorumluluk
-            bizi her geçen gün daha iyi yapmaya zorluyor ve itmotivasyon kaynağı olmaya devam ediyor.
+            bizi her geçen gün daha iyi yapmaya zorluyor ve motivasyon kaynağı olmaya devam ediyor.
           </p>
         </div>
       </section>

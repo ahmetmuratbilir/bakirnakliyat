@@ -89,7 +89,7 @@ export default async function ServicePage({ params }) {
                 <li key={b} className="flex items-center gap-3 text-sm">
                   <span
                     className="flex items-center justify-center w-5 h-5 rounded-full text-xs font-bold shrink-0"
-                    style={{ background: "rgba(212,160,23,0.15)", color: "var(--color-gold)" }}
+                    style={{ background: "rgba(196,119,63,0.15)", color: "var(--color-gold)" }}
                   >
                     ✓
                   </span>
@@ -126,7 +126,7 @@ export default async function ServicePage({ params }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 w-full font-semibold py-3 rounded-lg text-sm transition"
-                style={{ background: "#25d366", color: "#fff" }}
+                style={{ background: "var(--whatsapp)", color: "#fff" }}
               >
                 💬 WhatsApp&apos;tan Yaz
               </a>

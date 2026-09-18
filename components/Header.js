@@ -32,10 +32,10 @@ export default function Header() {
   const [openDropdown, setOpenDropdown] = useState(null);
 
   return (
-    <header className="sticky top-0 z-50" style={{ background: "var(--color-dark)", borderBottom: "1px solid var(--color-dark-border)" }}>
+    <header className="sticky top-0 z-50" style={{ background: "var(--bg-main)", borderBottom: "1px solid var(--border)" }}>
       {/* Üst bilgi bandı */}
-      <div style={{ background: "var(--color-dark-card)", borderBottom: "1px solid var(--color-dark-border)" }}>
-        <div className="container-page flex items-center justify-between py-2 text-xs" style={{ color: "var(--color-text-muted)" }}>
+      <div style={{ background: "var(--bg-secondary)", borderBottom: "1px solid var(--border)" }}>
+        <div className="container-page flex items-center justify-between py-2 text-xs" style={{ color: "var(--text-secondary)" }}>
           <span className="hidden sm:flex items-center gap-1">
             <span>📍</span>
             <span>{site.address.line2} bölgesinde hizmet</span>
@@ -44,14 +44,14 @@ export default function Header() {
             <a
               href={`mailto:${site.email}`}
               className="hover:opacity-80 transition"
-              style={{ color: "var(--color-text-muted)" }}
+              style={{ color: "var(--text-secondary)" }}
             >
               ✉ {site.email}
             </a>
             <a
               href={`tel:${site.phoneTel}`}
               className="font-semibold transition"
-              style={{ color: "var(--color-gold)" }}
+              style={{ color: "var(--copper)" }}
             >
               📞 {site.phoneDisplay}
             </a>
@@ -65,15 +65,15 @@ export default function Header() {
         <Link href="/" className="flex items-center gap-3 shrink-0">
           <div
             className="flex items-center justify-center w-10 h-10 rounded-lg font-bold text-lg"
-            style={{ background: "var(--color-gold)", color: "var(--color-dark)" }}
+            style={{ background: "var(--copper)", color: "var(--bg-main)" }}
           >
             B
           </div>
           <div>
-            <div className="font-bold text-lg leading-tight" style={{ color: "var(--color-text)" }}>
+            <div className="font-bold text-lg leading-tight" style={{ color: "var(--text-primary)" }}>
               Bakır Nakliyat
             </div>
-            <div className="text-xs" style={{ color: "var(--color-text-muted)" }}>
+            <div className="text-xs" style={{ color: "var(--text-secondary)" }}>
               {site.slogan}
             </div>
           </div>
@@ -83,57 +83,73 @@ export default function Header() {
         <nav className="hidden lg:flex items-center gap-1 text-sm font-medium">
           {navLinks.map((item) =>
             item.children ? (
-              <div key={item.label} className="relative group">
+              <div
+                key={item.label}
+                className="relative"
+                onMouseEnter={() => setOpenDropdown(item.label)}
+                onMouseLeave={() => setOpenDropdown((cur) => (cur === item.label ? null : cur))}
+              >
                 <button
+                  type="button"
                   className="flex items-center gap-1 px-3 py-2 rounded-md transition"
-                  style={{ color: "var(--color-text-muted)" }}
-                  onMouseEnter={() => {}}
+                  style={{ color: openDropdown === item.label ? "var(--copper)" : "var(--text-secondary)" }}
+                  aria-expanded={openDropdown === item.label}
+                  onClick={() =>
+                    setOpenDropdown((cur) => (cur === item.label ? null : item.label))
+                  }
                 >
-                  {item.href ? (
-                    <Link href={item.href} style={{ color: "inherit" }}>
-                      {item.label}
-                    </Link>
-                  ) : (
-                    item.label
-                  )}
-                  <span className="text-xs opacity-60">▾</span>
+                  {item.label}
+                  <span className="text-xs opacity-60">{openDropdown === item.label ? "▴" : "▾"}</span>
                 </button>
-                <div
-                  className="absolute left-0 top-full hidden group-hover:block rounded-lg py-2 w-56 z-50"
-                  style={{
-                    background: "var(--color-dark-elevated)",
-                    border: "1px solid var(--color-dark-border)",
-                    boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
-                  }}
-                >
-                  {item.children.map((child) => (
-                    <Link
-                      key={child.href}
-                      href={child.href}
-                      className="block px-4 py-2 text-sm transition hover:opacity-100"
-                      style={{ color: "var(--color-text-muted)" }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.color = "var(--color-gold)";
-                        e.currentTarget.style.background = "var(--color-dark-card)";
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.color = "var(--color-text-muted)";
-                        e.currentTarget.style.background = "transparent";
-                      }}
-                    >
-                      {child.label}
-                    </Link>
-                  ))}
-                </div>
+                {openDropdown === item.label && (
+                  <div
+                    className="absolute left-0 top-full rounded-lg py-2 w-56 z-50"
+                    style={{
+                      background: "var(--bg-input)",
+                      border: "1px solid var(--border)",
+                      boxShadow: "0 8px 32px rgba(0,0,0,0.4)",
+                    }}
+                  >
+                    {item.href && (
+                      <Link
+                        href={item.href}
+                        className="block px-4 py-2 text-sm font-semibold transition"
+                        style={{ color: "var(--copper)" }}
+                        onClick={() => setOpenDropdown(null)}
+                      >
+                        Tümünü Gör
+                      </Link>
+                    )}
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        className="block px-4 py-2 text-sm transition hover:opacity-100"
+                        style={{ color: "var(--text-secondary)" }}
+                        onClick={() => setOpenDropdown(null)}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.color = "var(--copper)";
+                          e.currentTarget.style.background = "var(--bg-card)";
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.color = "var(--text-secondary)";
+                          e.currentTarget.style.background = "transparent";
+                        }}
+                      >
+                        {child.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
               </div>
             ) : (
               <Link
                 key={item.href}
                 href={item.href}
                 className="px-3 py-2 rounded-md transition"
-                style={{ color: "var(--color-text-muted)" }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--color-gold)")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--color-text-muted)")}
+                style={{ color: "var(--text-secondary)" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--copper)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}
               >
                 {item.label}
               </Link>
@@ -149,7 +165,7 @@ export default function Header() {
             rel="noopener noreferrer"
             className="text-sm font-semibold px-4 py-2 rounded-md transition"
             style={{
-              background: "#25d366",
+              background: "var(--whatsapp)",
               color: "#fff",
             }}
           >
@@ -159,8 +175,8 @@ export default function Header() {
             href={`tel:${site.phoneTel}`}
             className="text-sm font-semibold px-5 py-2 rounded-md transition"
             style={{
-              background: "var(--color-gold)",
-              color: "var(--color-dark)",
+              background: "var(--copper)",
+              color: "var(--bg-main)",
             }}
           >
             Hemen Ara
@@ -176,21 +192,21 @@ export default function Header() {
           <span
             className="block w-6 h-0.5 transition-all duration-200"
             style={{
-              background: "var(--color-text)",
+              background: "var(--text-primary)",
               transform: mobileOpen ? "rotate(45deg) translateY(8px)" : "none",
             }}
           />
           <span
             className="block w-6 h-0.5 transition-all duration-200"
             style={{
-              background: "var(--color-text)",
+              background: "var(--text-primary)",
               opacity: mobileOpen ? 0 : 1,
             }}
           />
           <span
             className="block w-6 h-0.5 transition-all duration-200"
             style={{
-              background: "var(--color-text)",
+              background: "var(--text-primary)",
               transform: mobileOpen ? "rotate(-45deg) translateY(-8px)" : "none",
             }}
           />
@@ -201,7 +217,7 @@ export default function Header() {
       {mobileOpen && (
         <div
           className="lg:hidden border-t"
-          style={{ background: "var(--color-dark-card)", borderColor: "var(--color-dark-border)" }}
+          style={{ background: "var(--bg-secondary)", borderColor: "var(--border)" }}
         >
           <nav className="container-page py-4 space-y-1">
             {navLinks.map((item) =>
@@ -209,7 +225,7 @@ export default function Header() {
                 <div key={item.label}>
                   <div
                     className="px-3 py-2 text-xs font-semibold uppercase tracking-wider"
-                    style={{ color: "var(--color-gold)" }}
+                    style={{ color: "var(--copper)" }}
                   >
                     {item.label}
                   </div>
@@ -218,7 +234,7 @@ export default function Header() {
                       key={child.href}
                       href={child.href}
                       className="block px-6 py-2 text-sm"
-                      style={{ color: "var(--color-text-muted)" }}
+                      style={{ color: "var(--text-secondary)" }}
                       onClick={() => setMobileOpen(false)}
                     >
                       {child.label}
@@ -230,7 +246,7 @@ export default function Header() {
                   key={item.href}
                   href={item.href}
                   className="block px-3 py-2 rounded-md text-sm font-medium"
-                  style={{ color: "var(--color-text)" }}
+                  style={{ color: "var(--text-primary)" }}
                   onClick={() => setMobileOpen(false)}
                 >
                   {item.label}
@@ -241,14 +257,14 @@ export default function Header() {
               <a
                 href={site.whatsapp}
                 className="flex-1 text-center text-sm font-semibold py-2.5 rounded-md"
-                style={{ background: "#25d366", color: "#fff" }}
+                style={{ background: "var(--whatsapp)", color: "#fff" }}
               >
                 WhatsApp
               </a>
               <a
                 href={`tel:${site.phoneTel}`}
                 className="flex-1 text-center text-sm font-semibold py-2.5 rounded-md"
-                style={{ background: "var(--color-gold)", color: "var(--color-dark)" }}
+                style={{ background: "var(--copper)", color: "var(--bg-main)" }}
               >
                 Hemen Ara
               </a>

@@ -80,8 +80,8 @@ export default function HomePage() {
             <div
               className="inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full mb-6"
               style={{
-                background: "rgba(212, 160, 23, 0.15)",
-                border: "1px solid rgba(212, 160, 23, 0.3)",
+                background: "rgba(196, 119, 63, 0.15)",
+                border: "1px solid rgba(196, 119, 63, 0.3)",
                 color: "var(--color-gold)",
               }}
             >
@@ -114,7 +114,7 @@ export default function HomePage() {
                 style={{
                   background: "var(--color-gold)",
                   color: "var(--color-dark)",
-                  boxShadow: "0 4px 20px rgba(212,160,23,0.35)",
+                  boxShadow: "0 4px 20px rgba(196,119,63,0.35)",
                 }}
               >
                 <span>📞</span>
@@ -253,7 +253,7 @@ export default function HomePage() {
               >
                 <div
                   className="text-4xl font-bold mb-4 leading-none"
-                  style={{ color: "rgba(212,160,23,0.2)" }}
+                  style={{ color: "rgba(196,119,63,0.2)" }}
                 >
                   {step.num}
                 </div>

@@ -1,6 +1,7 @@
 import { districts } from "@/data/districts";
 import { cities } from "@/data/cities";
 import { services } from "@/data/services";
+import { posts } from "@/data/posts";
 import { site } from "@/data/site";
 
 export default function sitemap() {
@@ -36,5 +37,10 @@ export default function sitemap() {
     lastModified: new Date(),
   }));
 
-  return [...staticRoutes, ...serviceRoutes, ...districtRoutes, ...cityRoutes];
+  const postRoutes = posts.map((p) => ({
+    url: `${site.domain}/blog/${p.slug}`,
+    lastModified: new Date(),
+  }));
+
+  return [...staticRoutes, ...serviceRoutes, ...districtRoutes, ...cityRoutes, ...postRoutes];
 }

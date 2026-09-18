@@ -39,7 +39,7 @@ export default function CtaBand() {
             className="inline-flex items-center gap-2 font-bold px-7 py-3.5 rounded-lg transition"
             style={{
               background: "#fff",
-              color: "#25d366",
+              color: "var(--whatsapp)",
               boxShadow: "0 4px 16px rgba(0,0,0,0.15)",
             }}
           >

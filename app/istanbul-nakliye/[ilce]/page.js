@@ -117,7 +117,7 @@ export default async function DistrictPage({ params }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 w-full font-semibold py-3 rounded-lg text-sm"
-                style={{ background: "#25d366", color: "#fff" }}
+                style={{ background: "var(--whatsapp)", color: "#fff" }}
               >
                 💬 WhatsApp&apos;tan Yaz
               </a>

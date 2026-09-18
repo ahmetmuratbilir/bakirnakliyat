@@ -11,7 +11,7 @@ export const metadata = {
 };
 
 const categoryColors = {
-  Rehber: { bg: "rgba(212,160,23,0.1)", border: "rgba(212,160,23,0.3)", text: "var(--color-gold)" },
+  Rehber: { bg: "rgba(196,119,63,0.1)", border: "rgba(196,119,63,0.3)", text: "var(--color-gold)" },
   Kurumsal: { bg: "rgba(99,179,237,0.1)", border: "rgba(99,179,237,0.3)", text: "#63b3ed" },
   "İpuçları": { bg: "rgba(72,187,120,0.1)", border: "rgba(72,187,120,0.3)", text: "#48bb78" },
 };
@@ -29,8 +29,9 @@ export default function BlogPage() {
           {posts.map((post) => {
             const cat = categoryColors[post.category] || categoryColors["Rehber"];
             return (
-              <article
+              <Link
                 key={post.slug}
+                href={`/blog/${post.slug}`}
                 className="p-6 rounded-xl card-hover flex flex-col"
                 style={{ background: "var(--color-dark-card)", border: "1px solid var(--color-dark-border)" }}
               >
@@ -59,7 +60,7 @@ export default function BlogPage() {
                     Oku →
                   </span>
                 </div>
-              </article>
+              </Link>
             );
           })}
         </div>

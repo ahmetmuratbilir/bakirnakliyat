@@ -43,8 +43,8 @@ export default function HizmetlerimizPage() {
                     key={b}
                     className="text-xs px-2.5 py-1 rounded-full"
                     style={{
-                      background: "rgba(212,160,23,0.1)",
-                      border: "1px solid rgba(212,160,23,0.25)",
+                      background: "rgba(196,119,63,0.1)",
+                      border: "1px solid rgba(196,119,63,0.25)",
                       color: "var(--color-gold)",
                     }}
                   >
