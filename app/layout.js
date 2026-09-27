@@ -20,7 +20,12 @@ const jakarta = localFont({
   src: "./fonts/PlusJakartaSans-tr.woff2",
   weight: "400 800",
   variable: "--font-jakarta",
-  display: "swap",
+  // "optional": font ilk ~100ms'de gelmezse o açılışta yedek fontla devam edilir,
+  // sonradan değiştirilmez. "swap" ile yedek font (daha geniş) mobilde hero
+  // paragrafını 4 satıra kırıyor, font gelince 3 satıra düşüp görseli 29px
+  // zıplatıyordu (canlıda ölçülen CLS 0.169). 18 KB + preload ile çoğu
+  // ziyarette font zamanında gelir; sonraki sayfalar önbellekten.
+  display: "optional",
   preload: true,
   adjustFontFallback: "Arial",
 });
