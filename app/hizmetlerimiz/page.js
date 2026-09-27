@@ -1,9 +1,12 @@
+import Link from "next/link";
+import { ArrowRight, Check, Phone } from "lucide-react";
 import PageHero from "@/components/PageHero";
-import ServiceIcon from "@/components/icons/ServiceIcon";
 import CtaBand from "@/components/CtaBand";
+import Photo from "@/components/ui/Photo";
+import ServiceIcon from "@/components/icons/ServiceIcon";
 import { site } from "@/data/site";
 import { services } from "@/data/services";
-import Link from "next/link";
+import { serviceImages, fallbackServiceImage } from "@/data/service-images";
 
 export const metadata = {
   title: "Hizmetlerimiz",
@@ -13,60 +16,76 @@ export const metadata = {
 
 export default function HizmetlerimizPage() {
   return (
-    <div className="bg-white">
+    <>
       <PageHero
         title="Hizmetlerimiz"
         subtitle="İstanbul içi ve şehirlerarası taşımacılıkta sigortalı, asansörlü ve marangozlu anahtar teslim çözümler."
         breadcrumb={[{ label: "Hizmetlerimiz" }]}
       />
 
-      <section className="container-page py-16 md:py-20">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((s) => (
-            <div
-              key={s.slug}
-              className="flex flex-col p-7 rounded-2xl bg-white border border-slate-200 shadow-xs hover:shadow-xl hover:border-[#1d4ed8] transition-all group"
-            >
-              <div className="text-4xl mb-4"><ServiceIcon name={s.icon} className="size-9" /></div>
-              <h2 className="text-xl font-bold text-[#0b1f3a] mb-2.5 group-hover:text-[#1d4ed8] transition">
-                {s.title}
-              </h2>
-              <p className="text-sm text-[#475569] leading-relaxed mb-6 flex-1">
-                {s.short}
-              </p>
-
-              <div className="flex flex-wrap gap-2 mb-6">
-                {s.bullets.slice(0, 3).map((b) => (
-                  <span
-                    key={b}
-                    className="text-xs px-2.5 py-1 rounded-md bg-blue-50 text-[#1d4ed8] font-semibold border border-blue-100"
-                  >
-                    ✓ {b}
+      <section className="section bg-white">
+        <ul className="container-page grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {services.map((s, i) => (
+            <li key={s.slug} className="reveal">
+              <article className="group relative flex h-full flex-col overflow-hidden rounded-panel border border-line bg-white shadow-card transition-[border-color,box-shadow,translate] duration-300 hover:-translate-y-1 hover:border-copper-500/50 hover:shadow-lift">
+                <div className="relative aspect-16/10 overflow-hidden bg-navy-50">
+                  <Photo
+                    slug={serviceImages[s.slug] ?? fallbackServiceImage}
+                    fill
+                    eager={i < 3}
+                    sizes="(min-width: 1024px) 380px, (min-width: 640px) 45vw, calc(100vw - 2rem)"
+                    imgClassName="transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <span className="absolute left-4 top-4 grid size-11 place-items-center rounded-xl bg-white text-copper-600 shadow-card">
+                    <ServiceIcon name={s.icon} />
                   </span>
-                ))}
-              </div>
+                </div>
 
-              <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                <Link
-                  href={`/hizmetlerimiz/${s.slug}`}
-                  className="text-sm font-bold text-[#1d4ed8] hover:text-[#1e40af] flex items-center gap-1.5"
-                >
-                  <span>Detaylı Bilgi</span>
-                  <span className="group-hover:translate-x-1 transition">→</span>
-                </Link>
-                <a
-                  href={`tel:${site.phoneTel}`}
-                  className="text-xs font-bold text-slate-600 hover:text-[#1d4ed8]"
-                >
-                  Fiyat Al
-                </a>
-              </div>
-            </div>
+                <div className="flex flex-1 flex-col p-6">
+                  <h2 className="text-xl font-bold text-navy-900">
+                    <Link
+                      href={`/hizmetlerimiz/${s.slug}`}
+                      className="rounded-sm after:absolute after:inset-0 hover:text-copper-700"
+                    >
+                      {s.title}
+                    </Link>
+                  </h2>
+                  <p className="mt-2 flex-1 leading-relaxed text-muted">{s.short}</p>
+
+                  <ul className="mt-5 space-y-1.5">
+                    {s.bullets.slice(0, 3).map((b) => (
+                      <li key={b} className="flex items-center gap-2 text-[0.9375rem] text-ink">
+                        <Check aria-hidden="true" className="size-4 shrink-0 text-copper-600" strokeWidth={2.5} />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="relative z-10 mt-6 flex items-center justify-between border-t border-line pt-4">
+                    <span className="inline-flex items-center gap-1.5 font-semibold text-copper-600">
+                      Detaylı Bilgi
+                      <ArrowRight
+                        aria-hidden="true"
+                        className="size-4 transition-transform group-hover:translate-x-1"
+                        strokeWidth={2.25}
+                      />
+                    </span>
+                    <a
+                      href={`tel:${site.phoneTel}`}
+                      className="inline-flex min-h-11 items-center gap-1.5 rounded-lg px-2 text-[0.9375rem] font-semibold text-navy-900 hover:text-copper-700"
+                    >
+                      <Phone aria-hidden="true" className="size-4" strokeWidth={2} />
+                      Fiyat Al
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
 
       <CtaBand />
-    </div>
+    </>
   );
 }

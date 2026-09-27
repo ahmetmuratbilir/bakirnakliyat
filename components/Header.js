@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { ArrowRight, ChevronDown, Mail, Menu, Phone, X } from "lucide-react";
 import { site } from "@/data/site";
-import { navLinks } from "@/data/navigation";
 import Button from "@/components/ui/Button";
 import { WhatsAppIcon } from "@/components/icons/BrandIcons";
 
@@ -130,7 +129,7 @@ function DesktopDropdown({ item, pathname }) {
   );
 }
 
-function MobileMenu({ pathname }) {
+function MobileMenu({ pathname, navLinks }) {
   const dialogRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -272,7 +271,8 @@ function MobileMenu({ pathname }) {
   );
 }
 
-export default function Header() {
+// navLinks sunucudaki layout'tan gelir: hizmet verisi istemci paketine girmesin.
+export default function Header({ navLinks }) {
   const pathname = usePathname();
 
   return (
@@ -309,7 +309,7 @@ export default function Header() {
               Teklif Al
             </Button>
           </div>
-          <MobileMenu pathname={pathname} />
+          <MobileMenu pathname={pathname} navLinks={navLinks} />
         </div>
       </div>
     </header>

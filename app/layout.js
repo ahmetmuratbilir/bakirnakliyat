@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import TopBar from "@/components/TopBar";
 import MobileCallBar from "@/components/MobileCallBar";
 import { site } from "@/data/site";
+import { navLinks } from "@/data/navigation";
 
 // Tek aile: ikinci bir font ailesi yuklemek ~60KB bos maliyet demekti.
 // "latin-ext" alt kumesi ZORUNLU - aksi halde g, s, i, I gibi Turkce
@@ -132,7 +133,7 @@ export default function RootLayout({ children }) {
           }}
         />
         <TopBar />
-        <Header />
+        <Header navLinks={navLinks} />
         <main id="icerik" className="flex-1">
           {children}
         </main>
