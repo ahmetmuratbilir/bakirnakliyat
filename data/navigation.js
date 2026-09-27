@@ -2,7 +2,7 @@ import { services } from "@/data/services";
 
 // Header, mobil menü ve footer aynı listeyi kullanır.
 export const navLinks = [
-  { href: "/", label: "Anasayfa", mobileOnly: true },
+  { href: "/", label: "Anasayfa" },
   {
     label: "Kurumsal",
     href: "/kurumsal",
