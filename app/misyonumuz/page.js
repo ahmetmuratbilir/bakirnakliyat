@@ -3,7 +3,7 @@ import CtaBand from "@/components/CtaBand";
 import { site } from "@/data/site";
 
 export const metadata = {
-  title: "Misyonumuz | Bakır Nakliyat",
+  title: "Misyonumuz",
   description: `${site.name} misyonu: Taşınma sürecini stres ve belirsizlikten arındırarak güvenli ve konforlu bir deneyime dönüştürmek.`,
   alternates: { canonical: `${site.domain}/misyonumuz` },
 };

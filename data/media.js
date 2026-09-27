@@ -2,7 +2,7 @@
 // Kaynak: scripts/build-images.mjs  ·  Yeniden üretmek için: node scripts/build-images.mjs
 export const media = {
   "bakir-nakliyat-filo-kamyonet-panelvan": {
-    "alt": "Bakır Nakliyat özmal filosu: kapalı kasa kamyonet ve panelvan, depo önünde yükleme bekliyor",
+    "alt": "Kapalı kasa kamyonet ve yüksek tavanlı panelvan, depo yükleme rampası önünde",
     "role": "hero",
     "width": 1536,
     "height": 2048,
@@ -143,6 +143,66 @@ export const media = {
     ],
     "og": false,
     "blurDataURL": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAACwAwCdASoQABUAPzmGuVOvKSWisAgB4CcJZgDE2BcOEy4T7U2NAAD3pS8geaxDVwC0cvLDXSueE/3Ua5xBE0XbGp+YK7WCfWsTBLV+J7OBe1/3pspudOa64cddxRWdtX7+0hsAAAA="
+  },
+  "bakir-nakliyat-filo-araci": {
+    "alt": "Beyaz panelvan nakliye aracı yükleme alanında park halinde",
+    "role": "gallery",
+    "width": 576,
+    "height": 1024,
+    "sizes": [
+      480,
+      576
+    ],
+    "og": false,
+    "blurDataURL": "data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAACwAwCdASoQABwAPzmGu1QvKSYjMAgB4CcJQBYdhDrb7FsTI9OfiAD+DMQdXweoz+vHF/7j+RzvoylDykPkwAoyrlwhxPduDU3TEIn1PF6dQkZTs0b9xjJvCvjL8xRMWZt2Vo5ljL+VEREhsgcUjMAA"
+  },
+  "bakir-nakliyat-gece-sevkiyat": {
+    "alt": "Gece sevkiyatında yolda ilerleyen beyaz panelvan nakliye aracı",
+    "role": "gallery",
+    "width": 768,
+    "height": 1024,
+    "sizes": [
+      480,
+      768
+    ],
+    "og": false,
+    "blurDataURL": "data:image/webp;base64,UklGRmQAAABXRUJQVlA4IFgAAACwAwCdASoQABUAPzmGuVOvKSWisAgB4CcJZQAAW+lg7xpq2c+6AAD+6LpUmXixC1JG37P4ssRCUGCFA2jwjKcj9KJv/pSn3R5T1lpo2AuwU+fdsneIAAAA"
+  },
+  "bakir-nakliyat-guvenli-ambalaj": {
+    "alt": "Panelvan kasasında streç filmle sarılmış paletli koli yükü",
+    "role": "gallery",
+    "width": 576,
+    "height": 1024,
+    "sizes": [
+      480,
+      576
+    ],
+    "og": false,
+    "blurDataURL": "data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAAAwBACdASoQABwAPzmGvFQvKSYjMAgB4CcJQBTihFDjI/VNAmenDDQHPqAA/iqa9DbQ0OFTR02STXaZ2Yg8lqcR2y1Kno5905seMiFxzVZNV1u1Qz2EsT/E08eyuFhiCQdKuNLJNiWwGCYQiIWYu7iPDrflaevHiRwAAA=="
+  },
+  "bakir-nakliyat-koli-istifleme": {
+    "alt": "Panelvan kasasına düzenli şekilde istiflenmiş koliler",
+    "role": "gallery",
+    "width": 768,
+    "height": 1024,
+    "sizes": [
+      480,
+      768
+    ],
+    "og": false,
+    "blurDataURL": "data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAADQAwCdASoQABUAPzmGuVOvKSWisAgB4CcJaACdACIEC/JRnVhDc4AA/uCrYyvXvFGI0Q+iL4qsoM/+8KEt7rvvfaxgN+X/KONJHLfHg6iQ2XWNBQnHdDLz9WqYbqzTn4rCViStMgD1PuAA"
+  },
+  "bakir-nakliyat-palet-yukleme": {
+    "alt": "Forklift ile panelvana paletli yük yükleniyor",
+    "role": "gallery",
+    "width": 768,
+    "height": 1024,
+    "sizes": [
+      480,
+      768
+    ],
+    "og": false,
+    "blurDataURL": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAABQAwCdASoQABUAPzmGuVOvKSWisAgB4CcJYwC/OA4e6HZAgAD+jxeVlMYpj1MKhIjmHSf3PSkk435fsYAzfUZ7DjoE/bjZL8wO+HkiK6k5v8okTioOhnjNsA1zNgA7nt8QAAAA"
   },
   "evden-eve-nakliyat-beyaz-esya-tasima": {
     "alt": "Streç filmle korunmuş buzdolabı ve mobilyalarla yüklü evden eve nakliyat aracı",

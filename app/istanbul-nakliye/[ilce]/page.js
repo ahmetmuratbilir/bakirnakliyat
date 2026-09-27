@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import ServiceIcon from "@/components/icons/ServiceIcon";
 import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import CtaBand from "@/components/CtaBand";
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }) {
   const district = getDistrict(ilce);
   if (!district) return {};
   return {
-    title: `${district.name} Nakliye | ${site.name}`,
+    title: `${district.name} Nakliye`,
     description: `${site.name} ile ${district.name} bölgesinde sigortalı, asansörlü evden eve nakliyat ve ofis taşıma hizmeti. Ücretsiz ekspertiz ve sabit fiyat için hemen arayın.`,
     alternates: { canonical: `${site.domain}/istanbul-nakliye/${ilce}` },
   };
@@ -143,7 +144,7 @@ export default async function DistrictPage({ params }) {
                     href={`/hizmetlerimiz/${s.slug}`}
                     className="flex items-center gap-2 text-sm text-[#475569] hover:text-[#1d4ed8] font-medium"
                   >
-                    <span>{s.icon}</span>
+                    <span><ServiceIcon name={s.icon} className="size-5" /></span>
                     <span>{s.title}</span>
                   </Link>
                 </li>

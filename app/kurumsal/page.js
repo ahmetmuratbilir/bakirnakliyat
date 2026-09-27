@@ -4,7 +4,7 @@ import CtaBand from "@/components/CtaBand";
 import { site } from "@/data/site";
 
 export const metadata = {
-  title: "Kurumsal & Araç Filosu | Bakır Nakliyat",
+  title: "Kurumsal & Araç Filosu",
   description: `${site.name} şirket profili, yasal taşımacılık lisansları ve araç filosu bilgileri.`,
   alternates: { canonical: `${site.domain}/kurumsal` },
 };

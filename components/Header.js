@@ -1,294 +1,317 @@
 "use client";
+
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useRef, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useId, useRef, useState } from "react";
+import { ArrowRight, ChevronDown, Mail, Menu, Phone, X } from "lucide-react";
 import { site } from "@/data/site";
-import { services } from "@/data/services";
+import { navLinks } from "@/data/navigation";
+import Button from "@/components/ui/Button";
+import { WhatsAppIcon } from "@/components/icons/BrandIcons";
 
-const navLinks = [
-  { href: "/", label: "Anasayfa" },
-  {
-    label: "Kurumsal",
-    href: "/kurumsal",
-    children: [
-      { href: "/hakkimizda", label: "Hakkımızda" },
-      { href: "/kurumsal", label: "Şirket Profili & Filo" },
-      { href: "/misyonumuz", label: "Misyonumuz" },
-      { href: "/vizyonumuz", label: "Vizyonumuz" },
-    ],
-  },
-  {
-    label: "Hizmetlerimiz",
-    href: "/hizmetlerimiz",
-    children: services.map((s) => ({ href: `/hizmetlerimiz/${s.slug}`, label: s.title })),
-  },
-  { href: "/istanbul-nakliye", label: "İstanbul Nakliye" },
-  { href: "/sehirler-arasi-nakliyat", label: "Şehirlerarası" },
-  { href: "/blog", label: "Blog" },
-  { href: "/iletisim", label: "İletişim" },
-];
+function isActive(pathname, href) {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
 
-export default function Header() {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState(null);
-  const timeoutRef = useRef(null);
+function Logo() {
+  return (
+    <Link href="/" aria-label={`${site.name} — Anasayfa`} className="flex shrink-0 items-center gap-2.5 rounded-lg">
+      <Image
+        src="/logo-mark.png"
+        alt=""
+        width={203}
+        height={144}
+        unoptimized
+        preload
+        className="h-10 w-auto lg:h-11"
+      />
+      <span className="flex flex-col leading-none">
+        <span className="text-[1.3125rem] font-extrabold tracking-[0.04em] text-navy-900">BAKIR</span>
+        <span className="mt-1 text-[0.6875rem] font-bold tracking-[0.34em] text-copper-600">NAKLİYAT</span>
+      </span>
+    </Link>
+  );
+}
 
-  // Mouse menünün üzerine geldiğinde
-  const handleMouseEnter = (label) => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    setOpenDropdown(label);
-  };
+const desktopLink =
+  "inline-flex items-center rounded-lg px-2 py-2 text-sm font-semibold text-navy-900/80 transition-colors hover:bg-navy-50 hover:text-navy-900 aria-[current=page]:text-copper-600 xl:px-3 xl:text-[0.9375rem]";
 
-  // Mouse ayrıldığında 200ms tolerans veriyoruz ki imleç kaydığında anında kapanmasın
-  const handleMouseLeave = () => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    timeoutRef.current = setTimeout(() => {
-      setOpenDropdown(null);
-    }, 220);
-  };
+function DesktopDropdown({ item, pathname }) {
+  const [open, setOpen] = useState(false);
+  const wrapRef = useRef(null);
+  const buttonRef = useRef(null);
+  const closeTimer = useRef(null);
+  const menuId = useId();
 
-  // Başlığa tıklandığında aç/kapat
-  const handleToggleClick = (label, e) => {
-    e.stopPropagation();
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    setOpenDropdown((cur) => (cur === label ? null : label));
-  };
-
-  // Sayfa dışına tıklandığında menüyü kapat
   useEffect(() => {
-    const handleDocClick = (e) => {
-      if (!e.target.closest(".nav-dropdown-container")) {
-        setOpenDropdown(null);
+    if (!open) return;
+    const onKey = (e) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        buttonRef.current?.focus();
       }
     };
-    document.addEventListener("click", handleDocClick);
-    return () => {
-      document.removeEventListener("click", handleDocClick);
-      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    const onPointer = (e) => {
+      if (!wrapRef.current?.contains(e.target)) setOpen(false);
     };
-  }, []);
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("pointerdown", onPointer);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("pointerdown", onPointer);
+    };
+  }, [open]);
+
+  const openNow = () => {
+    clearTimeout(closeTimer.current);
+    setOpen(true);
+  };
+  const closeSoon = () => {
+    closeTimer.current = setTimeout(() => setOpen(false), 160);
+  };
+
+  const active = isActive(pathname, item.href) || item.children.some((c) => isActive(pathname, c.href));
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-xs border-b border-slate-200">
-      {/* Üst Güven Bilgi Bandı (Kurumsal Lacivert) */}
-      <div className="bg-[#0b1f3a] text-slate-200 text-xs py-2">
-        <div className="container-page flex items-center justify-between">
-          <div className="flex items-center gap-6">
-            <span className="flex items-center gap-1.5 font-medium">
-              <span className="text-[#c4773f]">📍</span>
-              <span>İstanbul 39 İlçe & Şehirlerarası · Sözleşmeli ve Faturalı Taşımacılık</span>
-            </span>
-            <span className="hidden md:inline-block text-slate-400">|</span>
-            <span className="hidden md:flex items-center gap-1.5 text-slate-300">
-              <span className="text-[#25d366]">✓</span>
-              <span>Sözleşmeli & %100 Hasar Garantili</span>
-            </span>
-          </div>
-
-          <div className="flex items-center gap-5">
-            <a
-              href={`mailto:${site.email}`}
-              className="hidden sm:inline-block hover:text-white transition"
-            >
-              ✉ {site.email}
-            </a>
-            <a
-              href={`tel:${site.phoneTel}`}
-              className="font-bold text-[#d8894d] hover:text-[#f1a874] transition flex items-center gap-1"
-            >
-              <span>📞</span>
-              <span>{site.phoneDisplay}</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      {/* Ana Header */}
-      <div className="container-page flex items-center justify-between py-3.5">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 shrink-0 group">
-          <div className="relative flex items-center justify-center w-11 h-11 rounded-xl overflow-hidden shadow-md shadow-blue-500/20 group-hover:scale-105 transition bg-[#0b1f3a]">
-            <Image
-              src="/icon.png"
-              alt="Bakır Nakliyat Logo"
-              width={44}
-              height={44}
-              className="object-cover w-full h-full"
-              priority
-            />
-          </div>
-          <div>
-            <div className="font-extrabold text-xl tracking-tight text-[#0b1f3a] leading-tight">
-              BAKIR <span className="text-[#1d4ed8]">NAKLİYAT</span>
-            </div>
-            <div className="text-[11px] font-semibold tracking-wider text-[#64748b] uppercase">
-              Güvenli & Profesyonel Taşımacılık
-            </div>
-          </div>
-        </Link>
-
-        {/* Desktop Navigasyon */}
-        <nav className="hidden lg:flex items-center gap-1 text-sm font-semibold">
-          {navLinks.map((item) =>
-            item.children ? (
-              <div
-                key={item.label}
-                className="relative nav-dropdown-container group"
-                onMouseEnter={() => handleMouseEnter(item.label)}
-                onMouseLeave={handleMouseLeave}
-              >
-                <button
-                  type="button"
-                  className={`flex items-center gap-1.5 px-3.5 py-2 rounded-lg transition cursor-pointer select-none ${
-                    openDropdown === item.label
-                      ? "text-[#1d4ed8] bg-blue-50"
-                      : "text-[#334155] hover:text-[#1d4ed8] hover:bg-slate-50"
-                  }`}
-                  aria-expanded={openDropdown === item.label}
-                  onClick={(e) => handleToggleClick(item.label, e)}
-                >
-                  <span>{item.label}</span>
-                  <span
-                    className={`text-[10px] transition-transform duration-200 ${
-                      openDropdown === item.label ? "rotate-180 text-[#1d4ed8]" : "opacity-60"
-                    }`}
-                  >
-                    ▼
-                  </span>
-                </button>
-
-                {/* 
-                  Görünmez Köprü (pt-1.5) ile buton ile menü arasında hiçbir boşluk kalmaz;
-                  böylece imleç aşağı kayarken menü asla kapanmaz.
-                */}
-                <div
-                  className={`absolute left-0 top-full pt-1.5 w-64 z-50 transition-all duration-150 ${
-                    openDropdown === item.label ? "block" : "hidden group-hover:block"
-                  }`}
-                >
-                  <div className="bg-white rounded-2xl py-2.5 shadow-2xl border border-slate-200/90 overflow-hidden">
-                    {item.href && (
-                      <Link
-                        href={item.href}
-                        className="block px-4 py-2 text-xs font-bold uppercase tracking-wider text-[#1d4ed8] bg-blue-50/60 hover:bg-blue-100/70 border-b border-slate-100 transition"
-                        onClick={() => setOpenDropdown(null)}
-                      >
-                        Tümünü İncele →
-                      </Link>
-                    )}
-                    {item.children.map((child) => (
-                      <Link
-                        key={child.href}
-                        href={child.href}
-                        className="block px-4 py-2.5 text-sm text-[#475569] hover:text-[#1d4ed8] hover:bg-blue-50/60 hover:pl-5 transition-all font-medium"
-                        onClick={() => setOpenDropdown(null)}
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="px-3.5 py-2 rounded-lg text-[#334155] hover:text-[#1d4ed8] hover:bg-slate-50 transition"
-              >
-                {item.label}
-              </Link>
-            )
-          )}
-        </nav>
-
-        {/* Sağ Butonlar */}
-        <div className="hidden sm:flex items-center gap-3">
-          <a
-            href={site.whatsapp}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-1.5 text-xs font-bold px-3.5 py-2.5 rounded-lg text-emerald-700 bg-emerald-50 border border-emerald-200 hover:bg-emerald-100 transition shadow-xs"
-          >
-            <span>💬</span>
-            <span>WhatsApp</span>
-          </a>
-          <a
-            href={`tel:${site.phoneTel}`}
-            className="flex items-center gap-1.5 text-xs font-bold px-4 py-2.5 rounded-lg bg-[#1d4ed8] text-white hover:bg-[#1e40af] transition shadow-md shadow-blue-600/20"
-          >
-            <span>📞</span>
-            <span>Hemen Ara</span>
-          </a>
-        </div>
-
-        {/* Hamburger Menü Butonu */}
-        <button
-          className="lg:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100 focus:outline-hidden"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Menüyü Aç/Kapat"
+    <li
+      ref={wrapRef}
+      className="relative"
+      onMouseEnter={openNow}
+      onMouseLeave={closeSoon}
+      onBlur={(e) => {
+        if (!wrapRef.current?.contains(e.relatedTarget)) setOpen(false);
+      }}
+    >
+      <div className="flex items-center">
+        <Link
+          href={item.href}
+          onClick={() => setOpen(false)}
+          aria-current={active ? "page" : undefined}
+          className={`${desktopLink} pr-1 xl:pr-1`}
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            {mobileOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
+          {item.label}
+        </Link>
+        <button
+          ref={buttonRef}
+          type="button"
+          aria-expanded={open}
+          aria-controls={menuId}
+          aria-label={`${item.label} alt menüsü`}
+          onClick={() => setOpen((o) => !o)}
+          className="grid size-7 place-items-center rounded-md text-navy-900/60 transition-colors hover:bg-navy-50 hover:text-navy-900"
+        >
+          <ChevronDown
+            aria-hidden="true"
+            className={`size-4 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+            strokeWidth={2.25}
+          />
         </button>
       </div>
 
-      {/* Mobil Menü */}
-      {mobileOpen && (
-        <div className="lg:hidden border-t border-slate-200 bg-white px-4 py-5 shadow-lg">
-          <nav className="space-y-2">
-            {navLinks.map((item) =>
-              item.children ? (
-                <div key={item.label} className="py-1">
-                  <div className="text-xs font-bold uppercase tracking-wider text-[#1d4ed8] px-3 py-1">
-                    {item.label}
-                  </div>
-                  <div className="space-y-1 mt-1 pl-2 border-l-2 border-blue-100 ml-2">
-                    {item.children.map((child) => (
-                      <Link
-                        key={child.href}
-                        href={child.href}
-                        className="block px-3 py-1.5 text-sm text-slate-600 hover:text-[#1d4ed8]"
-                        onClick={() => setMobileOpen(false)}
-                      >
-                        {child.label}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-800 hover:bg-blue-50 hover:text-[#1d4ed8]"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              )
-            )}
+      <div id={menuId} hidden={!open} className="absolute left-0 top-full z-50 w-72 pt-3">
+        <ul className="rounded-card border border-line bg-white p-2 shadow-float">
+          {item.children.map((child) => (
+            <li key={child.href}>
+              <Link
+                href={child.href}
+                onClick={() => setOpen(false)}
+                aria-current={pathname === child.href ? "page" : undefined}
+                className="flex min-h-11 items-center rounded-lg px-3 text-base font-medium text-navy-900 transition-colors hover:bg-copper-50 hover:text-copper-700 aria-[current=page]:bg-copper-50 aria-[current=page]:text-copper-700"
+              >
+                {child.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </li>
+  );
+}
 
-            <div className="pt-4 flex gap-2 border-t border-slate-100">
-              <a
-                href={site.whatsapp}
-                className="flex-1 text-center text-xs font-bold py-2.5 rounded-lg bg-emerald-500 text-white"
-              >
-                WhatsApp
-              </a>
-              <a
-                href={`tel:${site.phoneTel}`}
-                className="flex-1 text-center text-xs font-bold py-2.5 rounded-lg bg-[#1d4ed8] text-white"
-              >
-                Hemen Ara
-              </a>
-            </div>
+function MobileMenu({ pathname }) {
+  const dialogRef = useRef(null);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const open = () => {
+    dialogRef.current?.showModal();
+    setIsOpen(true);
+  };
+  const close = () => dialogRef.current?.close();
+
+  // Sayfa değişince kapan
+  useEffect(() => {
+    dialogRef.current?.close();
+  }, [pathname]);
+
+  const mobileRow =
+    "flex min-h-12 w-full items-center justify-between rounded-lg px-3 text-base font-semibold text-navy-900 transition-colors hover:bg-navy-50 aria-[current=page]:text-copper-600";
+
+  return (
+    <>
+      <button
+        type="button"
+        onClick={open}
+        aria-haspopup="dialog"
+        aria-expanded={isOpen}
+        aria-controls="mobil-menu"
+        className="grid size-11 place-items-center rounded-btn text-navy-900 ring-1 ring-inset ring-line transition-colors hover:bg-navy-50 lg:hidden"
+      >
+        <Menu aria-hidden="true" className="size-6" strokeWidth={2} />
+        <span className="sr-only">Menüyü aç</span>
+      </button>
+
+      <dialog
+        id="mobil-menu"
+        ref={dialogRef}
+        aria-label="Site menüsü"
+        onClose={() => setIsOpen(false)}
+        onClick={(e) => {
+          if (e.target === dialogRef.current) close();
+        }}
+        className="drawer fixed inset-y-0 left-auto right-0 m-0 h-dvh max-h-none w-[min(88vw,24rem)] max-w-none border-0 bg-white p-0 shadow-float"
+      >
+        <div className="flex h-full flex-col">
+          <div className="flex h-16 shrink-0 items-center justify-between border-b border-line px-4">
+            <Logo />
+            <button
+              type="button"
+              onClick={close}
+              className="grid size-11 place-items-center rounded-btn text-navy-900 ring-1 ring-inset ring-line transition-colors hover:bg-navy-50"
+            >
+              <X aria-hidden="true" className="size-6" strokeWidth={2} />
+              <span className="sr-only">Menüyü kapat</span>
+            </button>
+          </div>
+
+          <nav
+            aria-label="Mobil menü"
+            className="flex-1 overflow-y-auto overscroll-contain px-3 py-4"
+            onClick={(e) => {
+              if (e.target.closest("a")) close();
+            }}
+          >
+            <ul className="space-y-1">
+              {navLinks.map((item) =>
+                item.children ? (
+                  <li key={item.label}>
+                    <details name="mobil-menu-grup" className="group">
+                      <summary className={mobileRow}>
+                        {item.label}
+                        <ChevronDown
+                          aria-hidden="true"
+                          className="size-5 text-subtle transition-transform duration-200 group-open:rotate-180"
+                          strokeWidth={2.25}
+                        />
+                      </summary>
+                      <ul className="mb-2 ml-3 mt-1 space-y-0.5 border-l-2 border-copper-100 pl-3">
+                        {item.overviewLabel && (
+                          <li>
+                            <Link
+                              href={item.href}
+                              aria-current={pathname === item.href ? "page" : undefined}
+                              className="flex min-h-11 items-center rounded-lg px-3 text-base font-semibold text-copper-600 hover:bg-copper-50"
+                            >
+                              {item.overviewLabel}
+                            </Link>
+                          </li>
+                        )}
+                        {item.children.map((child) => (
+                          <li key={child.href}>
+                            <Link
+                              href={child.href}
+                              aria-current={pathname === child.href ? "page" : undefined}
+                              className="flex min-h-11 items-center rounded-lg px-3 text-base text-muted hover:bg-navy-50 hover:text-navy-900 aria-[current=page]:font-semibold aria-[current=page]:text-copper-600"
+                            >
+                              {child.label}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </details>
+                  </li>
+                ) : (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      aria-current={isActive(pathname, item.href) ? "page" : undefined}
+                      className={mobileRow}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                )
+              )}
+            </ul>
           </nav>
+
+          <div className="shrink-0 space-y-2.5 border-t border-line p-4 pb-[calc(1rem+env(safe-area-inset-bottom))]">
+            <Button href="/iletisim" variant="primary" size="lg" iconRight={ArrowRight} className="w-full">
+              Teklif Al
+            </Button>
+            <div className="grid grid-cols-2 gap-2.5">
+              <Button href={`tel:${site.phoneTel}`} variant="outline" icon={Phone}>
+                Ara
+              </Button>
+              <Button href={site.whatsapp} variant="whatsapp" icon={WhatsAppIcon}>
+                WhatsApp
+              </Button>
+            </div>
+            <a
+              href={`mailto:${site.email}`}
+              className="flex min-h-11 items-center justify-center gap-2 text-sm text-subtle hover:text-navy-900"
+            >
+              <Mail aria-hidden="true" className="size-4" strokeWidth={2} />
+              {site.email}
+            </a>
+          </div>
         </div>
-      )}
+      </dialog>
+    </>
+  );
+}
+
+export default function Header() {
+  const pathname = usePathname();
+
+  return (
+    <header className="sticky top-0 z-50 border-b border-line/80 bg-white/90 backdrop-blur-md">
+      <div className="container-page flex h-16 items-center justify-between gap-4 lg:h-20">
+        <Logo />
+
+        <nav aria-label="Ana menü" className="hidden lg:block">
+          <ul className="flex items-center gap-0.5 xl:gap-1">
+            {navLinks
+              .filter((item) => !item.mobileOnly)
+              .map((item) =>
+                item.children ? (
+                  <DesktopDropdown key={item.label} item={item} pathname={pathname} />
+                ) : (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      aria-current={isActive(pathname, item.href) ? "page" : undefined}
+                      className={desktopLink}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                )
+              )}
+          </ul>
+        </nav>
+
+        <div className="flex items-center gap-2">
+          {/* Button kendi inline-flex sınıfını taşıdığı için görünürlük kapsayıcıda */}
+          <div className="hidden sm:block">
+            <Button href="/iletisim" variant="primary" iconRight={ArrowRight}>
+              Teklif Al
+            </Button>
+          </div>
+          <MobileMenu pathname={pathname} />
+        </div>
+      </div>
     </header>
   );
 }

@@ -14,6 +14,8 @@ import { statSync } from "node:fs";
 const SRC = "_kaynak-gorseller";
 const OUT = "public/images";
 const WIDTHS = [480, 800, 1120];
+// next.config.mjs -> images.deviceSizes ile aynı olmalı
+
 
 /**
  * blur: KVKK gereği kapatılan bölgeler (kaynak görsel koordinatlarıyla).
@@ -21,7 +23,7 @@ const WIDTHS = [480, 800, 1120];
  */
 const PHOTOS = [
   { src: "11.jpg", slug: "bakir-nakliyat-filo-kamyonet-panelvan",
-    alt: "Bakır Nakliyat özmal filosu: kapalı kasa kamyonet ve panelvan, depo önünde yükleme bekliyor",
+    alt: "Kapalı kasa kamyonet ve yüksek tavanlı panelvan, depo yükleme rampası önünde",
     role: "hero", og: true },
 
   { src: "3.jpg", slug: "gece-sevkiyat-forklift-palet-yukleme",
@@ -65,6 +67,27 @@ const PHOTOS = [
     alt: "Araçta paletlenmiş polipropilen çuvallar ve karton ambalaj levhaları",
     role: "gallery",
     blur: [{ left: 858, top: 702, width: 96, height: 112 }] },
+
+  // --- İlk saha çekimleri (kaynak: public/images/*.jpg, 576-768px genişlik) ---
+  { src: "../public/images/bakir-nakliyat-filo-araci.jpg", slug: "bakir-nakliyat-filo-araci",
+    alt: "Beyaz panelvan nakliye aracı yükleme alanında park halinde",
+    role: "gallery" },
+
+  { src: "../public/images/bakir-nakliyat-gece-sevkiyat.jpg", slug: "bakir-nakliyat-gece-sevkiyat",
+    alt: "Gece sevkiyatında yolda ilerleyen beyaz panelvan nakliye aracı",
+    role: "gallery" },
+
+  { src: "../public/images/bakir-nakliyat-guvenli-ambalaj.jpg", slug: "bakir-nakliyat-guvenli-ambalaj",
+    alt: "Panelvan kasasında streç filmle sarılmış paletli koli yükü",
+    role: "gallery" },
+
+  { src: "../public/images/bakir-nakliyat-koli-istifleme.jpg", slug: "bakir-nakliyat-koli-istifleme",
+    alt: "Panelvan kasasına düzenli şekilde istiflenmiş koliler",
+    role: "gallery" },
+
+  { src: "../public/images/bakir-nakliyat-palet-yukleme.jpg", slug: "bakir-nakliyat-palet-yukleme",
+    alt: "Forklift ile panelvana paletli yük yükleniyor",
+    role: "gallery" },
 
   { src: "2.jpg", slug: "evden-eve-nakliyat-beyaz-esya-tasima",
     alt: "Streç filmle korunmuş buzdolabı ve mobilyalarla yüklü evden eve nakliyat aracı",
@@ -114,8 +137,9 @@ for (const p of PHOTOS) {
   const master = await prepared.toBuffer();
 
   const sizes = [];
-  for (const w of WIDTHS) {
-    if (w > meta.width) continue;
+  const targets = WIDTHS.filter((w) => w <= meta.width);
+  if (meta.width < WIDTHS.at(-1) && !targets.includes(meta.width)) targets.push(meta.width);
+  for (const w of targets) {
     const resized = sharp(master).resize({ width: w, withoutEnlargement: true });
     const [avif, webp, jpg] = await Promise.all([
       resized.clone().avif({ quality: 45, effort: 6 }).toBuffer(),
@@ -160,5 +184,13 @@ const banner = `// OTOMATİK ÜRETİLDİ — elle düzenlemeyin.
 `;
 await writeFile("data/media.js", `${banner}export const media = ${JSON.stringify(manifest, null, 2)};\n`);
 
+const variants = Object.fromEntries(Object.entries(manifest).map(([k, v]) => [k, v.sizes]));
+await writeFile(
+  "lib/image-variants.js",
+  `${banner}// Sadece slug -> genişlik listesi (base64 yok); lib/image-loader.js kullanır.
+export const variants = ${JSON.stringify(variants)};
+`
+);
+
 console.log(`\nKaynak toplam : ${(totalIn / 1048576).toFixed(2)} MB`);
-console.log(`AVIF toplam   : ${(totalOut / 1048576).toFixed(2)} MB  (3 boyut × 12 görsel)`);
+console.log(`AVIF toplam   : ${(totalOut / 1048576).toFixed(2)} MB  (${PHOTOS.length} görsel)`);

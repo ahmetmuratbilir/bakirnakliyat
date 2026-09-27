@@ -2,7 +2,7 @@ export const services = [
   {
     slug: "evden-eve-nakliyat",
     title: "Evden Eve Nakliyat",
-    icon: "🏠",
+    icon: "house",
     short: "Eşyalarınız profesyonel ellerde, sigortalı ve sözleşmeli olarak yeni adresinize taşınır.",
     bullets: [
       "Uzman Marangoz Desteği",
@@ -22,7 +22,7 @@ export const services = [
   {
     slug: "ofis-ve-buro-tasima",
     title: "Ofis ve Büro Taşımacılığı",
-    icon: "🏢",
+    icon: "office",
     short: "İş akışınız kesintisiz devam etsin. Planlı, hızlı ve gizlilik esaslı kurumsal taşıma.",
     bullets: [
       "Mesai Dışı Taşıma Seçeneği",
@@ -42,7 +42,7 @@ export const services = [
   {
     slug: "sehir-ici-nakliye",
     title: "Şehir İçi Nakliye",
-    icon: "🚛",
+    icon: "truck",
     short: "İstanbul'un 39 ilçesinde aynı gün hizmet, uygun fiyat ve deneyimli ekip.",
     bullets: [
       "Aynı Gün Teslimat",
@@ -62,7 +62,7 @@ export const services = [
   {
     slug: "parca-esya-tasima",
     title: "Parça Eşya Taşımacılığı",
-    icon: "📦",
+    icon: "package",
     short: "Birkaç koli veya tek bir mobilya için komple araç masrafı ödemek zorunda değilsiniz.",
     bullets: [
       "Ekonomik Fiyatlandırma",
@@ -82,7 +82,7 @@ export const services = [
   {
     slug: "hafriyat-tasimaciligi",
     title: "Hafriyat Taşımacılığı",
-    icon: "⚙️",
+    icon: "construction",
     short: "İnşaat ve tadilat atıklarınız lisanslı araç filomuzla yasal çerçevede taşınır ve bertaraf edilir.",
     bullets: [
       "Lisanslı ve İzinli Araçlar",
@@ -102,7 +102,7 @@ export const services = [
   {
     slug: "asansorlu-tasimacilik",
     title: "Asansörlü Taşımacılık",
-    icon: "🏗️",
+    icon: "lift",
     short: "Yüksek katlarda merdiven yerine güvenli, hızlı ve bina hasarı olmayan asansörlü çözüm.",
     bullets: [
       "Bina Dışı Asansör Platformu",
@@ -122,7 +122,7 @@ export const services = [
   {
     slug: "esya-depolama",
     title: "Eşya Depolama",
-    icon: "🔐",
+    icon: "storage",
     short: "7/24 güvenlikli, nem ve ısı kontrollü depolarımızda eşyalarınız istediğiniz süre güvende kalır.",
     bullets: [
       "7/24 Kameralı Güvenlik",

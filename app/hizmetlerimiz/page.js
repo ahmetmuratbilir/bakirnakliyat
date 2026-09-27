@@ -1,4 +1,5 @@
 import PageHero from "@/components/PageHero";
+import ServiceIcon from "@/components/icons/ServiceIcon";
 import CtaBand from "@/components/CtaBand";
 import { site } from "@/data/site";
 import { services } from "@/data/services";
@@ -26,7 +27,7 @@ export default function HizmetlerimizPage() {
               key={s.slug}
               className="flex flex-col p-7 rounded-2xl bg-white border border-slate-200 shadow-xs hover:shadow-xl hover:border-[#1d4ed8] transition-all group"
             >
-              <div className="text-4xl mb-4">{s.icon}</div>
+              <div className="text-4xl mb-4"><ServiceIcon name={s.icon} className="size-9" /></div>
               <h2 className="text-xl font-bold text-[#0b1f3a] mb-2.5 group-hover:text-[#1d4ed8] transition">
                 {s.title}
               </h2>

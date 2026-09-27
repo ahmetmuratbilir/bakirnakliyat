@@ -5,7 +5,7 @@ import { posts } from "@/data/posts";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Nakliyat Rehberi & Blog | Bakır Nakliyat",
+  title: "Nakliyat Rehberi & Blog",
   description: `${site.name} Blog — Taşınma rehberleri, ambalajlama püf noktaları, nakliyat sözleşmesi ve kurumsal ofis taşıma tavsiyeleri.`,
   alternates: { canonical: `${site.domain}/blog` },
 };

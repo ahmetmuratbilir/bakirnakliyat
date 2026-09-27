@@ -1,150 +1,138 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Mail, MapPin, Phone } from "lucide-react";
 import { site } from "@/data/site";
 import { services } from "@/data/services";
+import { corporateLinks } from "@/data/navigation";
+import { InstagramIcon, WhatsAppIcon } from "@/components/icons/BrandIcons";
+
+function FooterHeading({ children }) {
+  return <h3 className="text-sm font-bold uppercase tracking-[0.08em] text-white">{children}</h3>;
+}
+
+const listLink =
+  "inline-flex min-h-11 items-center text-base text-navy-100 transition-colors hover:text-white sm:min-h-9";
 
 export default function Footer() {
   const year = new Date().getFullYear();
+
   return (
-    <footer className="bg-[#0b1f3a] text-slate-300 border-t border-slate-800">
-      <div className="container-page grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 py-16 text-sm">
-        {/* Sütun 1 — Marka & Güven */}
+    <footer className="bg-navy-900 text-navy-100">
+      <div className="container-page grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1.2fr] lg:gap-12 lg:py-20">
+        {/* 1 — Marka */}
         <div>
-          <div className="flex items-center gap-3 mb-5">
-            <div className="relative flex items-center justify-center w-10 h-10 rounded-xl overflow-hidden shadow-md">
-              <Image
-                src="/icon.png"
-                alt="Bakır Nakliyat Logo"
-                width={40}
-                height={40}
-                className="object-cover w-full h-full"
-              />
-            </div>
-            <div>
-              <div className="font-extrabold text-lg text-white leading-tight tracking-tight">
-                BAKIR NAKLİYAT
-              </div>
-              <div className="text-[11px] font-semibold text-blue-400">
-                Güvenle, Her Yere
-              </div>
-            </div>
-          </div>
-          <p className="text-slate-400 leading-relaxed text-xs sm:text-sm mb-5">
-            {site.yearsOfExperience} yılı aşkın saha deneyimiyle İstanbul genelinde ve şehirlerarası evden eve nakliyat, palet ve parsiyel yük taşıma çözümleri.
+          <Link href="/" aria-label={`${site.name} — Anasayfa`} className="inline-block rounded-lg">
+            <Image
+              src="/logo-light-240.png"
+              alt={site.name}
+              width={240}
+              height={165}
+              unoptimized
+              className="h-auto w-40"
+            />
+          </Link>
+          <p className="mt-5 max-w-xs text-base leading-relaxed">
+            {site.yearsOfExperience} yılı aşkın saha deneyimiyle İstanbul genelinde ve şehirlerarası evden eve
+            nakliyat, palet ve parsiyel yük taşıma çözümleri.
           </p>
-          <div className="space-y-2 text-xs">
-            <div className="flex items-start gap-2 text-slate-300">
-              <span className="text-[#1d4ed8]">📍</span>
-              <span>{site.address.display}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-[#1d4ed8]">📞</span>
-              <a href={`tel:${site.phoneTel}`} className="font-bold text-white hover:text-blue-400 transition">
-                {site.phoneDisplay}
-              </a>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-[#1d4ed8]">✉</span>
-              <a href={`mailto:${site.email}`} className="text-slate-400 hover:text-white transition">
-                {site.email}
-              </a>
-            </div>
-          </div>
+          <a
+            href={site.social.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-6 inline-flex min-h-11 items-center gap-2.5 rounded-btn px-3 text-[0.9375rem] font-semibold text-white ring-1 ring-inset ring-white/20 transition-colors hover:bg-white/10"
+          >
+            <InstagramIcon className="size-5" />
+            Instagram
+          </a>
         </div>
 
-        {/* Sütun 2 — Temel Hizmetler */}
-        <div>
-          <h3 className="font-bold text-white text-base mb-5 tracking-tight border-l-2 border-[#1d4ed8] pl-2.5">
-            Hizmetlerimiz
-          </h3>
-          <ul className="space-y-2.5 text-xs sm:text-sm">
-            {services.slice(0, 6).map((s) => (
+        {/* 2 — Hizmetler */}
+        <nav aria-labelledby="footer-hizmetler">
+          <FooterHeading>
+            <span id="footer-hizmetler">Hizmetlerimiz</span>
+          </FooterHeading>
+          <ul className="mt-4">
+            {services.map((s) => (
               <li key={s.slug}>
-                <Link
-                  href={`/hizmetlerimiz/${s.slug}`}
-                  className="text-slate-400 hover:text-white hover:translate-x-1 inline-block py-1 transition"
-                >
+                <Link href={`/hizmetlerimiz/${s.slug}`} className={listLink}>
                   {s.title}
                 </Link>
               </li>
             ))}
           </ul>
-        </div>
+        </nav>
 
-        {/* Sütun 3 — Kurumsal */}
-        <div>
-          <h3 className="font-bold text-white text-base mb-5 tracking-tight border-l-2 border-[#1d4ed8] pl-2.5">
-            Kurumsal
-          </h3>
-          <ul className="space-y-2.5 text-xs sm:text-sm">
-            {[
-              { href: "/hakkimizda", label: "Hakkımızda" },
-              { href: "/kurumsal", label: "Kurumsal & Araç Filosu" },
-              { href: "/misyonumuz", label: "Misyonumuz" },
-              { href: "/vizyonumuz", label: "Vizyonumuz" },
-              { href: "/blog", label: "Blog & Rehberler" },
-              { href: "/iletisim", label: "İletişim & Teklif" },
-            ].map((link) => (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className="text-slate-400 hover:text-white hover:translate-x-1 inline-block py-1 transition"
-                >
-                  {link.label}
+        {/* 3 — Kurumsal */}
+        <nav aria-labelledby="footer-kurumsal">
+          <FooterHeading>
+            <span id="footer-kurumsal">Kurumsal</span>
+          </FooterHeading>
+          <ul className="mt-4">
+            {corporateLinks.map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} className={listLink}>
+                  {l.label}
                 </Link>
               </li>
             ))}
           </ul>
-        </div>
+        </nav>
 
-        {/* Sütun 4 — Hızlı İletişim & Lokasyonlar */}
+        {/* 4 — İletişim */}
         <div>
-          <h3 className="font-bold text-white text-base mb-5 tracking-tight border-l-2 border-[#1d4ed8] pl-2.5">
-            Hızlı Ulaşım
-          </h3>
-          <div className="space-y-3">
-            <a
-              href={`tel:${site.phoneTel}`}
-              className="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl bg-[#1d4ed8] text-white font-bold text-xs hover:bg-blue-600 transition shadow-md"
-            >
-              <span>📞</span>
-              <span>Hemen Ara: {site.phoneDisplay}</span>
-            </a>
-            <a
-              href={site.whatsapp}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-xl bg-[#128c4a] text-white font-bold text-xs hover:bg-[#0f7a3f] transition shadow-md"
-            >
-              <span>💬</span>
-              <span>WhatsApp Teklif Hattı</span>
-            </a>
-
-            <div className="pt-2 text-xs text-slate-400 space-y-1.5">
-              <div>
-                <Link href="/istanbul-nakliye" className="inline-block py-1.5 hover:text-white underline">
-                  İstanbul 39 İlçe Nakliye Rehberi
-                </Link>
-              </div>
-              <div>
-                <Link href="/sehirler-arasi-nakliyat" className="inline-block py-1.5 hover:text-white underline">
-                  Şehirlerarası Nakliyat Seferleri
-                </Link>
-              </div>
-            </div>
+          <FooterHeading>Hızlı Ulaşım</FooterHeading>
+          <ul className="mt-4 space-y-1">
+            <li>
+              <a href={`tel:${site.phoneTel}`} className="group flex min-h-11 items-center gap-3 text-white">
+                <Phone aria-hidden="true" className="size-5 text-copper-500" strokeWidth={2} />
+                <span className="text-lg font-bold transition-colors group-hover:text-copper-500">
+                  {site.phoneDisplay}
+                </span>
+              </a>
+            </li>
+            <li>
+              <a
+                href={site.whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex min-h-11 items-center gap-3 text-base transition-colors hover:text-white"
+              >
+                <WhatsAppIcon className="size-5 text-copper-500" />
+                WhatsApp Teklif Hattı
+              </a>
+            </li>
+            <li>
+              <a
+                href={`mailto:${site.email}`}
+                className="flex min-h-11 items-center gap-3 break-all text-base transition-colors hover:text-white"
+              >
+                <Mail aria-hidden="true" className="size-5 shrink-0 text-copper-500" strokeWidth={2} />
+                {site.email}
+              </a>
+            </li>
+            <li className="flex items-start gap-3 py-2.5 text-base">
+              <MapPin aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-copper-500" strokeWidth={2} />
+              {site.address.display}
+            </li>
+          </ul>
+          <div className="mt-4 border-t border-white/10 pt-4">
+            <Link href="/istanbul-nakliye" className={listLink}>
+              İstanbul 39 İlçe Nakliye Rehberi
+            </Link>
+            <br />
+            <Link href="/sehirler-arasi-nakliyat" className={listLink}>
+              Şehirlerarası Nakliyat Seferleri
+            </Link>
           </div>
         </div>
       </div>
 
-      {/* Alt Telif & Güven Çubuğu */}
-      <div className="border-t border-slate-800 bg-[#081629] py-5 text-xs text-slate-400">
-        <div className="container-page flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p>© {year} {site.name}. Tüm hakları saklıdır. Lisanslı ve Sigortalı Evden Eve Nakliyat.</p>
-          <div className="flex items-center gap-4">
-            <span className="text-emerald-400 font-semibold">🔒 SSL Güvenli Bağlantı</span>
-            <span>•</span>
-            <span className="text-slate-300">Resmi Taşımacılık Belgesi</span>
-          </div>
+      <div className="border-t border-white/10 bg-navy-950">
+        <div className="container-page flex flex-col gap-2 py-5 text-sm sm:flex-row sm:items-center sm:justify-between">
+          <p>
+            © {year} {site.name}. Tüm hakları saklıdır.
+          </p>
+          <p className="font-semibold tracking-[0.12em] text-copper-500">GÜVENLE, HER YERE</p>
         </div>
       </div>
     </footer>

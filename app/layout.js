@@ -2,7 +2,8 @@ import "./globals.css";
 import { Plus_Jakarta_Sans } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import FloatingContact from "@/components/FloatingContact";
+import TopBar from "@/components/TopBar";
+import MobileCallBar from "@/components/MobileCallBar";
 import { site } from "@/data/site";
 
 // Tek aile: ikinci bir font ailesi yuklemek ~60KB bos maliyet demekti.
@@ -15,6 +16,14 @@ const jakarta = Plus_Jakarta_Sans({
   display: "swap",
   preload: true,
 });
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  // iPhone çentik/ana ekran çubuğu alanı için env(safe-area-inset-*) aktif olsun
+  viewportFit: "cover",
+  themeColor: "#12263f",
+};
 
 export const metadata = {
   metadataBase: new URL(site.domain),
@@ -91,9 +100,7 @@ const jsonLd = {
     addressCountry: site.address.country,
   },
   areaServed: site.areaServed.map((name) => ({ "@type": "City", name })),
-  openingHours: site.openingHours.schema,
   currenciesAccepted: "TRY",
-  paymentAccepted: "Nakit, Kredi Kartı, Havale/EFT",
   priceRange: "$$",
   sameAs: Object.values(site.social),
 };
@@ -111,17 +118,26 @@ const websiteJsonLd = {
 export default function RootLayout({ children }) {
   return (
     <html lang="tr" className={`h-full ${jakarta.variable}`}>
-      <body className="min-h-full flex flex-col pb-16 sm:pb-0">
+      <body className="flex min-h-full flex-col">
+        <a
+          href="#icerik"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-btn focus:bg-navy-900 focus:px-4 focus:py-3 focus:font-semibold focus:text-white"
+        >
+          İçeriğe geç
+        </a>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify([jsonLd, websiteJsonLd]),
           }}
         />
+        <TopBar />
         <Header />
-        <main className="flex-1">{children}</main>
+        <main id="icerik" className="flex-1">
+          {children}
+        </main>
         <Footer />
-        <FloatingContact />
+        <MobileCallBar />
       </body>
     </html>
   );

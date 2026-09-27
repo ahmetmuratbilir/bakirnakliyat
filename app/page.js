@@ -1,37 +1,66 @@
 import Link from "next/link";
-import Image from "next/image";
-import CtaBand from "@/components/CtaBand";
+import {
+  ArrowRight,
+  ClipboardCheck,
+  Clock,
+  CreditCard,
+  FileSignature,
+  MapPin,
+  PackageCheck,
+  Phone,
+  Plus,
+  Route,
+  ShieldCheck,
+  Tag,
+  Wrench,
+} from "lucide-react";
 import { site } from "@/data/site";
 import { services } from "@/data/services";
+import { districts } from "@/data/districts";
+import { cities } from "@/data/cities";
+import { faqs } from "@/data/faqs";
+import Button from "@/components/ui/Button";
+import SectionHeading from "@/components/ui/SectionHeading";
+import Photo from "@/components/ui/Photo";
+import ServiceCard from "@/components/ServiceCard";
+import Gallery from "@/components/gallery/Gallery";
+import CtaBand from "@/components/CtaBand";
+import { WhatsAppIcon } from "@/components/icons/BrandIcons";
+
+const heroBadges = [
+  { icon: ClipboardCheck, label: "Ücretsiz Ekspertiz" },
+  { icon: FileSignature, label: "Sözleşmeli Hizmet" },
+  { icon: CreditCard, label: "Kredi Kartına Taksit" },
+];
 
 const benefits = [
   {
-    icon: "🛡️",
+    icon: ShieldCheck,
     title: "Talep Halinde Nakliyat Sigortası",
-    text: "Talep etmeniz halinde taşımanıza özel nakliyat sigortası düzenlenir; poliçe detayları teklifle birlikte yazılı olarak paylaşılır.",
+    text: "Talep etmeniz halinde taşımanıza özel nakliyat sigortası düzenlenir.",
   },
   {
-    icon: "📜",
+    icon: FileSignature,
     title: "Resmi & Yazılı Sözleşme",
     text: "İş başlangıcında imzalanan taşıma sözleşmesi ile taşınma günü, saati ve tüm taahhütler yasal korumada.",
   },
   {
-    icon: "🏷️",
+    icon: Tag,
     title: "Net & Sabit Fiyat Güvencesi",
-    text: "Ekspertiz sonrasında verilen fiyat kesindir. Taşıma günü ekstra ücret, bahşiş baskısı veya sürpriz masraf yoktur.",
+    text: "Ekspertiz sonrasında verilen fiyat kesindir, taşıma günü sürpriz masraf yoktur.",
   },
   {
-    icon: "⏰",
+    icon: Clock,
     title: "Dakik & Planlı Operasyon",
-    text: "Belirlenen randevu saatinde kapınızdayız. İstanbul içi taşımalar aynı gün içinde eksiksiz tamamlanır.",
+    text: "Belirlenen randevu saatinde kapınızdayız.",
   },
   {
-    icon: "📦",
+    icon: PackageCheck,
     title: "Hijyenik Çift Kat Ambalaj",
-    text: "Mobilyalar, beyaz eşyalar ve hassas parçalar patpat naylon, havalı köpük ve streç film ile sıfır hasar prensibiyle korunur.",
+    text: "Mobilya, beyaz eşya ve hassas parçalar patpat naylon, havalı köpük ve streç filmle korunur.",
   },
   {
-    icon: "🛠️",
+    icon: Wrench,
     title: "Uzman Marangoz & Montaj",
     text: "Gardırop, yatak odası takımı ve beyaz eşyalarınız profesyonel ustalarımızca sökülüp yeni adreste kurulur.",
   },
@@ -60,371 +89,340 @@ const steps = [
   },
 ];
 
+const galleryItems = [
+  { slug: "paletli-parsiyel-yuk-tasima", caption: "Paletli parsiyel yük" },
+  { slug: "gece-sevkiyat-forklift-palet-yukleme", caption: "Forklift ile gece sevkiyatı" },
+  { slug: "eticaret-koli-depo-sevkiyat", caption: "Depodan koli sevkiyatı" },
+  { slug: "bakir-nakliyat-guvenli-ambalaj", caption: "Streçli paletli koli yükü" },
+  { slug: "tekstil-rulo-tasimaciligi", caption: "Tekstil rulosu taşıma" },
+  { slug: "insaat-iskele-malzemesi-tasima", caption: "Şantiye malzemesi sevkiyatı" },
+  { slug: "yapi-market-boya-teslimat", caption: "Yapı market teslimatı" },
+  { slug: "bakir-nakliyat-koli-istifleme", caption: "Panelvanda koli istifi" },
+];
+
+// Başakşehir merkezli: yakın ilçeler + en çok aranan şehirler (iç bağlantı)
+const featuredDistricts = ["basaksehir", "esenyurt", "bahcelievler", "bagcilar", "kucukcekmece", "beylikduzu"]
+  .map((slug) => districts.find((d) => d.slug === slug))
+  .filter(Boolean);
+const featuredCities = cities.slice(0, 4);
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 export default function HomePage() {
   return (
-    <div className="bg-white">
-      {/* Hero Bölümü - Açık, Ferah ve Keskin Mavi */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-[#f0f7ff] via-[#f8fafc] to-white py-16 md:py-24 border-b border-slate-100">
-        <div className="container-page relative z-10">
-          <div className="grid lg:grid-cols-12 gap-12 items-center">
-            {/* Sol Metin Alanı */}
-            <div className="lg:col-span-7">
-              {/* Güven Rozeti */}
-              <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 text-[#1d4ed8] text-xs font-bold px-3.5 py-1.5 rounded-full mb-6 shadow-xs">
-                <span className="w-2 h-2 rounded-full bg-[#1d4ed8] animate-pulse"></span>
-                <span>İstanbul&apos;da {site.yearsOfExperience} Yıllık Saha Tecrübesi</span>
-              </div>
-
-              <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#0b1f3a] leading-[1.15] tracking-tight">
-                Stresten Uzak, <br />
-                <span className="text-[#1d4ed8]">Güvenli & Sigortalı</span> Nakliyat
-              </h1>
-
-              <p className="mt-6 text-base sm:text-lg text-[#475569] leading-relaxed max-w-xl">
-                Bakır Nakliyat ile evinizi ve ofisinizi gözünüz arkada kalmadan taşıyın.
-                Sözleşmeli, ambalajlı, asansörlü ve <strong>sürpriz ek ücret olmadan</strong> profesyonel hizmet.
-              </p>
-
-              {/* Hızlı Aksiyon Butonları */}
-              <div className="mt-8 flex flex-wrap items-center gap-4">
-                <a
-                  href={`tel:${site.phoneTel}`}
-                  className="flex items-center gap-2 font-bold px-7 py-3.5 rounded-xl bg-[#1d4ed8] text-white hover:bg-[#1e40af] transition shadow-lg shadow-blue-600/25 text-base"
-                >
-                  <span>📞</span>
-                  <span>{site.phoneDisplay}</span>
-                </a>
-                <Link
-                  href="/iletisim"
-                  className="flex items-center gap-2 font-bold px-6 py-3.5 rounded-xl bg-white text-[#0b1f3a] border-2 border-slate-200 hover:border-[#1d4ed8] hover:text-[#1d4ed8] transition shadow-xs text-base"
-                >
-                  <span>📝</span>
-                  <span>Fiyat Teklifi Al</span>
-                </Link>
-                <a
-                  href={site.whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 font-bold px-5 py-3.5 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition shadow-xs text-sm"
-                >
-                  <span>💬</span>
-                  <span>WhatsApp Ekspertiz</span>
-                </a>
-              </div>
-
-              {/* Güven Maddeleri */}
-              <div className="mt-10 pt-8 border-t border-slate-200 grid grid-cols-3 gap-4 text-xs font-semibold text-[#334155]">
-                <div className="flex items-center gap-2">
-                  <span className="text-base text-[#1d4ed8]">✓</span>
-                  <span>Ücretsiz Ekspertiz</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-base text-[#1d4ed8]">✓</span>
-                  <span>Sözleşmeli Hizmet</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-base text-[#1d4ed8]">✓</span>
-                  <span>Kredi Kartına Taksit</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Sağ Görsel Kart Alanı */}
-            <div className="lg:col-span-5">
-              <div className="relative bg-white rounded-3xl p-3 sm:p-4 shadow-2xl border border-slate-200/90">
-                <div className="relative h-72 sm:h-96 rounded-2xl overflow-hidden border border-slate-200 group">
-                  <Image
-                    src="/images/bakir-nakliyat-filo-araci.webp"
-                    alt="Bakır Nakliyat Özmal Kapalı Kasa Taşıma Aracı"
-                    fill
-                    sizes="(max-width: 768px) 100vw, 500px"
-                    className="object-cover group-hover:scale-105 transition duration-500"
-                    priority
-                  />
-                  {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b1f3a]/90 via-transparent to-black/20" />
-
-                  {/* Rozetler */}
-                  <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-full text-xs font-bold text-[#0b1f3a] shadow-md flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    <span>34 RIL 010 • Özmal Nakliyat Filosu</span>
-                  </div>
-
-                  {/* Alt Bilgi */}
-                  <div className="absolute bottom-4 left-4 right-4 text-white">
-                    <div className="text-xs font-semibold text-blue-200 uppercase tracking-wider">
-                      Güvenli & Korumalı Taşımacılık
-                    </div>
-                    <div className="text-base sm:text-lg font-extrabold mt-0.5">
-                      Kapalı Kasa Araçlarımızla Hasarsız Sevkiyat
-                    </div>
-                  </div>
-                </div>
-
-                {/* Öne Çıkan Bilgi Kartı */}
-                <div className="mt-4 p-3.5 rounded-xl bg-blue-50/80 border border-blue-200 flex items-center justify-between">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-9 h-9 rounded-lg bg-[#1d4ed8] text-white flex items-center justify-center font-bold text-sm">
-                      ✓
-                    </div>
-                    <div>
-                      <div className="text-xs font-bold text-[#0b1f3a]">
-                        Aynı Gün İstanbul İçi Taşıma
-                      </div>
-                      <div className="text-[11px] text-[#475569]">
-                        Özel sabitlemeli kasa ve asansör desteği
-                      </div>
-                    </div>
-                  </div>
-                  <a
-                    href={`tel:${site.phoneTel}`}
-                    className="text-xs font-bold px-3 py-2 rounded-lg bg-[#1d4ed8] text-white hover:bg-blue-700 transition shrink-0"
-                  >
-                    Hemen Ara
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* İstatistikler Bandı */}
-      <section className="py-10 bg-white border-b border-slate-100">
-        <div className="container-page">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {site.stats.map((stat) => (
-              <div
-                key={stat.label}
-                className="text-center p-5 rounded-xl bg-slate-50 border border-slate-100"
-              >
-                <div className="text-3xl sm:text-4xl font-extrabold text-[#1d4ed8]">
-                  {stat.value}
-                </div>
-                <div className="mt-1.5 text-xs sm:text-sm font-semibold text-[#475569]">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Neden Biz? — Güven & Kalite Vurgusu */}
-      <section className="py-20 bg-[#f8fafc]">
-        <div className="container-page">
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <div className="inline-block text-xs font-bold uppercase tracking-wider text-[#1d4ed8] bg-blue-50 px-3 py-1 rounded-md border border-blue-100 mb-3">
-              Kurumsal Standartlar
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0b1f3a] tracking-tight">
-              Neden Bakır Nakliyat&apos;a Güvenmelisiniz?
-            </h2>
-            <p className="mt-4 text-sm sm:text-base text-[#475569]">
-              Taşınma sürecinde yaşanabilecek tüm riskleri ortadan kaldıran şeffaf ve profesyonel iş modelimiz:
+    <>
+      {/* 1 — HERO */}
+      <section className="relative overflow-hidden bg-linear-to-b from-surface to-white">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-40 -top-40 size-144 rounded-full bg-copper-100/60 blur-3xl"
+        />
+        <div className="container-page relative grid items-center gap-10 py-10 sm:py-14 lg:grid-cols-12 lg:gap-12 lg:py-20">
+          <div className="lg:col-span-6">
+            <p className="eyebrow">İstanbul&apos;da {site.yearsOfExperience} Yıllık Saha Tecrübesi</p>
+            <h1 className="mt-4 text-display font-extrabold text-navy-900">
+              Stresten Uzak, <span className="text-copper-600">Güvenli &amp; Sigortalı</span> Nakliyat
+            </h1>
+            <p className="mt-5 max-w-xl text-lead text-muted">
+              Bakır Nakliyat ile evinizi ve ofisinizi gözünüz arkada kalmadan taşıyın. Sözleşmeli, ambalajlı,
+              asansörlü ve <strong className="font-semibold text-navy-900">sürpriz ek ücret olmadan</strong>{" "}
+              profesyonel hizmet.
             </p>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button href={`tel:${site.phoneTel}`} size="lg" icon={Phone}>
+                Hemen Ara
+              </Button>
+              <Button href={site.whatsapp} variant="whatsapp" size="lg" icon={WhatsAppIcon}>
+                WhatsApp&apos;tan Teklif Al
+              </Button>
+            </div>
+
+            <ul className="mt-9 grid gap-3 border-t border-line pt-6 sm:grid-cols-3">
+              {heroBadges.map(({ icon: Icon, label }) => (
+                <li key={label} className="flex items-center gap-2.5 text-base font-semibold text-navy-900">
+                  <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-copper-50 text-copper-600 ring-1 ring-copper-100">
+                    <Icon aria-hidden="true" className="size-5" strokeWidth={1.9} />
+                  </span>
+                  {label}
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {benefits.map((item) => (
-              <div
-                key={item.title}
-                className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs hover:shadow-lg hover:border-blue-300 transition-all group"
-              >
-                <div className="w-12 h-12 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-2xl mb-5 group-hover:scale-110 transition">
-                  {item.icon}
-                </div>
-                <h3 className="font-bold text-lg text-[#0b1f3a] mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-[#475569] leading-relaxed">
-                  {item.text}
-                </p>
+          <div className="lg:col-span-6">
+            <div className="relative lg:pl-6">
+              <div className="relative aspect-4/3 overflow-hidden rounded-panel bg-navy-50 shadow-float sm:aspect-5/4 lg:aspect-4/5">
+                <Photo
+                  slug="evden-eve-nakliyat-beyaz-esya-tasima"
+                  fill
+                  eager
+                  sizes="(min-width: 1024px) 560px, calc(100vw - 2rem)"
+                  imgClassName="object-[50%_72%]"
+                />
               </div>
-            ))}
+
+              {/* İkinci kare: ticari yük — iki iş kolunu birlikte gösterir */}
+              <figure className="absolute -bottom-6 -left-2 hidden w-40 overflow-hidden rounded-card bg-white p-1.5 shadow-lift ring-1 ring-line sm:block lg:-left-4 lg:w-48">
+                <div className="relative aspect-4/5 overflow-hidden rounded-[0.7rem]">
+                  <Photo slug="endustriyel-palet-boya-tasima" fill sizes="192px" />
+                </div>
+                <figcaption className="px-1.5 pb-1 pt-2 text-xs font-semibold text-navy-900">
+                  Ticari &amp; paletli yük
+                </figcaption>
+              </figure>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Hizmetlerimiz */}
-      <section className="py-20 bg-white">
-        <div className="container-page">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-            <div>
-              <div className="text-xs font-bold uppercase tracking-wider text-[#1d4ed8] bg-blue-50 px-3 py-1 rounded-md border border-blue-100 inline-block mb-3">
-                Faaliyet Alanlarımız
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0b1f3a] tracking-tight">
-                Her İhtiyaca Özel Taşımacılık
-              </h2>
+      {/* 2 — RAKAMLAR */}
+      <section aria-label="Rakamlarla Bakır Nakliyat" className="border-y border-line bg-white">
+        <dl className="container-page grid grid-cols-2 divide-line py-8 sm:py-10 lg:grid-cols-4 lg:divide-x">
+          {site.stats.map((s) => (
+            <div key={s.label} className="flex flex-col-reverse items-center px-4 py-4 text-center">
+              <dt className="mt-1.5 text-sm font-medium text-muted sm:text-[0.9375rem]">{s.label}</dt>
+              <dd className="text-4xl font-extrabold tracking-tight text-navy-900 tabular-nums sm:text-5xl">
+                {s.value}
+                {s.suffix && <span className="text-copper-600">{s.suffix}</span>}
+              </dd>
             </div>
-            <Link
-              href="/hizmetlerimiz"
-              className="text-sm font-bold text-[#1d4ed8] hover:text-[#1e40af] flex items-center gap-1.5 group"
-            >
-              <span>Tüm Hizmetleri Gör</span>
-              <span className="group-hover:translate-x-1 transition">→</span>
-            </Link>
-          </div>
+          ))}
+        </dl>
+      </section>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {services.map((s) => (
+      {/* 3 — HİZMETLER */}
+      <section className="section bg-white">
+        <div className="container-page">
+          <SectionHeading
+            eyebrow="Faaliyet Alanlarımız"
+            title="Her İhtiyaca Özel Taşımacılık"
+            align="left"
+            className="reveal"
+            action={
               <Link
-                key={s.slug}
-                href={`/hizmetlerimiz/${s.slug}`}
-                className="flex flex-col p-6 rounded-2xl bg-white border border-slate-200 shadow-xs hover:shadow-xl hover:border-[#1d4ed8] transition-all group"
+                href="/hizmetlerimiz"
+                className="group inline-flex min-h-11 items-center gap-1.5 font-semibold text-copper-600 hover:text-copper-700"
               >
-                <div className="text-4xl mb-4">{s.icon}</div>
-                <h3 className="font-bold text-lg text-[#0b1f3a] group-hover:text-[#1d4ed8] transition mb-2">
-                  {s.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-[#475569] leading-relaxed flex-1 mb-5">
-                  {s.short}
-                </p>
-                <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-[#1d4ed8]">
-                  <span>Hizmet Detayları</span>
-                  <span className="group-hover:translate-x-1 transition">→</span>
-                </div>
+                Tüm Hizmetleri Gör
+                <ArrowRight
+                  aria-hidden="true"
+                  className="size-4 transition-transform group-hover:translate-x-1"
+                  strokeWidth={2.25}
+                />
               </Link>
+            }
+          />
+          <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
+            {services.map((s) => (
+              <li key={s.slug} className="reveal">
+                <ServiceCard service={s} />
+              </li>
             ))}
-          </div>
+            <li className="reveal">
+              <div className="flex h-full flex-col justify-between rounded-card bg-navy-900 p-6 text-white">
+                <div>
+                  <h3 className="text-lg font-bold">Size özel bir taşıma mı gerekiyor?</h3>
+                  <p className="mt-2 text-base leading-relaxed text-navy-100">
+                    Yükünüzü ve adreslerinizi anlatın, uygun aracı ve ekibi birlikte planlayalım.
+                  </p>
+                </div>
+                <Button href="/iletisim" variant="primary" iconRight={ArrowRight} className="mt-6 self-start">
+                  Teklif Al
+                </Button>
+              </div>
+            </li>
+          </ul>
         </div>
       </section>
 
-      {/* Sahadan Canlı Operasyon Kareleri */}
-      <section className="py-20 bg-slate-50 border-t border-slate-200">
-        <div className="container-page">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
-            <div>
-              <div className="text-xs font-bold uppercase tracking-wider text-[#1d4ed8] bg-blue-50 px-3 py-1 rounded-md border border-blue-100 inline-block mb-3">
-                Sahadan Canlı Kareler
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0b1f3a] tracking-tight">
-                Gerçekleşen Sevkiyatlarımız
-              </h2>
-              <p className="mt-2 text-sm text-[#475569]">
-                Özmal araçlarımız, forkliftli palet yükleme ve güvenli ambalajlama operasyonlarımız.
-              </p>
+      {/* 4 — NEDEN BİZ */}
+      <section className="section bg-surface">
+        <div className="container-page grid gap-12 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-5">
+            <SectionHeading
+              eyebrow="Kurumsal Standartlar"
+              title="Neden Bakır Nakliyat'a Güvenmelisiniz?"
+              description="Taşınma sürecinde yaşanabilecek tüm riskleri ortadan kaldıran şeffaf ve profesyonel iş modelimiz:"
+              align="left"
+              className="reveal mb-8!"
+            />
+            <div className="reveal relative hidden aspect-4/5 overflow-hidden rounded-panel shadow-lift lg:block">
+              <Photo
+                slug="profesyonel-ekip-koli-tahliye"
+                fill
+                sizes="(min-width: 1024px) 440px, 100vw"
+                imgClassName="object-[50%_60%]"
+              />
             </div>
           </div>
+          <ul className="grid gap-x-8 gap-y-9 sm:grid-cols-2 lg:col-span-7 lg:self-center">
+            {benefits.map(({ icon: Icon, title, text }) => (
+              <li key={title} className="reveal">
+                <span className="grid size-12 place-items-center rounded-xl bg-white text-copper-600 shadow-card ring-1 ring-line">
+                  <Icon aria-hidden="true" className="size-6" strokeWidth={1.75} />
+                </span>
+                <h3 className="mt-4 text-lg font-bold text-navy-900">{title}</h3>
+                <p className="mt-1.5 leading-relaxed text-muted">{text}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
+      {/* 5 — 4 ADIMDA TAŞINMA */}
+      <section className="section bg-white">
+        <div className="container-page">
+          <SectionHeading
+            eyebrow="Nasıl Çalışıyoruz?"
+            title="4 Adımda Sorunsuz Taşınma"
+            description="İlk görüşmeden yeni evinizdeki ilk güne kadar her şey planlı ve kontrol altında."
+            className="reveal"
+          />
+          <ol className="grid gap-10 lg:grid-cols-4 lg:gap-8">
+            {steps.map((step, i) => (
+              <li key={step.num} className="reveal relative pl-16 lg:pl-0 lg:pt-16">
+                {i < steps.length - 1 && (
+                  <span
+                    aria-hidden="true"
+                    className="absolute left-5.75 top-12 -bottom-10 w-px bg-line-strong lg:left-14 lg:-right-8 lg:top-5.75 lg:bottom-auto lg:h-px lg:w-auto"
+                  />
+                )}
+                <span className="absolute left-0 top-0 grid size-12 place-items-center rounded-full bg-navy-900 text-[0.9375rem] font-bold text-white ring-8 ring-white">
+                  {step.num}
+                </span>
+                <h3 className="text-lg font-bold text-navy-900">{step.title}</h3>
+                <p className="mt-2 leading-relaxed text-muted">{step.text}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* 6 — SAHA FOTOĞRAFLARI */}
+      <section className="section bg-surface">
+        <div className="container-page">
+          <SectionHeading
+            eyebrow="Sahadan Canlı Kareler"
+            title="Gerçekleşen Sevkiyatlarımız"
+            description="Özmal araçlarımız, forkliftli palet yükleme ve güvenli ambalajlama operasyonlarımız."
+            className="reveal"
+          />
+          <Gallery items={galleryItems} />
+        </div>
+      </section>
+
+      {/* 7 — HİZMET BÖLGESİ */}
+      <section className="section bg-white">
+        <div className="container-page">
+          <SectionHeading
+            eyebrow="Geniş Hizmet Ağı"
+            title="İstanbul'un 39 İlçesi ve 81 İle Düzenli Sefer"
+            description="İlçenize veya taşınacağınız şehre özel fiyatları ve güzergah bilgilerini inceleyin."
+            className="reveal"
+          />
+          <div className="grid gap-5 lg:grid-cols-2">
             {[
               {
-                src: "/images/bakir-nakliyat-palet-yukleme.webp",
-                title: "Forklift ile Paletli Yükleme",
-                badge: "Depolama & Fabrika",
+                icon: MapPin,
+                title: "İstanbul İlçeleri",
+                text: "Avrupa ve Anadolu yakasındaki 39 ilçenin tamamında evden eve ve ticari taşıma.",
+                href: "/istanbul-nakliye",
+                cta: "Tüm İlçeleri Gör",
+                chips: featuredDistricts.map((d) => ({ href: `/istanbul-nakliye/${d.slug}`, label: d.name })),
               },
               {
-                src: "/images/bakir-nakliyat-koli-istifleme.webp",
-                title: "Korumalı Koli Yerleşimi",
-                badge: "Özenli İstif",
+                icon: Route,
+                title: "Şehirlerarası Seferler",
+                text: "İstanbul çıkışlı şehirlerarası nakliyatta güzergaha özel planlama ve kapalı kasa taşıma.",
+                href: "/sehirler-arasi-nakliyat",
+                cta: "Tüm Güzergahları Gör",
+                chips: featuredCities.map((c) => ({ href: `/sehirler-arasi-nakliyat/${c.slug}`, label: c.name })),
               },
-              {
-                src: "/images/bakir-nakliyat-gece-sevkiyat.webp",
-                title: "7/24 Kesintisiz Sefer",
-                badge: "Şehirlerarası",
-              },
-              {
-                src: "/images/bakir-nakliyat-guvenli-ambalaj.webp",
-                title: "Özel Fuar & Palet Ambalajı",
-                badge: "%100 Hasarsız",
-              },
-            ].map((photo) => (
-              <div
-                key={photo.title}
-                className="group relative rounded-2xl overflow-hidden bg-white border border-slate-200 shadow-xs hover:shadow-xl hover:border-blue-300 transition-all duration-300 flex flex-col"
+            ].map(({ icon: Icon, title, text, href, cta, chips }) => (
+              <article
+                key={href}
+                className="reveal relative flex flex-col overflow-hidden rounded-panel bg-navy-900 p-7 text-white sm:p-10"
               >
-                <div className="relative h-64 sm:h-72 overflow-hidden">
-                  <Image
-                    src={photo.src}
-                    alt={photo.title}
-                    fill
-                    sizes="(max-width: 768px) 50vw, 25vw"
-                    className="object-cover group-hover:scale-105 transition duration-500"
+                <span className="relative grid size-14 place-items-center rounded-2xl bg-white/10 text-copper-500 ring-1 ring-inset ring-white/15">
+                  <Icon aria-hidden="true" className="size-7" strokeWidth={1.75} />
+                </span>
+                <h3 className="relative mt-6 text-2xl font-extrabold">{title}</h3>
+                <p className="relative mt-2 max-w-md leading-relaxed text-navy-100">{text}</p>
+                <ul className="relative mb-8 mt-6 flex flex-wrap gap-2">
+                  {chips.map((c) => (
+                    <li key={c.href}>
+                      <Link
+                        href={c.href}
+                        className="inline-flex min-h-10 items-center rounded-full px-3.5 text-sm font-medium text-white ring-1 ring-inset ring-white/20 transition-colors hover:bg-white/10"
+                      >
+                        {c.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href={href}
+                  className="group relative mt-auto inline-flex min-h-11 items-center gap-2 self-start font-semibold text-copper-500 hover:text-white"
+                >
+                  {cta}
+                  <ArrowRight
+                    aria-hidden="true"
+                    className="size-4 transition-transform group-hover:translate-x-1"
+                    strokeWidth={2.25}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
-                  <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-md px-2.5 py-1 rounded-full text-[11px] font-extrabold text-[#0b1f3a] shadow-xs">
-                    {photo.badge}
-                  </div>
-                  <div className="absolute bottom-3 left-3 right-3 text-white">
-                    <p className="text-xs sm:text-sm font-bold leading-snug">{photo.title}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      <section className="py-20 bg-[#f8fafc] border-t border-slate-200">
-        <div className="container-page">
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <div className="text-xs font-bold uppercase tracking-wider text-[#1d4ed8] bg-blue-50 px-3 py-1 rounded-md border border-blue-100 inline-block mb-3">
-              Nasıl Çalışıyoruz?
-            </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0b1f3a] tracking-tight">
-              4 Adımda Sorunsuz Taşınma
-            </h2>
-            <p className="mt-4 text-sm sm:text-base text-[#475569]">
-              İlk görüşmeden yeni evinizdeki ilk güne kadar her şey planlı ve kontrol altında.
-            </p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {steps.map((step) => (
-              <div
-                key={step.num}
-                className="relative p-6 rounded-2xl bg-white border border-slate-200 shadow-xs"
-              >
-                <div className="w-10 h-10 rounded-xl bg-[#1d4ed8] text-white font-extrabold text-sm flex items-center justify-center mb-5 shadow-md shadow-blue-500/20">
-                  {step.num}
-                </div>
-                <h3 className="font-bold text-base text-[#0b1f3a] mb-2">
-                  {step.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-[#475569] leading-relaxed">
-                  {step.text}
-                </p>
-              </div>
+                </Link>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      {/* İstanbul & Şehirlerarası Hızlı Rota Çağrısı */}
-      <section className="py-16 bg-white border-t border-slate-100">
-        <div className="container-page">
-          <div className="bg-gradient-to-r from-[#0b1f3a] to-[#1e3a8a] text-white rounded-3xl p-8 sm:p-12 shadow-xl flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="max-w-xl">
-              <div className="inline-block text-xs font-bold uppercase tracking-wider bg-blue-500/30 text-blue-200 px-3 py-1 rounded-full mb-3">
-                Geniş Hizmet Ağı
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
-                İstanbul&apos;un 39 İlçesi ve 81 İle Düzenli Sefer
-              </h2>
-              <p className="mt-2 text-sm sm:text-base text-slate-200 leading-relaxed">
-                İlçenize veya taşınacağınız şehre özel fiyatları ve güzergah bilgilerini inceleyin.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-3 shrink-0">
-              <Link
-                href="/istanbul-nakliye"
-                className="font-bold px-6 py-3.5 rounded-xl bg-white text-[#0b1f3a] hover:bg-slate-100 transition text-sm shadow-md"
+      {/* 8 — SIK SORULAN SORULAR */}
+      <section className="section border-t border-line bg-surface">
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+        <div className="container-page grid gap-10 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-4">
+            <SectionHeading
+              eyebrow="Merak Edilenler"
+              title="Sık Sorulan Sorular"
+              description="Aklınıza takılan başka bir konu varsa bize doğrudan yazın."
+              align="left"
+              className="reveal mb-6!"
+            />
+            <Button href={site.whatsapp} variant="whatsapp" icon={WhatsAppIcon} className="reveal">
+              WhatsApp&apos;tan Sorun
+            </Button>
+          </div>
+          <div className="space-y-3 lg:col-span-8">
+            {faqs.map((f) => (
+              <details
+                key={f.q}
+                className="reveal group rounded-card border border-line bg-white shadow-card open:border-copper-500/40"
               >
-                İstanbul İlçeleri →
-              </Link>
-              <Link
-                href="/sehirler-arasi-nakliyat"
-                className="font-bold px-6 py-3.5 rounded-xl bg-[#1d4ed8] text-white hover:bg-blue-600 transition text-sm shadow-md border border-blue-400/30"
-              >
-                Şehirlerarası Seferler →
-              </Link>
-            </div>
+                <summary className="flex min-h-14 items-center justify-between gap-4 px-5 py-4 text-left font-semibold text-navy-900 sm:px-6 sm:text-lg">
+                  <h3>{f.q}</h3>
+                  <span className="grid size-8 shrink-0 place-items-center rounded-full bg-copper-50 text-copper-600 transition-transform duration-300 group-open:rotate-45">
+                    <Plus aria-hidden="true" className="size-4.5" strokeWidth={2.5} />
+                  </span>
+                </summary>
+                <p className="px-5 pb-5 leading-relaxed text-muted sm:px-6 sm:pb-6">{f.a}</p>
+              </details>
+            ))}
           </div>
         </div>
       </section>
 
+      {/* 9 — KAPANIŞ CTA */}
       <CtaBand />
-    </div>
+    </>
   );
 }

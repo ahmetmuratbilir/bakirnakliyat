@@ -43,6 +43,34 @@ for (const [name, buf] of Object.entries({ logo: dark, "logo-light": light })) {
   console.log(webp.padEnd(32), kb(webp));
 }
 
+// Header işareti: sadece "B + yol" (satır 0-406, sütun 0-582). Tam logo 48px
+// yükseklikte okunmuyor; yazı header'da HTML olarak basılıyor.
+{
+  const MARK = { left: 0, top: 0, width: 582, height: 406 };
+  const { data: md, info: mi } = await sharp(trimmed).extract(MARK).ensureAlpha().raw()
+    .toBuffer({ resolveWithObject: true });
+  const markDark = Buffer.from(md);
+  const markLight = Buffer.from(md);
+  for (let i = 0; i < md.length; i += 4) {
+    const px = (i / 4) % mi.width;
+    const r = md[i], g = md[i + 1], b = md[i + 2];
+    const white = r > 244 && g > 244 && b > 244;
+    const orange = r - b > 40;
+    // B'nin sağındaki koyu pikseller kamyonun hız çizgileri -> at
+    if (white || (px > 470 && !orange)) { markDark[i + 3] = 0; markLight[i + 3] = 0; continue; }
+    if (!orange) { markLight[i] = 255; markLight[i + 1] = 255; markLight[i + 2] = 255; }
+  }
+  const RAWM = { raw: { width: mi.width, height: mi.height, channels: 4 } };
+  for (const [name, buf] of Object.entries({ "logo-mark": markDark, "logo-mark-light": markLight })) {
+    const png = await sharp(buf, RAWM).png().toBuffer();
+    const out = `public/${name}.png`;
+    await sharp(png).trim().resize({ height: 144 })
+      .png({ palette: true, colors: 64, compressionLevel: 9, effort: 10 }).toFile(out);
+    const m = await sharp(out).metadata();
+    console.log(out.padEnd(32), kb(out), `${m.width}x${m.height}`);
+  }
+}
+
 // Markalı paylaşım görseli (sayfaya özel OG yoksa devreye girer)
 const mark = await sharp(await sharp(dark, RAW).png().toBuffer()).resize({ width: 760 }).toBuffer();
 await sharp({ create: { width: 1200, height: 630, channels: 4, background: "#ffffff" } })

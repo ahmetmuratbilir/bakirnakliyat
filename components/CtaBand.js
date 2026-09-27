@@ -1,39 +1,38 @@
+import { Phone, ShieldCheck } from "lucide-react";
 import { site } from "@/data/site";
+import Button from "@/components/ui/Button";
+import { WhatsAppIcon } from "@/components/icons/BrandIcons";
 
 export default function CtaBand() {
   return (
-    <section className="bg-gradient-to-r from-[#0b1f3a] via-[#1e3a8a] to-[#1d4ed8] text-white py-14 border-t border-slate-200">
-      <div className="container-page flex flex-col lg:flex-row items-center justify-between gap-8">
-        <div>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/20 text-blue-200 text-xs font-bold mb-3 border border-blue-400/30">
-            <span>🛡️</span>
-            <span>Ücretsiz Keşif & Sabit Fiyat Garantisi</span>
+    <section aria-labelledby="cta-baslik" className="bg-white py-14 sm:py-20">
+      <div className="container-page">
+        <div className="relative overflow-hidden rounded-panel bg-navy-900 px-6 py-10 sm:px-12 sm:py-14">
+          {/* ince bakır üst çizgi — lacivert üzerinde temiz vurgu */}
+          <div aria-hidden="true" className="absolute inset-x-0 top-0 h-1 bg-copper-500" />
+          <div className="relative flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between">
+            <div className="max-w-xl">
+              <p className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1.5 text-sm font-semibold text-white ring-1 ring-inset ring-white/15">
+                <ShieldCheck aria-hidden="true" className="size-4 text-copper-500" strokeWidth={2} />
+                Ücretsiz Keşif & Sabit Fiyat Garantisi
+              </p>
+              <h2 id="cta-baslik" className="mt-4 text-h2 font-extrabold text-white">
+                Taşınma Planınızı Birlikte Yapalım
+              </h2>
+              <p className="mt-3 text-lead text-navy-100">
+                Hemen arayın veya WhatsApp&apos;tan oda fotoğraflarınızı gönderin; dakikalar içinde kesin ve
+                net fiyat teklifinizi iletelim.
+              </p>
+            </div>
+            <div className="flex flex-col gap-3 sm:flex-row lg:shrink-0">
+              <Button href={`tel:${site.phoneTel}`} variant="light" size="lg" icon={Phone}>
+                {site.phoneDisplay}
+              </Button>
+              <Button href={site.whatsapp} variant="whatsapp" size="lg" icon={WhatsAppIcon}>
+                WhatsApp Teklif
+              </Button>
+            </div>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-            Taşınma Planınızı Birlikte Yapalım
-          </h2>
-          <p className="mt-2 text-sm sm:text-base text-blue-100 max-w-xl leading-relaxed">
-            Hemen arayın veya WhatsApp&apos;tan oda fotoğraflarınızı gönderin; dakikalar içinde kesin ve net fiyat teklifinizi iletelim.
-          </p>
-        </div>
-
-        <div className="flex flex-wrap items-center gap-3.5 shrink-0">
-          <a
-            href={`tel:${site.phoneTel}`}
-            className="flex items-center gap-2 font-extrabold px-7 py-4 rounded-xl bg-white text-[#0b1f3a] hover:bg-slate-100 transition shadow-xl text-base"
-          >
-            <span>📞</span>
-            <span>{site.phoneDisplay}</span>
-          </a>
-          <a
-            href={site.whatsapp}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 font-bold px-6 py-4 rounded-xl bg-[#128c4a] text-white hover:bg-[#0f7a3f] transition shadow-xl text-base"
-          >
-            <span>💬</span>
-            <span>WhatsApp Teklif</span>
-          </a>
         </div>
       </div>
     </section>

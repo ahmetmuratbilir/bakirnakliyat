@@ -5,7 +5,7 @@ import { site } from "@/data/site";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Hakkımızda | Bakır Nakliyat",
+  title: "Hakkımızda",
   description: `${site.name} hakkında kurumsal bilgiler, deneyim ve kalite standartlarımız.`,
   alternates: { canonical: `${site.domain}/hakkimizda` },
 };

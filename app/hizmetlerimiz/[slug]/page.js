@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import ServiceIcon from "@/components/icons/ServiceIcon";
 import Image from "next/image";
 import PageHero from "@/components/PageHero";
 import CtaBand from "@/components/CtaBand";
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }) {
   const service = getService(slug);
   if (!service) return {};
   return {
-    title: `${service.title} | ${site.name}`,
+    title: `${service.title}`,
     description: `${service.title} hizmeti — ${service.short} Sigortalı, asansörlü ve marangozlu anahtar teslim taşıma.`,
     alternates: { canonical: `${site.domain}/hizmetlerimiz/${slug}` },
   };
@@ -176,7 +177,7 @@ export default async function ServicePage({ params }) {
                 href={`/hizmetlerimiz/${s.slug}`}
                 className="flex items-center gap-3.5 p-4 rounded-xl bg-white border border-slate-200 shadow-xs hover:border-[#1d4ed8] hover:shadow-md transition"
               >
-                <span className="text-3xl">{s.icon}</span>
+                <span className="text-3xl"><ServiceIcon name={s.icon} className="size-7" /></span>
                 <span className="text-sm font-bold text-[#0b1f3a] hover:text-[#1d4ed8]">
                   {s.title}
                 </span>

@@ -15,7 +15,7 @@ export async function generateMetadata({ params }) {
   const city = getCity(sehir);
   if (!city) return {};
   return {
-    title: `İstanbul — ${city.name} Nakliyat | ${site.name}`,
+    title: `İstanbul — ${city.name} Nakliyat`,
     description: `${site.name} ile İstanbul - ${city.name} arası sigortalı, asansörlü ve garantili şehirlerarası nakliyat hizmeti. Net ve sabit fiyat garantisi.`,
     alternates: { canonical: `${site.domain}/sehirler-arasi-nakliyat/${sehir}` },
   };

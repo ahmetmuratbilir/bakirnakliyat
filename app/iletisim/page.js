@@ -4,7 +4,7 @@ import ContactForm from "@/components/ContactForm";
 import { site } from "@/data/site";
 
 export const metadata = {
-  title: "İletişim & Teklif Formu | Bakır Nakliyat",
+  title: "İletişim & Teklif Formu",
   description: `${site.name} ile iletişime geçin. Ücretsiz ekspertiz, sabit fiyat teklifi ve nakliye randevusu için hemen arayın veya formu doldurun.`,
   alternates: { canonical: `${site.domain}/iletisim` },
 };

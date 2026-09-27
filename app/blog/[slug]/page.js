@@ -14,7 +14,7 @@ export async function generateMetadata({ params }) {
   const post = getPost(slug);
   if (!post) return {};
   return {
-    title: `${post.title} | ${site.name}`,
+    title: `${post.title}`,
     description: post.summary,
     alternates: { canonical: `${site.domain}/blog/${slug}` },
   };

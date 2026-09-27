@@ -1,38 +1,58 @@
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
+import { site } from "@/data/site";
 
 export default function PageHero({ title, subtitle, breadcrumb }) {
+  const crumbs = breadcrumb ? [{ label: "Anasayfa", href: "/" }, ...breadcrumb] : null;
+
+  const breadcrumbJsonLd = crumbs && {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: crumbs.map((c, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: c.label,
+      ...(c.href ? { item: `${site.domain}${c.href === "/" ? "" : c.href}` } : {}),
+    })),
+  };
+
   return (
-    <section className="bg-gradient-to-b from-[#f0f7ff] via-[#f8fafc] to-white border-b border-slate-200 py-12 md:py-16">
-      <div className="container-page">
-        {breadcrumb && (
-          <nav className="flex items-center gap-2 text-xs font-semibold text-[#64748b] mb-4">
-            <Link href="/" className="hover:text-[#1d4ed8] transition">
-              Anasayfa
-            </Link>
-            {breadcrumb.map((crumb, idx) => (
-              <span key={idx} className="flex items-center gap-2">
-                <span>/</span>
-                {crumb.href ? (
-                  <Link href={crumb.href} className="hover:text-[#1d4ed8] transition">
-                    {crumb.label}
-                  </Link>
-                ) : (
-                  <span className="text-[#1d4ed8] font-bold">{crumb.label}</span>
-                )}
-              </span>
-            ))}
-          </nav>
+    <section className="relative overflow-hidden border-b border-line bg-surface">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/3 bg-[radial-gradient(circle_at_70%_30%,var(--color-copper-100),transparent_60%)] opacity-70 md:block"
+      />
+      <div className="container-page relative py-12 md:py-16">
+        {crumbs && (
+          <>
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+            />
+            <nav aria-label="Sayfa konumu" className="mb-5">
+              <ol className="flex flex-wrap items-center gap-1.5 text-sm text-subtle">
+                {crumbs.map((c, i) => (
+                  <li key={i} className="flex items-center gap-1.5">
+                    {i > 0 && <ChevronRight aria-hidden="true" className="size-3.5 text-line-strong" />}
+                    {c.href ? (
+                      <Link href={c.href} className="rounded-sm transition-colors hover:text-copper-600">
+                        {c.label}
+                      </Link>
+                    ) : (
+                      <span aria-current="page" className="font-semibold text-navy-900">
+                        {c.label}
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ol>
+            </nav>
+          </>
         )}
 
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#0b1f3a] tracking-tight">
-          {title}
-        </h1>
+        <h1 className="max-w-4xl text-display font-extrabold text-navy-900">{title}</h1>
 
-        {subtitle && (
-          <p className="mt-3.5 text-base sm:text-lg text-[#475569] max-w-2xl leading-relaxed">
-            {subtitle}
-          </p>
-        )}
+        {subtitle && <p className="mt-4 max-w-2xl text-lead text-muted">{subtitle}</p>}
       </div>
     </section>
   );
