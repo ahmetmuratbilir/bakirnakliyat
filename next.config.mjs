@@ -1,6 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
+  experimental: {
+    // Tailwind CSS küçük (~10KB gzip): HTML'e gömülünce render'ı engelleyen
+    // ayrı CSS isteği kalkar. Ziyaretçilerin çoğu aramadan ilk kez gelir.
+    inlineCss: true,
+  },
   images: {
     // Statik export'ta Next görsel sunucusu yok. Boyut varyantları build
     // öncesi scripts/build-images.mjs ile üretiliyor; bu loader next/image'ın

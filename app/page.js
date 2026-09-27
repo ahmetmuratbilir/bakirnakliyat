@@ -210,7 +210,7 @@ export default function HomePage() {
             action={
               <Link
                 href="/hizmetlerimiz"
-                className="group inline-flex min-h-11 items-center gap-1.5 font-semibold text-copper-600 hover:text-copper-700"
+                className="group inline-flex min-h-11 items-center gap-1.5 font-semibold text-copper-700 hover:text-navy-900"
               >
                 Tüm Hizmetleri Gör
                 <ArrowRight

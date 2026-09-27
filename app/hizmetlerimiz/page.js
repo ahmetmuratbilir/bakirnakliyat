@@ -32,7 +32,7 @@ export default function HizmetlerimizPage() {
                   <Photo
                     slug={serviceImages[s.slug] ?? fallbackServiceImage}
                     fill
-                    eager={i < 3}
+                    eager={i === 0}
                     sizes="(min-width: 1024px) 380px, (min-width: 640px) 45vw, calc(100vw - 2rem)"
                     imgClassName="transition-transform duration-500 group-hover:scale-105"
                   />
@@ -62,7 +62,7 @@ export default function HizmetlerimizPage() {
                   </ul>
 
                   <div className="relative z-10 mt-6 flex items-center justify-between border-t border-line pt-4">
-                    <span className="inline-flex items-center gap-1.5 font-semibold text-copper-600">
+                    <span className="inline-flex items-center gap-1.5 font-semibold text-copper-700">
                       Detaylı Bilgi
                       <ArrowRight
                         aria-hidden="true"

@@ -13,7 +13,7 @@ export default function ServiceCard({ service }) {
       </span>
       <h3 className="mt-5 text-lg font-bold text-navy-900">{service.title}</h3>
       <p className="mt-2 flex-1 text-base leading-relaxed text-muted">{service.short}</p>
-      <span className="mt-6 inline-flex items-center gap-1.5 text-base font-semibold text-copper-600">
+      <span className="mt-6 inline-flex items-center gap-1.5 text-base font-semibold text-copper-700">
         Hizmet Detayları
         <ArrowRight
           aria-hidden="true"

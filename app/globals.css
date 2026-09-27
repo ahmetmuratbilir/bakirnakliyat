@@ -27,7 +27,7 @@
   /* Nötrler */
   --color-ink: #0f172a;
   --color-muted: #475569; /* beyaz üzerinde 7.6:1 */
-  --color-subtle: #64748b; /* beyaz üzerinde 4.8:1 */
+  --color-subtle: #5d6a7d; /* beyaz 5.5:1, surface 5.2:1 */
   --color-line: #e2e8f0;
   --color-line-strong: #cbd5e1;
   --color-surface: #f6f8fa;
@@ -167,7 +167,8 @@
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: var(--color-copper-600);
+    /* copper-700: açık gri bölüm zeminlerinde de AA (5.4:1). 600 sadece beyazda geçiyordu. */
+    color: var(--color-copper-700);
   }
   .eyebrow::before {
     content: "";
@@ -183,16 +184,16 @@
 
 /* ==========================================================================
    Kaydırınca belirme — JavaScript'siz (scroll-driven animations).
+   Bilinçli olarak SAYDAMLIK YOK: yarı saydam metin, ekran dışındayken
+   kontrast denetiminde (WCAG) soluk ölçülüyor. Sadece hafif yükselme.
    Desteklemeyen tarayıcıda içerik doğrudan görünür; hareket azaltma
    tercihinde hiç çalışmaz.
    ========================================================================== */
 @keyframes reveal-up {
   from {
-    opacity: 0;
-    translate: 0 1.25rem;
+    translate: 0 1.75rem;
   }
   to {
-    opacity: 1;
     translate: 0 0;
   }
 }

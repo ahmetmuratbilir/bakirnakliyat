@@ -1,10 +1,12 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import Image from "next/image";
+import { ArrowRight, MapPin, PackageCheck, Route, ShieldCheck } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import CtaBand from "@/components/CtaBand";
+import QuoteCard from "@/components/QuoteCard";
+import Photo from "@/components/ui/Photo";
 import { cities, getCity } from "@/data/cities";
 import { site } from "@/data/site";
-import Link from "next/link";
 
 export function generateStaticParams() {
   return cities.map((c) => ({ sehir: c.slug }));
@@ -21,6 +23,16 @@ export async function generateMetadata({ params }) {
   };
 }
 
+const standards = [
+  {
+    icon: ShieldCheck,
+    title: "Nakliyat Sigortası",
+    text: "Talep halinde şehirlerarası taşımanıza özel poliçe düzenlenir.",
+  },
+  { icon: PackageCheck, title: "Özel Ambalaj", text: "Uzun yol mukavemetli çift kat patpat naylonlama." },
+  { icon: MapPin, title: "Araç Takip", text: "Yolculuk boyunca anlık konum ve teslimat bilgilendirmesi." },
+];
+
 export default async function CityPage({ params }) {
   const { sehir } = await params;
   const city = getCity(sehir);
@@ -29,111 +41,94 @@ export default async function CityPage({ params }) {
   const otherCities = cities.filter((c) => c.slug !== sehir);
 
   return (
-    <div className="bg-white">
+    <>
       <PageHero
         title={`İstanbul ⇄ ${city.name} Nakliyat`}
         subtitle={`İstanbul ile ${city.name} arasında haftalık düzenli sigortalı ve sözleşmeli evden eve nakliye`}
-        breadcrumb={[
-          { href: "/sehirler-arasi-nakliyat", label: "Şehirlerarası" },
-          { label: city.name },
-        ]}
+        breadcrumb={[{ href: "/sehirler-arasi-nakliyat", label: "Şehirlerarası" }, { label: city.name }]}
       />
 
-      <section className="container-page py-16 grid lg:grid-cols-12 gap-10">
-        <div className="lg:col-span-8 space-y-8">
-          <div className="relative h-64 sm:h-80 rounded-2xl overflow-hidden border border-slate-200 shadow-xs">
-            <Image
-              src="/images/bakir-nakliyat-gece-sevkiyat.webp"
-              alt={`Bakır Nakliyat İstanbul ${city.name} Şehirlerarası Sefer Aracı`}
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 800px"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-            <div className="absolute bottom-3 left-4 text-white text-xs font-semibold bg-black/50 backdrop-blur-xs px-3 py-1.5 rounded-lg">
-              🛣️ İstanbul &ndash; {city.name} Gece &amp; Gündüz Kesintisiz Sefer
+      <section className="section bg-white">
+        <div className="container-page grid gap-10 lg:grid-cols-12 lg:gap-12">
+          <div className="min-w-0 space-y-12 lg:col-span-8">
+            <figure className="relative aspect-4/3 overflow-hidden rounded-panel bg-navy-50 shadow-lift sm:aspect-16/10">
+              <Photo
+                slug="gece-sevkiyat-forklift-palet-yukleme"
+                alt={`İstanbul – ${city.name} şehirlerarası sevkiyat için araca gece yüklemesi`}
+                fill
+                eager
+                sizes="(min-width: 1024px) 760px, calc(100vw - 2rem)"
+              />
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 bg-linear-to-t from-navy-950/80 via-transparent to-transparent"
+              />
+              <figcaption className="absolute inset-x-5 bottom-5 text-white sm:inset-x-8 sm:bottom-7">
+                <h2 className="flex items-center gap-2 text-lg font-bold sm:text-xl">
+                  <Route aria-hidden="true" className="size-5 shrink-0 text-copper-500" strokeWidth={2} />
+                  İstanbul – {city.name} Gece &amp; Gündüz Kesintisiz Sefer
+                </h2>
+              </figcaption>
+            </figure>
+
+            <div className="reveal space-y-4 text-lead text-muted">
+              <p>
+                <strong className="font-bold text-navy-900">İstanbul – {city.name}</strong> güzergahında
+                gerçekleştirdiğimiz evden eve ve ofis taşımalarında tüm süreci A&apos;dan Z&apos;ye planlıyoruz.
+              </p>
+              <p>
+                Şehirlerarası yolculuk boyunca eşyalarınızın sarsıntıdan veya yol koşullarından etkilenmemesi için
+                araç içinde hidrolik askı ve sabitleme kayışları kullanılmaktadır. Eşyalarınız yeni adresinize
+                ulaştığında yine uzman montaj personelimiz tarafından odalarınıza kurulur.
+              </p>
             </div>
-          </div>
 
-          <div className="p-8 rounded-2xl bg-slate-50 border border-slate-200 space-y-4 text-[#334155] leading-relaxed text-base">
-            <p>
-              <strong className="text-[#0b1f3a] font-bold">İstanbul &ndash; {city.name}</strong> güzergahında gerçekleştirdiğimiz evden eve ve ofis taşımalarında tüm süreci A&apos;dan Z&apos;ye planlıyoruz.
-            </p>
-            <p>
-              Şehirlerarası yolculuk boyunca eşyalarınızın sarsıntıdan veya yol koşullarından etkilenmemesi için araç içinde hidrolik askı ve sabitleme kayışları kullanılmaktadır. Eşyalarınız yeni adresinize ulaştığında yine uzman montaj personelimiz tarafından odalarınıza kurulur.
-            </p>
-          </div>
-
-          {/* Standart Güvenlik Standartları */}
-          <div className="grid sm:grid-cols-3 gap-4">
-            {[
-              { icon: "🛡️", title: "Kapsamlı Kasko", text: "Şehirlerarası yol sigortası poliçesiyle tam koruma." },
-              { icon: "📦", title: "Özel Ambalaj", text: "Uzun yol mukavemetli çift kat patpat naylonlama." },
-              { icon: "📍", title: "Araç Takip", text: "Yolculuk boyunca anlık konum ve teslimat bilgilendirmesi." },
-            ].map((item) => (
-              <div key={item.title} className="p-5 rounded-xl bg-white border border-slate-200 shadow-xs">
-                <div className="text-2xl mb-2">{item.icon}</div>
-                <h4 className="font-bold text-sm text-[#0b1f3a] mb-1">{item.title}</h4>
-                <p className="text-xs text-[#64748b] leading-relaxed">{item.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Sağ Panel */}
-        <div className="lg:col-span-4 space-y-6">
-          <div className="p-6 rounded-2xl bg-gradient-to-br from-[#0b1f3a] to-[#1e3a8a] text-white shadow-xl">
-            <div className="text-xs font-bold uppercase tracking-wider text-blue-300 mb-1">
-              Güzergah Teklifi
-            </div>
-            <h3 className="text-xl font-extrabold text-white mb-2">
-              İstanbul &ndash; {city.name} Fiyatı
-            </h3>
-            <p className="text-xs text-slate-200 mb-5 leading-relaxed">
-              Komple araç veya parça eşya seçenekleriyle en ekonomik güzergah fiyatı için hemen arayın.
-            </p>
-            <div className="space-y-2.5">
-              <a
-                href={`tel:${site.phoneTel}`}
-                className="flex items-center justify-center gap-2 w-full font-bold py-3.5 rounded-xl bg-white text-[#0b1f3a] hover:bg-slate-100 transition text-sm shadow-md"
-              >
-                <span>📞</span>
-                <span>{site.phoneDisplay}</span>
-              </a>
-              <a
-                href={site.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full font-bold py-3 rounded-xl bg-[#25d366] text-white hover:bg-emerald-600 transition text-sm shadow-md"
-              >
-                <span>💬</span>
-                <span>WhatsApp&apos;tan Fiyat Sor</span>
-              </a>
-            </div>
-          </div>
-
-          <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs">
-            <h4 className="font-bold text-[#0b1f3a] text-sm mb-3 border-b border-slate-100 pb-2.5">
-              Diğer Şehirlerarası Seferler
-            </h4>
-            <ul className="space-y-2 text-xs">
-              {otherCities.map((c) => (
-                <li key={c.slug}>
-                  <Link
-                    href={`/sehirler-arasi-nakliyat/${c.slug}`}
-                    className="flex items-center justify-between text-[#475569] hover:text-[#1d4ed8] font-semibold py-1"
-                  >
-                    <span>İstanbul ⇄ {c.name}</span>
-                    <span>→</span>
-                  </Link>
+            <ul className="reveal grid gap-4 sm:grid-cols-3">
+              {standards.map(({ icon: Icon, title, text }) => (
+                <li key={title} className="rounded-card border border-line bg-surface p-5">
+                  <span className="grid size-11 place-items-center rounded-xl bg-white text-copper-600 shadow-card ring-1 ring-line">
+                    <Icon aria-hidden="true" className="size-5.5" strokeWidth={1.9} />
+                  </span>
+                  <h3 className="mt-4 font-bold text-navy-900">{title}</h3>
+                  <p className="mt-1 leading-relaxed text-muted">{text}</p>
                 </li>
               ))}
             </ul>
           </div>
+
+          <aside className="min-w-0 space-y-6 lg:sticky lg:top-28 lg:col-span-4 lg:self-start">
+            <QuoteCard
+              eyebrow="Güzergah Teklifi"
+              title={`İstanbul – ${city.name} Fiyatı`}
+              text="Komple araç veya parça eşya seçenekleriyle en ekonomik güzergah fiyatı için hemen arayın."
+              whatsappLabel="WhatsApp'tan Fiyat Sor"
+            />
+
+            <div className="rounded-panel border border-line bg-white p-6 shadow-card sm:p-7">
+              <h3 className="font-bold text-navy-900">Diğer Şehirlerarası Seferler</h3>
+              <ul className="mt-3 divide-y divide-line">
+                {otherCities.map((c) => (
+                  <li key={c.slug}>
+                    <Link
+                      href={`/sehirler-arasi-nakliyat/${c.slug}`}
+                      className="group flex min-h-11 items-center justify-between font-medium text-muted transition-colors hover:text-copper-700"
+                    >
+                      İstanbul ⇄ {c.name}
+                      <ArrowRight
+                        aria-hidden="true"
+                        className="size-4 text-copper-600 transition-transform group-hover:translate-x-1"
+                        strokeWidth={2.25}
+                      />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </aside>
         </div>
       </section>
 
       <CtaBand />
-    </div>
+    </>
   );
 }

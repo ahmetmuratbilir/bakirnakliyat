@@ -16,7 +16,8 @@ function isActive(pathname, href) {
 
 function Logo() {
   return (
-    <Link href="/" aria-label={`${site.name} — Anasayfa`} className="flex shrink-0 items-center gap-2.5 rounded-lg">
+    // Erişilebilir ad görünen yazıyı içermeli: "BAKIR NAKLİYAT — Anasayfa"
+    <Link href="/" className="flex shrink-0 items-center gap-2.5 rounded-lg">
       <Image
         src="/logo-mark.png"
         alt=""
@@ -28,14 +29,15 @@ function Logo() {
       />
       <span className="flex flex-col leading-none">
         <span className="text-[1.3125rem] font-extrabold tracking-[0.04em] text-navy-900">BAKIR</span>
-        <span className="mt-1 text-[0.6875rem] font-bold tracking-[0.34em] text-copper-600">NAKLİYAT</span>
+        <span className="mt-1 text-[0.6875rem] font-bold tracking-[0.34em] text-copper-700">NAKLİYAT</span>
       </span>
+      <span className="sr-only"> — Anasayfa</span>
     </Link>
   );
 }
 
 const desktopLink =
-  "inline-flex items-center rounded-lg px-2 py-2 text-sm font-semibold text-navy-900/80 transition-colors hover:bg-navy-50 hover:text-navy-900 aria-[current=page]:text-copper-600 xl:px-3 xl:text-[0.9375rem]";
+  "inline-flex items-center rounded-lg px-2 py-2 text-sm font-semibold text-navy-900/80 transition-colors hover:bg-navy-50 hover:text-navy-900 aria-[current=page]:text-copper-700 xl:px-3 xl:text-[0.9375rem]";
 
 function DesktopDropdown({ item, pathname }) {
   const [open, setOpen] = useState(false);
@@ -145,7 +147,7 @@ function MobileMenu({ pathname, navLinks }) {
   }, [pathname]);
 
   const mobileRow =
-    "flex min-h-12 w-full items-center justify-between rounded-lg px-3 text-base font-semibold text-navy-900 transition-colors hover:bg-navy-50 aria-[current=page]:text-copper-600";
+    "flex min-h-12 w-full items-center justify-between rounded-lg px-3 text-base font-semibold text-navy-900 transition-colors hover:bg-navy-50 aria-[current=page]:text-copper-700";
 
   return (
     <>
@@ -210,7 +212,7 @@ function MobileMenu({ pathname, navLinks }) {
                             <Link
                               href={item.href}
                               aria-current={pathname === item.href ? "page" : undefined}
-                              className="flex min-h-11 items-center rounded-lg px-3 text-base font-semibold text-copper-600 hover:bg-copper-50"
+                              className="flex min-h-11 items-center rounded-lg px-3 text-base font-semibold text-copper-700 hover:bg-copper-50"
                             >
                               {item.overviewLabel}
                             </Link>
@@ -221,7 +223,7 @@ function MobileMenu({ pathname, navLinks }) {
                             <Link
                               href={child.href}
                               aria-current={pathname === child.href ? "page" : undefined}
-                              className="flex min-h-11 items-center rounded-lg px-3 text-base text-muted hover:bg-navy-50 hover:text-navy-900 aria-[current=page]:font-semibold aria-[current=page]:text-copper-600"
+                              className="flex min-h-11 items-center rounded-lg px-3 text-base text-muted hover:bg-navy-50 hover:text-navy-900 aria-[current=page]:font-semibold aria-[current=page]:text-copper-700"
                             >
                               {child.label}
                             </Link>

@@ -21,7 +21,7 @@ export default function Footer() {
       <div className="container-page grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1.2fr] lg:gap-12 lg:py-20">
         {/* 1 — Marka */}
         <div>
-          <Link href="/" aria-label={`${site.name} — Anasayfa`} className="inline-block rounded-lg">
+          <Link href="/" className="inline-block rounded-lg">
             <Image
               src="/logo-light-240.png"
               alt={site.name}

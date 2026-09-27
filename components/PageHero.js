@@ -35,7 +35,7 @@ export default function PageHero({ title, subtitle, breadcrumb }) {
                   <li key={i} className="flex items-center gap-1.5">
                     {i > 0 && <ChevronRight aria-hidden="true" className="size-3.5 text-line-strong" />}
                     {c.href ? (
-                      <Link href={c.href} className="rounded-sm transition-colors hover:text-copper-600">
+                      <Link href={c.href} className="rounded-sm transition-colors hover:text-copper-700">
                         {c.label}
                       </Link>
                     ) : (

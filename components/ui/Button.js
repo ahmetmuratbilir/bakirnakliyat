@@ -24,12 +24,14 @@ export default function Button({
   size = "md",
   icon: Icon,
   iconRight: IconRight,
+  nowrap = true,
   className = "",
   children,
   ...rest
 }) {
   const classes = [
-    "inline-flex items-center justify-center rounded-btn font-semibold whitespace-nowrap",
+    "inline-flex items-center justify-center rounded-btn font-semibold",
+    nowrap ? "whitespace-nowrap" : "py-2.5 text-center",
     "transition-[background-color,box-shadow,color,translate] duration-200 active:translate-y-px",
     VARIANTS[variant],
     SIZES[size],

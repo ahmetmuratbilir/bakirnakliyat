@@ -1,12 +1,23 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
-import ServiceIcon from "@/components/icons/ServiceIcon";
-import Image from "next/image";
+import { ArrowRight, CircleCheck } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import CtaBand from "@/components/CtaBand";
+import QuoteCard from "@/components/QuoteCard";
+import Photo from "@/components/ui/Photo";
+import ServiceIcon from "@/components/icons/ServiceIcon";
 import { districts, getDistrict } from "@/data/districts";
 import { services } from "@/data/services";
 import { site } from "@/data/site";
-import Link from "next/link";
+
+// İlçe sayfaları arasında görsel çeşitliliği için sırayla dönen kareler
+const DISTRICT_PHOTOS = [
+  "evden-eve-nakliyat-beyaz-esya-tasima",
+  "bakir-nakliyat-koli-istifleme",
+  "bakir-nakliyat-filo-araci",
+  "bakir-nakliyat-guvenli-ambalaj",
+  "yapi-market-boya-teslimat",
+];
 
 export function generateStaticParams() {
   return districts.map((d) => ({ ilce: d.slug }));
@@ -28,159 +39,133 @@ export default async function DistrictPage({ params }) {
   const district = getDistrict(ilce);
   if (!district) return notFound();
 
-  const nearbyDistricts = districts.filter((d) => d.slug !== ilce).slice(0, 10);
+  // Alfabetik ilk 10 yerine: bu ilçeden sonraki 10 ilçe (döngüsel).
+  // Böylece 39 ilçenin hepsi eşit iç bağlantı alır.
+  const index = districts.findIndex((d) => d.slug === ilce);
+  const nearbyDistricts = Array.from({ length: 10 }, (_, i) => districts[(index + 1 + i) % districts.length]);
+  const photo = DISTRICT_PHOTOS[index % DISTRICT_PHOTOS.length];
+
+  const standards = [
+    `${district.name} için aynı gün ücretsiz ekspertiz`,
+    "Bina dışı modüler asansör kurulumu",
+    "Mobilya söküm ve anahtar teslim montaj",
+    "Beyaz eşya sökümü ve tesisat bağlantısı",
+    "Resmi sözleşme, talep halinde nakliye sigortası",
+    "Sürprizsiz, sabit ve şeffaf fiyat garantisi",
+  ];
 
   return (
-    <div className="bg-white">
+    <>
       <PageHero
         title={`${district.name} Evden Eve Nakliyat`}
         subtitle={`${district.name} ve çevresinde sigortalı, marangozlu ve asansörlü profesyonel taşımacılık hizmeti`}
-        breadcrumb={[
-          { href: "/istanbul-nakliye", label: "İstanbul Nakliye" },
-          { label: district.name },
-        ]}
+        breadcrumb={[{ href: "/istanbul-nakliye", label: "İstanbul Nakliye" }, { label: district.name }]}
       />
 
-      <section className="container-page py-16 grid lg:grid-cols-12 gap-10">
-        {/* Sol İçerik */}
-        <div className="lg:col-span-8 space-y-8">
-          <div className="bg-white rounded-3xl p-2.5 border border-slate-200 shadow-sm overflow-hidden">
-            <div className="relative h-64 sm:h-80 w-full rounded-2xl overflow-hidden bg-slate-100">
-              <Image
-                src="/images/bakir-nakliyat-filo-araci.webp"
-                alt={`${district.name} Evden Eve Nakliyat Aracı`}
-                fill
-                sizes="(max-width: 1024px) 100vw, 800px"
-                className="object-cover"
-                priority
+      <section className="section bg-white">
+        <div className="container-page grid gap-10 lg:grid-cols-12 lg:gap-12">
+          <div className="min-w-0 space-y-12 lg:col-span-8">
+            <figure className="relative aspect-4/3 overflow-hidden rounded-panel bg-navy-50 shadow-lift sm:aspect-16/10">
+              <Photo slug={photo} fill eager sizes="(min-width: 1024px) 760px, calc(100vw - 2rem)" />
+              <div
+                aria-hidden="true"
+                className="absolute inset-0 bg-linear-to-t from-navy-950/85 via-navy-950/10 to-transparent"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0b1f3a]/80 via-transparent to-transparent" />
-              <div className="absolute bottom-5 left-5 right-5 text-white">
-                <span className="text-xs font-bold uppercase tracking-wider text-blue-300">
+              <figcaption className="absolute inset-x-5 bottom-5 text-white sm:inset-x-8 sm:bottom-7">
+                <p className="text-sm font-bold uppercase tracking-[0.08em] text-copper-500">
                   {district.name} Bölgesi Hizmet Ekibi
-                </span>
-                <h2 className="text-xl sm:text-2xl font-extrabold mt-0.5">
-                  {district.name} Evden Eve & Ofis Taşımacılığı
+                </p>
+                <h2 className="mt-1 text-2xl font-extrabold sm:text-3xl">
+                  {district.name} Evden Eve &amp; Ofis Taşımacılığı
                 </h2>
-              </div>
+              </figcaption>
+            </figure>
+
+            <div className="reveal space-y-4 text-lead text-muted">
+              <p>
+                <strong className="font-bold text-navy-900">{site.name}</strong> olarak, {district.name} ilçesinde
+                yıllardır yüzlerce başarılı taşınma operasyonu gerçekleştirdik. Semtin sokak yapısı, site yönetimi
+                kuralları ve otopark koşullarını çok iyi bilen deneyimli ekibimizle sürecin aksamadan ilerlemesini
+                sağlıyoruz.
+              </p>
+              <p>
+                {district.name} nakliye hizmetimizde eşyalarınız birinci sınıf koruyucu ambalaj malzemeleriyle
+                sarılır, mobilyalarınız marangozlarımız tarafından sökülür ve yeni evinizde istediğiniz odaya
+                kurularak teslim edilir.
+              </p>
+            </div>
+
+            <div className="reveal">
+              <h3 className="text-xl font-bold text-navy-900">
+                {district.name} Bölgesinde Standart Sunduklarımız
+              </h3>
+              <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+                {standards.map((item) => (
+                  <li key={item} className="flex items-start gap-3 rounded-card border border-line bg-surface p-4 text-ink">
+                    <CircleCheck aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-copper-600" strokeWidth={2} />
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
 
-          <div className="p-8 rounded-2xl bg-slate-50 border border-slate-200 space-y-4 text-[#334155] leading-relaxed text-base">
-            <p>
-              <strong className="text-[#0b1f3a] font-bold">{site.name}</strong> olarak, {district.name} ilçesinde yıllardır yüzlerce başarılı taşınma operasyonu gerçekleştirdik. Semtin sokak yapısı, site yönetimi kuralları ve otopark koşullarını çok iyi bilen deneyimli ekibimizle sürecin aksamadan ilerlemesini sağlıyoruz.
-            </p>
-            <p>
-              {district.name} nakliye hizmetimizde eşyalarınız birinci sınıf koruyucu ambalaj malzemeleriyle sarılır, mobilyalarınız marangozlarımız tarafından sökülür ve yeni evinizde istediğiniz odaya kurularak teslim edilir.
-            </p>
-          </div>
+          <aside className="min-w-0 space-y-6 lg:sticky lg:top-28 lg:col-span-4 lg:self-start">
+            <QuoteCard
+              eyebrow="Bölgesel Fiyat Teklifi"
+              title={`${district.name} Nakliye Fiyatı`}
+              text="Oda sayısı ve kat durumuna göre en uygun teklif için hemen bizi arayın."
+              whatsappLabel="WhatsApp'tan Fiyat Al"
+            />
 
-          {/* Bölge Avantajları */}
-          <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs">
-            <h3 className="font-extrabold text-xl text-[#0b1f3a] mb-5 tracking-tight">
-              {district.name} Bölgesinde Standart Sunduklarımız
-            </h3>
-            <div className="grid sm:grid-cols-2 gap-3.5">
-              {[
-                `${district.name} için aynı gün ücretsiz ekspertiz`,
-                "Bina dışı modüler asansör kurulumu",
-                "Mobilya söküm ve anahtar teslim montaj",
-                "Beyaz eşya sökümü ve tesisat bağlantısı",
-                "%100 resmi sözleşme ve nakliye sigortası",
-                "Sürprizsiz, sabit ve şeffaf fiyat garantisi",
-              ].map((item) => (
-                <div key={item} className="flex items-center gap-2.5 text-sm text-[#334155] p-2.5 rounded-lg bg-slate-50 border border-slate-100">
-                  <span className="w-5 h-5 rounded-full bg-blue-100 text-[#1d4ed8] font-bold text-xs flex items-center justify-center shrink-0">
-                    ✓
-                  </span>
-                  <span>{item}</span>
-                </div>
-              ))}
+            <div className="rounded-panel border border-line bg-white p-6 shadow-card sm:p-7">
+              <h3 className="font-bold text-navy-900">{district.name} Hizmet Seçenekleri</h3>
+              <ul className="mt-3">
+                {services.slice(0, 5).map((s) => (
+                  <li key={s.slug}>
+                    <Link
+                      href={`/hizmetlerimiz/${s.slug}`}
+                      className="flex min-h-11 items-center gap-3 rounded-lg font-medium text-muted transition-colors hover:text-copper-700"
+                    >
+                      <ServiceIcon name={s.icon} className="size-5 text-copper-600" />
+                      {s.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-          </div>
-        </div>
-
-        {/* Sağ Panel */}
-        <div className="lg:col-span-4 space-y-6">
-          <div className="p-6 rounded-2xl bg-gradient-to-br from-[#0b1f3a] to-[#1e3a8a] text-white shadow-xl">
-            <div className="text-xs font-bold uppercase tracking-wider text-blue-300 mb-1">
-              Bölgesel Fiyat Teklifi
-            </div>
-            <h3 className="text-xl font-extrabold text-white mb-2">
-              {district.name} Nakliye Fiyatı
-            </h3>
-            <p className="text-xs text-slate-200 mb-5 leading-relaxed">
-              Oda sayısı ve kat durumuna göre en uygun teklif için hemen bizi arayın.
-            </p>
-            <div className="space-y-2.5">
-              <a
-                href={`tel:${site.phoneTel}`}
-                className="flex items-center justify-center gap-2 w-full font-bold py-3.5 rounded-xl bg-white text-[#0b1f3a] hover:bg-slate-100 transition text-sm shadow-md"
-              >
-                <span>📞</span>
-                <span>{site.phoneDisplay}</span>
-              </a>
-              <a
-                href={site.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 w-full font-bold py-3 rounded-xl bg-[#128c4a] text-white hover:bg-[#0f7a3f] transition text-sm shadow-md"
-              >
-                <span>💬</span>
-                <span>WhatsApp&apos;tan Fiyat Al</span>
-              </a>
-            </div>
-          </div>
-
-          {/* İlgili Hizmetler */}
-          <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs">
-            <h3 className="font-bold text-[#0b1f3a] text-base mb-4 border-b border-slate-100 pb-3">
-              {district.name} Hizmet Seçenekleri
-            </h3>
-            <ul className="space-y-2.5">
-              {services.slice(0, 5).map((s) => (
-                <li key={s.slug}>
-                  <Link
-                    href={`/hizmetlerimiz/${s.slug}`}
-                    className="flex items-center gap-2 text-sm text-[#475569] hover:text-[#1d4ed8] font-medium"
-                  >
-                    <span><ServiceIcon name={s.icon} className="size-5" /></span>
-                    <span>{s.title}</span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          </aside>
         </div>
       </section>
 
-      {/* Yakın İlçeler */}
-      <section className="py-12 bg-slate-50 border-t border-slate-200">
+      <section className="border-t border-line bg-surface py-12 sm:py-14">
         <div className="container-page">
-          <h3 className="font-bold text-[#0b1f3a] mb-4 text-base">
-            Diğer İstanbul İlçelerindeki Hizmetlerimiz
-          </h3>
-          <div className="flex flex-wrap gap-2">
+          <h3 className="font-bold text-navy-900">Diğer İstanbul İlçelerindeki Hizmetlerimiz</h3>
+          <ul className="mt-4 flex flex-wrap gap-2">
             {nearbyDistricts.map((d) => (
-              <Link
-                key={d.slug}
-                href={`/istanbul-nakliye/${d.slug}`}
-                className="px-3.5 py-1.5 rounded-lg bg-white border border-slate-200 text-xs font-semibold text-[#334155] hover:border-[#1d4ed8] hover:text-[#1d4ed8] transition"
-              >
-                {d.name} Nakliye
-              </Link>
+              <li key={d.slug}>
+                <Link
+                  href={`/istanbul-nakliye/${d.slug}`}
+                  className="inline-flex min-h-11 items-center rounded-full bg-white px-4 text-[0.9375rem] font-medium text-ink ring-1 ring-inset ring-line transition-colors hover:text-copper-700 hover:ring-copper-500/60"
+                >
+                  {d.name} Nakliye
+                </Link>
+              </li>
             ))}
-            <Link
-              href="/istanbul-nakliye"
-              className="px-3.5 py-1.5 rounded-lg bg-blue-50 text-xs font-bold text-[#1d4ed8] hover:bg-blue-100 transition"
-            >
-              Tüm İlçeler →
-            </Link>
-          </div>
+            <li>
+              <Link
+                href="/istanbul-nakliye"
+                className="inline-flex min-h-11 items-center gap-1.5 rounded-full bg-copper-50 px-4 text-[0.9375rem] font-semibold text-copper-700 ring-1 ring-inset ring-copper-100 transition-colors hover:bg-copper-100"
+              >
+                Tüm İlçeler
+                <ArrowRight aria-hidden="true" className="size-4" strokeWidth={2.25} />
+              </Link>
+            </li>
+          </ul>
         </div>
       </section>
 
       <CtaBand />
-    </div>
+    </>
   );
 }

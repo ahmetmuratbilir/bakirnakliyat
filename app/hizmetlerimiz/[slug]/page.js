@@ -1,12 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, CircleCheck, FileText, Phone } from "lucide-react";
+import { ArrowRight, CircleCheck } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import CtaBand from "@/components/CtaBand";
 import Photo from "@/components/ui/Photo";
-import Button from "@/components/ui/Button";
+import QuoteCard from "@/components/QuoteCard";
 import ServiceIcon from "@/components/icons/ServiceIcon";
-import { WhatsAppIcon } from "@/components/icons/BrandIcons";
 import { services, getService } from "@/data/services";
 import { serviceImages, fallbackServiceImage } from "@/data/service-images";
 import { site } from "@/data/site";
@@ -84,24 +83,13 @@ export default async function ServicePage({ params }) {
 
           {/* Yan panel */}
           <aside className="space-y-6 lg:sticky lg:top-28 lg:col-span-4 lg:self-start">
-            <div className="rounded-panel bg-navy-900 p-6 text-white sm:p-7">
-              <p className="eyebrow eyebrow-on-dark">Hemen Bilgi Alın</p>
-              <h3 className="mt-3 text-xl font-extrabold">{service.title} Fiyatı</h3>
-              <p className="mt-2 leading-relaxed text-navy-100">
-                Ücretsiz ekspertiz ve sabit fiyat garantisi için operatörümüze ulaşın.
-              </p>
-              <div className="mt-6 space-y-2.5">
-                <Button href={`tel:${site.phoneTel}`} variant="light" size="lg" icon={Phone} className="w-full">
-                  {site.phoneDisplay}
-                </Button>
-                <Button href={site.whatsapp} variant="whatsapp" size="lg" icon={WhatsAppIcon} className="w-full">
-                  WhatsApp Ekspertiz
-                </Button>
-                <Button href="/iletisim" variant="ghostDark" size="lg" icon={FileText} className="w-full">
-                  Online Teklif Formu
-                </Button>
-              </div>
-            </div>
+            <QuoteCard
+              eyebrow="Hemen Bilgi Alın"
+              title={`${service.title} Fiyatı`}
+              text="Ücretsiz ekspertiz ve sabit fiyat garantisi için operatörümüze ulaşın."
+              whatsappLabel="WhatsApp Ekspertiz"
+              showForm
+            />
 
             <div className="rounded-panel border border-line bg-white p-6 shadow-card sm:p-7">
               <h3 className="font-bold text-navy-900">Bu Hizmette Standart Olanlar</h3>
