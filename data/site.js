@@ -42,7 +42,8 @@ export const site = {
     "Eskişehir",
   ],
 
-  slogan: "Güvenli Taşımacılığın Adresi",
+  // Logodaki slogan; anasayfa H1, footer ve JSON-LD buradan okur
+  slogan: "Güvenle, Her Yere",
   // Meta açıklama (≤155 karakter) + şema açıklaması
   description:
     "İstanbul evden eve nakliyat, ofis taşıma, parça eşya ve paletli yük taşımada sözleşmeli, faturalı hizmet. Ücretsiz ekspertizle net fiyat teklifi alın.",

@@ -134,7 +134,7 @@ export default function Footer() {
           <p>
             © {year} {site.name}. Tüm hakları saklıdır.
           </p>
-          <p className="font-semibold tracking-[0.12em] text-copper-500">GÜVENLE, HER YERE</p>
+          <p className="font-semibold uppercase tracking-[0.12em] text-copper-500">{site.slogan}</p>
         </div>
       </div>
     </footer>

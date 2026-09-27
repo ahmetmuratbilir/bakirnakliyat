@@ -129,8 +129,8 @@ export default function HomePage() {
           <div className="lg:col-span-6">
             <p className="eyebrow">İstanbul&apos;da {site.yearsOfExperience} Yıllık Saha Tecrübesi</p>
             <h1 className="mt-4 text-display font-extrabold text-navy-900">
-              {/* "İstanbul" üstteki etikette ve title'da; H1 mobilde 2 satırda kalsın */}
-              Stresten Uzak <span className="text-copper-600">Evden Eve Nakliyat</span>
+              {/* Anahtar kelime başta, logodaki slogan vurguda; mobilde 2 satır (360-1440px ölçüldü) */}
+              Evden Eve Nakliyat, <span className="text-copper-600">{site.slogan.replace(",", "")}</span>
             </h1>
             <p className="mt-5 max-w-xl text-lead text-muted">
               Evinizi, ofisinizi ya da ticari yükünüzü İstanbul içinde ve şehirlerarası taşıyoruz. Yazılı sözleşme,
