@@ -57,7 +57,7 @@ export default async function CityPage({ params }) {
                 alt={`İstanbul – ${city.name} şehirlerarası sevkiyat için araca gece yüklemesi`}
                 fill
                 eager
-                sizes="(min-width: 1024px) 760px, calc(100vw - 2rem)"
+                sizes="(min-width: 1200px) 740px, (min-width: 1024px) calc(66vw - 60px), calc(100vw - 2rem)"
               />
               <div
                 aria-hidden="true"

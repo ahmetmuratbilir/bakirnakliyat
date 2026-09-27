@@ -35,7 +35,7 @@ export default function Gallery({ items }) {
       key={slug}
       slug={slug}
       fill
-      sizes="(min-width: 1024px) 280px, (min-width: 640px) 45vw, 50vw"
+      sizes="(min-width: 1024px) 272px, (min-width: 640px) calc(50vw - 2rem), calc(50vw - 1.5rem)"
       imgClassName="transition-transform duration-500 group-hover:scale-105"
     />
   ));

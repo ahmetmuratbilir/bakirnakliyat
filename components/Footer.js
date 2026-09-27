@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Mail, MapPin, Phone } from "lucide-react";
 import { site } from "@/data/site";
 import { services } from "@/data/services";
@@ -22,12 +21,15 @@ export default function Footer() {
         {/* 1 — Marka */}
         <div>
           <Link href="/" className="inline-block rounded-lg">
-            <Image
-              src="/logo-light-240.png"
+            {/* eslint-disable-next-line @next/next/no-img-element -- elle optimize edilmiş WebP srcset */}
+            <img
+              src="/logo-light-160.webp"
+              srcSet="/logo-light-160.webp 1x, /logo-light-320.webp 2x"
               alt={site.name}
-              width={240}
-              height={165}
-              unoptimized
+              width={160}
+              height={110}
+              loading="lazy"
+              decoding="async"
               className="h-auto w-40"
             />
           </Link>

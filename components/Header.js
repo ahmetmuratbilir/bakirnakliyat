@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { ArrowRight, ChevronDown, Mail, Menu, Phone, X } from "lucide-react";
@@ -18,13 +17,15 @@ function Logo() {
   return (
     // Erişilebilir ad görünen yazıyı içermeli: "BAKIR NAKLİYAT — Anasayfa"
     <Link href="/" className="flex shrink-0 items-center gap-2.5 rounded-lg">
-      <Image
-        src="/logo-mark.png"
+      {/* Sabit boyutlu küçük işaret: next/image statik export'ta 1x/2x/3x srcset üretemiyor */}
+      {/* eslint-disable-next-line @next/next/no-img-element -- elle optimize edilmiş WebP srcset */}
+      <img
+        src="/logo-mark-88.webp"
+        srcSet="/logo-mark-44.webp 1x, /logo-mark-88.webp 2x, /logo-mark-132.webp 3x"
         alt=""
-        width={203}
-        height={144}
-        unoptimized
-        preload
+        width={62}
+        height={44}
+        decoding="async"
         className="h-10 w-auto lg:h-11"
       />
       <span className="flex flex-col leading-none">

@@ -1,5 +1,5 @@
 import "./globals.css";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import TopBar from "@/components/TopBar";
@@ -7,15 +7,22 @@ import MobileCallBar from "@/components/MobileCallBar";
 import { site } from "@/data/site";
 import { navLinks } from "@/data/navigation";
 
-// Tek aile: ikinci bir font ailesi yuklemek ~60KB bos maliyet demekti.
-// "latin-ext" alt kumesi ZORUNLU - aksi halde g, s, i, I gibi Turkce
-// karakterler sistem fontuna duser (karisik glif + CLS).
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ["latin", "latin-ext"],
-  weight: ["400", "600", "800"],
+// Plus Jakarta Sans (OFL, lisans: app/fonts/OFL-PlusJakartaSans.txt) — Türkçe alt küme.
+// Google'ın "latin" + "latin-ext" ikilisi 2 dosya / 48 KB idi; bu tek dosya 18 KB ve
+// 400-800 arası gerçek değişken ağırlık içerir. Anasayfada LCP metin olduğu için
+// font boyutu doğrudan LCP'yi etkiliyor. Yeniden üretmek için (fonttools):
+//   fonttools varLib.instancer "PlusJakartaSans[wght].ttf" wght=400:800 -o j.ttf
+//   pyftsubset j.ttf --unicodes="U+0020-007E,U+00A0-00FF,U+011E-011F,U+0130-0131,
+//     U+015E-015F,U+2013-2014,U+2018-201A,U+201C-201E,U+2022,U+2026,U+2039-203A,
+//     U+20BA,U+2122,U+2190-2193" --layout-features+=tnum,locl --flavor=woff2
+//     --no-hinting --desubroutinize --output-file=PlusJakartaSans-tr.woff2
+const jakarta = localFont({
+  src: "./fonts/PlusJakartaSans-tr.woff2",
+  weight: "400 800",
   variable: "--font-jakarta",
   display: "swap",
   preload: true,
+  adjustFontFallback: "Arial",
 });
 
 export const viewport = {

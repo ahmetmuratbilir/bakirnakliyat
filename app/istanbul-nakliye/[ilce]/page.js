@@ -66,7 +66,7 @@ export default async function DistrictPage({ params }) {
         <div className="container-page grid gap-10 lg:grid-cols-12 lg:gap-12">
           <div className="min-w-0 space-y-12 lg:col-span-8">
             <figure className="relative aspect-4/3 overflow-hidden rounded-panel bg-navy-50 shadow-lift sm:aspect-16/10">
-              <Photo slug={photo} fill eager sizes="(min-width: 1024px) 760px, calc(100vw - 2rem)" />
+              <Photo slug={photo} fill eager sizes="(min-width: 1200px) 740px, (min-width: 1024px) calc(66vw - 60px), calc(100vw - 2rem)" />
               <div
                 aria-hidden="true"
                 className="absolute inset-0 bg-linear-to-t from-navy-950/85 via-navy-950/10 to-transparent"

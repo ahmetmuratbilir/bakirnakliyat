@@ -13,7 +13,7 @@ import { statSync } from "node:fs";
 
 const SRC = "_kaynak-gorseller";
 const OUT = "public/images";
-const WIDTHS = [480, 800, 1120];
+const WIDTHS = [480, 640, 800, 1120];
 // next.config.mjs -> images.deviceSizes ile aynı olmalı
 
 
@@ -92,6 +92,13 @@ const PHOTOS = [
   { src: "2.jpg", slug: "evden-eve-nakliyat-beyaz-esya-tasima",
     alt: "Streç filmle korunmuş buzdolabı ve mobilyalarla yüklü evden eve nakliyat aracı",
     role: "hero", og: true },
+
+  // Mobil hero (4:3 kutu) için önceden kırpılmış yatay sürüm: dikey kareyi
+  // mobilde object-cover ile kırpmak indirilen piksellerin ~%45'ini boşa atıyordu.
+  { src: "2.jpg", slug: "evden-eve-nakliyat-beyaz-esya-tasima-yatay",
+    alt: "Streç filmle korunmuş buzdolabı ve mobilyalarla yüklü evden eve nakliyat aracı",
+    role: "hero-mobile",
+    crop: { left: 0, top: 600, width: 1536, height: 1152 } },
 ];
 
 /** Bölgeyi güçlü blur'layıp aynı yere geri yapıştırır. */
@@ -134,11 +141,13 @@ for (const p of PHOTOS) {
     p.blur,
     meta
   );
-  const master = await prepared.toBuffer();
+  let master = await prepared.toBuffer();
+  if (p.crop) master = await sharp(master).extract(p.crop).toBuffer();
+  const mm = p.crop ? { ...meta, width: p.crop.width, height: p.crop.height } : meta;
 
   const sizes = [];
-  const targets = WIDTHS.filter((w) => w <= meta.width);
-  if (meta.width < WIDTHS.at(-1) && !targets.includes(meta.width)) targets.push(meta.width);
+  const targets = WIDTHS.filter((w) => w <= mm.width);
+  if (mm.width < WIDTHS.at(-1) && !targets.includes(mm.width)) targets.push(mm.width);
   for (const w of targets) {
     const resized = sharp(master).resize({ width: w, withoutEnlargement: true });
     const [avif, webp, jpg] = await Promise.all([
@@ -169,8 +178,8 @@ for (const p of PHOTOS) {
   manifest[p.slug] = {
     alt: p.alt,
     role: p.role,
-    width: meta.width,
-    height: meta.height,
+    width: mm.width,
+    height: mm.height,
     sizes,
     og: Boolean(p.og),
     blurDataURL: `data:image/webp;base64,${ph.toString("base64")}`,

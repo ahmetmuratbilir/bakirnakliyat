@@ -14,7 +14,7 @@ const nextConfig = {
     loader: "custom",
     loaderFile: "./lib/image-loader.js",
     // build-images.mjs içindeki WIDTHS ile aynı tutulmalı
-    deviceSizes: [480, 800, 1120],
+    deviceSizes: [480, 640, 800, 1120],
     imageSizes: [],
     qualities: [75],
   },

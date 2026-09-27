@@ -68,6 +68,22 @@ for (const [name, buf] of Object.entries({ logo: dark, "logo-light": light })) {
       .png({ palette: true, colors: 64, compressionLevel: 9, effort: 10 }).toFile(out);
     const m = await sharp(out).metadata();
     console.log(out.padEnd(32), kb(out), `${m.width}x${m.height}`);
+    // Header'da 44px yükseklik: 1x/2x/3x WebP (PNG yedek olarak kalır)
+    for (const h of [44, 88, 132]) {
+      const w = `public/${name}-${h}.webp`;
+      await sharp(png).trim().resize({ height: h }).webp({ quality: 90, alphaQuality: 90, effort: 6 }).toFile(w);
+      console.log(w.padEnd(32), kb(w));
+    }
+  }
+}
+
+// Footer'daki açık logo 160px genişlikte: 1x/2x WebP
+{
+  const lightPng = await sharp(light, RAW).png().toBuffer();
+  for (const w of [160, 320]) {
+    const out = `public/logo-light-${w}.webp`;
+    await sharp(lightPng).resize({ width: w }).webp({ quality: 88, alphaQuality: 90, effort: 6 }).toFile(out);
+    console.log(out.padEnd(32), kb(out));
   }
 }
 

@@ -163,10 +163,11 @@ export default function HomePage() {
               <div className="relative aspect-4/3 overflow-hidden rounded-panel bg-navy-50 shadow-float sm:aspect-5/4 lg:aspect-4/5">
                 <Photo
                   slug="evden-eve-nakliyat-beyaz-esya-tasima"
+                  mobileSlug="evden-eve-nakliyat-beyaz-esya-tasima-yatay"
                   fill
                   eager
-                  sizes="(min-width: 1024px) 560px, calc(100vw - 2rem)"
-                  imgClassName="object-[50%_72%]"
+                  sizes="(min-width: 1200px) 520px, (min-width: 1024px) calc(50vw - 80px), calc(100vw - 2rem)"
+                  imgClassName="lg:object-[50%_72%]"
                 />
               </div>
 

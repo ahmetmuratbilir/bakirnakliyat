@@ -8,6 +8,7 @@ export const media = {
     "height": 2048,
     "sizes": [
       480,
+      640,
       800,
       1120
     ],
@@ -21,6 +22,7 @@ export const media = {
     "height": 2048,
     "sizes": [
       480,
+      640,
       800,
       1120
     ],
@@ -34,6 +36,7 @@ export const media = {
     "height": 2048,
     "sizes": [
       480,
+      640,
       800,
       1120
     ],
@@ -47,6 +50,7 @@ export const media = {
     "height": 2048,
     "sizes": [
       480,
+      640,
       800,
       1120
     ],
@@ -60,6 +64,7 @@ export const media = {
     "height": 1603,
     "sizes": [
       480,
+      640,
       800,
       1120
     ],
@@ -73,6 +78,7 @@ export const media = {
     "height": 1580,
     "sizes": [
       480,
+      640,
       800,
       1120
     ],
@@ -86,6 +92,7 @@ export const media = {
     "height": 2048,
     "sizes": [
       480,
+      640,
       800,
       1120
     ],
@@ -99,6 +106,7 @@ export const media = {
     "height": 2048,
     "sizes": [
       480,
+      640,
       800,
       1120
     ],
@@ -112,6 +120,7 @@ export const media = {
     "height": 1656,
     "sizes": [
       480,
+      640,
       800,
       1120
     ],
@@ -125,6 +134,7 @@ export const media = {
     "height": 1588,
     "sizes": [
       480,
+      640,
       800,
       1120
     ],
@@ -138,6 +148,7 @@ export const media = {
     "height": 1552,
     "sizes": [
       480,
+      640,
       800,
       1120
     ],
@@ -163,6 +174,7 @@ export const media = {
     "height": 1024,
     "sizes": [
       480,
+      640,
       768
     ],
     "og": false,
@@ -187,6 +199,7 @@ export const media = {
     "height": 1024,
     "sizes": [
       480,
+      640,
       768
     ],
     "og": false,
@@ -199,6 +212,7 @@ export const media = {
     "height": 1024,
     "sizes": [
       480,
+      640,
       768
     ],
     "og": false,
@@ -211,10 +225,25 @@ export const media = {
     "height": 2048,
     "sizes": [
       480,
+      640,
       800,
       1120
     ],
     "og": true,
     "blurDataURL": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAACwAwCdASoQABUAPzmEuVOvKKWisAgB4CcJQBOgAz2dsqlbUuVuAAD8VNhELnydhSi55K1Qv93hFmyJvNoFyIe8/jCtrSqv43zejGCq5hZFO9tYpcF2uU/yAkMAu6azNphuaYOXKuAAAA=="
+  },
+  "evden-eve-nakliyat-beyaz-esya-tasima-yatay": {
+    "alt": "Streç filmle korunmuş buzdolabı ve mobilyalarla yüklü evden eve nakliyat aracı",
+    "role": "hero-mobile",
+    "width": 1536,
+    "height": 1152,
+    "sizes": [
+      480,
+      640,
+      800,
+      1120
+    ],
+    "og": false,
+    "blurDataURL": "data:image/webp;base64,UklGRlYAAABXRUJQVlA4IEoAAAAQAgCdASoQAAwABUB8JYwCdAD5mzvPNx/wAPzfYdTJd+EA1svAr7bqRjQLJNDwCBELqalYjip5E4ddRgb7MVXoqAbwmH9UDjwAAA=="
   }
 };
