@@ -59,7 +59,7 @@ export default function IletisimPage() {
               {
                 icon: "📍",
                 title: "Merkez Ofis",
-                val: `${site.address.line1}, ${site.address.line2}`,
+                val: site.address.display,
                 sub: "İstanbul / Başakşehir",
                 href: null,
               },

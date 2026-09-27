@@ -7,8 +7,8 @@ import { services } from "@/data/services";
 const benefits = [
   {
     icon: "🛡️",
-    title: "%100 Nakliye Sigortası",
-    text: "Eşyalarınız paketleme anından yeni evinizde yerleşene kadar AXA / AkSigorta güvencesi altındadır.",
+    title: "Talep Halinde Nakliyat Sigortası",
+    text: "Talep etmeniz halinde taşımanıza özel nakliyat sigortası düzenlenir; poliçe detayları teklifle birlikte yazılı olarak paylaşılır.",
   },
   {
     icon: "📜",
@@ -72,7 +72,7 @@ export default function HomePage() {
               {/* Güven Rozeti */}
               <div className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 text-[#1d4ed8] text-xs font-bold px-3.5 py-1.5 rounded-full mb-6 shadow-xs">
                 <span className="w-2 h-2 rounded-full bg-[#1d4ed8] animate-pulse"></span>
-                <span>İstanbul&apos;da 15 Yıllık Kurumsal Güvence</span>
+                <span>İstanbul&apos;da {site.yearsOfExperience} Yıllık Saha Tecrübesi</span>
               </div>
 
               <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-[#0b1f3a] leading-[1.15] tracking-tight">

@@ -76,7 +76,7 @@ export default function Header() {
           <div className="flex items-center gap-6">
             <span className="flex items-center gap-1.5 font-medium">
               <span className="text-[#c4773f]">📍</span>
-              <span>İstanbul 39 İlçe & 81 İle Şehirlerarası Sigortalı Taşımacılık</span>
+              <span>İstanbul 39 İlçe & Şehirlerarası · Sözleşmeli ve Faturalı Taşımacılık</span>
             </span>
             <span className="hidden md:inline-block text-slate-400">|</span>
             <span className="hidden md:flex items-center gap-1.5 text-slate-300">

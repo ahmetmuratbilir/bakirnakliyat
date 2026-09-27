@@ -75,7 +75,7 @@ html {
 body {
   background: var(--bg-main);
   color: var(--text-primary);
-  font-family: var(--font-jakarta), var(--font-inter), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-jakarta), system-ui, -apple-system, "Segoe UI", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

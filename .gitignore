@@ -3,3 +3,6 @@ node_modules
 out
 .env*.local
 *.log
+
+# Ham kaynak gorseller (islenmis hallari public/images altinda)
+_kaynak-gorseller/

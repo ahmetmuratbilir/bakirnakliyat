@@ -22,7 +22,7 @@ export default function HakkimizdaPage() {
     <div className="bg-white">
       <PageHero
         title="Hakkımızda"
-        subtitle={`${site.name} — 15 yıldır İstanbul ve Türkiye genelinde güven inşa ediyoruz.`}
+        subtitle={`${site.name} — ${site.yearsOfExperience} yıldır İstanbul ve Türkiye genelinde güven inşa ediyoruz.`}
         breadcrumb={[{ label: "Hakkımızda" }]}
       />
 

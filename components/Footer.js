@@ -30,12 +30,12 @@ export default function Footer() {
             </div>
           </div>
           <p className="text-slate-400 leading-relaxed text-xs sm:text-sm mb-5">
-            15 yılı aşkın sektör deneyimiyle İstanbul genelinde ve tüm Türkiye&apos;de sigortalı, marangozlu ve asansörlü evden eve nakliyat çözümleri.
+            {site.yearsOfExperience} yılı aşkın saha deneyimiyle İstanbul genelinde ve şehirlerarası evden eve nakliyat, palet ve parsiyel yük taşıma çözümleri.
           </p>
           <div className="space-y-2 text-xs">
             <div className="flex items-start gap-2 text-slate-300">
               <span className="text-[#1d4ed8]">📍</span>
-              <span>{site.address.line1}, {site.address.line2}</span>
+              <span>{site.address.display}</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-[#1d4ed8]">📞</span>

@@ -5,7 +5,7 @@ import { cities } from "@/data/cities";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Şehirlerarası Nakliyat | 81 İle Sigortalı Taşıma",
+  title: "Şehirlerarası Nakliyat | Sözleşmeli ve Faturalı Taşıma",
   description: `${site.name} ile İstanbul çıkışlı Türkiye'nin tüm illerine garantili, sigortalı ve profesyonel şehirlerarası nakliyat hizmeti.`,
   alternates: { canonical: `${site.domain}/sehirler-arasi-nakliyat` },
 };
