@@ -36,7 +36,7 @@ export const viewport = {
 export const metadata = {
   metadataBase: new URL(site.domain),
   title: {
-    default: `${site.name} | İstanbul Evden Eve ve Şehirlerarası Nakliyat`,
+    default: `İstanbul Evden Eve Nakliyat ve Yük Taşıma | ${site.name}`,
     template: `%s | ${site.name}`,
   },
   description: site.description,

@@ -62,7 +62,7 @@ const benefits = [
   {
     icon: Wrench,
     title: "Uzman Marangoz & Montaj",
-    text: "Gardırop, yatak odası takımı ve beyaz eşyalarınız profesyonel ustalarımızca sökülüp yeni adreste kurulur.",
+    text: "Marangozlarımız mobilyaları sökerken vida ve bağlantı parçalarını poşetleyip etiketler; yeni evde eksiksiz kurar.",
   },
 ];
 
@@ -80,12 +80,12 @@ const steps = [
   {
     num: "03",
     title: "Özenli Paketleme & Taşıma",
-    text: "Taşıma günü profesyonel kadromuz ve asansörlü araçlarımızla eşyalarınızı hasarsız taşıyoruz.",
+    text: "Taşıma günü deneyimli ekibimizle, gerektiğinde asansörlü taşımayla eşyalarınızı özenle yeni adresinize ulaştırıyoruz.",
   },
   {
     num: "04",
     title: "Kurulum & Anahtar Teslim",
-    text: "Mobilyalarınızı monte ediyor, beyaz eşyalarınızı bağlıyor ve evinizi yaşama hazır teslim ediyoruz.",
+    text: "Mobilyaları kuruyor, beyaz eşyaları yerine yerleştiriyor ve son kontrolü sizinle birlikte yapıyoruz.",
   },
 ];
 
@@ -125,16 +125,16 @@ export default function HomePage() {
           aria-hidden="true"
           className="pointer-events-none absolute -right-40 -top-40 size-144 rounded-full bg-copper-100/60 blur-3xl"
         />
-        <div className="container-page relative grid items-center gap-8 py-8 sm:py-12 lg:grid-cols-12 lg:gap-12 lg:py-20">
+        <div className="container-page relative grid items-center gap-7 py-6 sm:py-10 lg:grid-cols-12 lg:gap-12 lg:py-16">
           <div className="lg:col-span-6">
             <p className="eyebrow">İstanbul&apos;da {site.yearsOfExperience} Yıllık Saha Tecrübesi</p>
             <h1 className="mt-4 text-display font-extrabold text-navy-900">
-              Stresten Uzak, <span className="text-copper-600">Güvenli &amp; Sigortalı</span> Nakliyat
+              {/* "İstanbul" üstteki etikette ve title'da; H1 mobilde 2 satırda kalsın */}
+              Stresten Uzak <span className="text-copper-600">Evden Eve Nakliyat</span>
             </h1>
             <p className="mt-5 max-w-xl text-lead text-muted">
-              Bakır Nakliyat ile evinizi ve ofisinizi gözünüz arkada kalmadan taşıyın. Sözleşmeli, ambalajlı,
-              asansörlü ve <strong className="font-semibold text-navy-900">sürpriz ek ücret olmadan</strong>{" "}
-              profesyonel hizmet.
+              Evinizi, ofisinizi ya da ticari yükünüzü İstanbul içinde ve şehirlerarası taşıyoruz. Yazılı sözleşme,
+              özenli ambalaj ve <strong className="font-semibold text-navy-900">sürpriz ek ücret yok</strong>.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -209,7 +209,7 @@ export default function HomePage() {
         <div className="container-page">
           <SectionHeading
             eyebrow="Faaliyet Alanlarımız"
-            title="Her İhtiyaca Özel Taşımacılık"
+            title="İstanbul Nakliyat Hizmetlerimiz"
             align="left"
             className="reveal"
             action={
@@ -237,7 +237,8 @@ export default function HomePage() {
                 <div>
                   <h3 className="text-lg font-bold">Size özel bir taşıma mı gerekiyor?</h3>
                   <p className="mt-2 text-base leading-relaxed text-navy-100">
-                    Yükünüzü ve adreslerinizi anlatın, uygun aracı ve ekibi birlikte planlayalım.
+                    Paletli ticari yük, parsiyel sevkiyat veya size özel bir taşıma için adresleri anlatın; uygun
+                    aracı birlikte planlayalım.
                   </p>
                 </div>
                 <Button href="/iletisim" variant="primary" iconRight={ArrowRight} className="mt-6 self-start">
@@ -318,7 +319,7 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="Sahadan Canlı Kareler"
             title="Gerçekleşen Sevkiyatlarımız"
-            description="Özmal araçlarımız, forkliftli palet yükleme ve güvenli ambalajlama operasyonlarımız."
+            description="Evden eve taşımadan paletli ticari yüke, sahada gerçekleştirdiğimiz taşımalardan gerçek kareler."
             className="reveal"
           />
           <Gallery items={galleryItems} />
@@ -330,7 +331,7 @@ export default function HomePage() {
         <div className="container-page">
           <SectionHeading
             eyebrow="Geniş Hizmet Ağı"
-            title="İstanbul'un 39 İlçesi ve 81 İle Düzenli Sefer"
+            title="İstanbul'un 39 İlçesinde ve Şehirlerarası Nakliyat"
             description="İlçenize veya taşınacağınız şehre özel fiyatları ve güzergah bilgilerini inceleyin."
             className="reveal"
           />

@@ -5,7 +5,7 @@ import { WhatsAppIcon } from "@/components/icons/BrandIcons";
 
 export default function CtaBand() {
   return (
-    <section aria-labelledby="cta-baslik" className="bg-white py-14 sm:py-20">
+    <section aria-labelledby="cta-baslik" className="bg-white py-8 sm:py-14 lg:py-16">
       <div className="container-page">
         <div className="relative overflow-hidden rounded-panel bg-navy-900 px-6 py-10 sm:px-12 sm:py-14">
           {/* ince bakır üst çizgi — lacivert üzerinde temiz vurgu */}
@@ -20,8 +20,8 @@ export default function CtaBand() {
                 Taşınma Planınızı Birlikte Yapalım
               </h2>
               <p className="mt-3 text-lead text-navy-100">
-                Hemen arayın veya WhatsApp&apos;tan oda fotoğraflarınızı gönderin; dakikalar içinde kesin ve
-                net fiyat teklifinizi iletelim.
+                Hemen arayın ya da WhatsApp&apos;tan oda fotoğraflarınızı gönderin. Net fiyat teklifinizi hızlıca
+                iletelim.
               </p>
             </div>
             <div className="flex flex-col gap-3 sm:flex-row lg:shrink-0">

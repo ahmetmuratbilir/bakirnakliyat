@@ -26,7 +26,7 @@ export default function MisyonumuzPage() {
               <Target aria-hidden="true" className="size-7" strokeWidth={1.75} />
             </span>
             <blockquote className="mt-6 text-xl font-extrabold leading-snug text-white sm:text-2xl">
-              &quot;Taşınmayı zorlu ve yıpratıcı bir süreç olmaktan çıkarıp; sözleşmeli, sigortalı ve dakik bir güven
+              &quot;Taşınmayı zorlu ve yıpratıcı bir süreç olmaktan çıkarıp; sözleşmeli, şeffaf ve dakik bir güven
               yolculuğuna dönüştürmek.&quot;
             </blockquote>
           </figure>
@@ -39,8 +39,8 @@ export default function MisyonumuzPage() {
             </p>
             <p>
               {site.name} olarak misyonumuz, bu olumsuz deneyimleri tamamen ortadan kaldırmaktır. Her müşterimize
-              başlangıçta ne söz verdiysek, süreç sonunda aynı memnuniyeti yaşatmak adına teknolojik araç takip
-              sistemlerinden profesyonel ambalajlama tekniklerine kadar tüm gücümüzle çalışıyoruz.
+              başlangıçta ne söz verdiysek, süreç sonunda aynı memnuniyeti yaşatmak adına taşıma boyunca anlık
+              bilgilendirmeden profesyonel ambalajlama tekniklerine kadar tüm gücümüzle çalışıyoruz.
             </p>
           </div>
         </div>

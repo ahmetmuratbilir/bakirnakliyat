@@ -19,8 +19,8 @@ export async function generateMetadata({ params }) {
   const service = getService(slug);
   if (!service) return {};
   return {
-    title: `${service.title}`,
-    description: `${service.title} hizmeti — ${service.short} Sigortalı, asansörlü ve marangozlu anahtar teslim taşıma.`,
+    title: service.seoTitle ?? service.title,
+    description: service.metaDescription ?? service.short,
     alternates: { canonical: `${site.domain}/hizmetlerimiz/${slug}` },
   };
 }
@@ -60,7 +60,7 @@ export default async function ServicePage({ params }) {
             </figure>
 
             <div className="reveal">
-              <h2 className="text-2xl font-extrabold text-navy-900 sm:text-3xl">Hizmet Hakkında Detaylar</h2>
+              <h2 className="text-2xl font-extrabold text-navy-900 sm:text-3xl">{service.title} Hakkında</h2>
               <p className="mt-4 text-lead text-muted">{service.description}</p>
             </div>
 

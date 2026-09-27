@@ -9,8 +9,9 @@ import { services } from "@/data/services";
 import { serviceImages, fallbackServiceImage } from "@/data/service-images";
 
 export const metadata = {
-  title: "Hizmetlerimiz",
-  description: `${site.name} profesyonel taşımacılık hizmetleri: evden eve nakliyat, ofis taşıma, asansörlü taşıma, eşya depolama ve şehir içi/şehirlerarası çözümler.`,
+  title: "İstanbul Nakliyat Hizmetleri",
+  description:
+    "İstanbul nakliyat hizmetleri: evden eve nakliyat, ofis taşıma, parça eşya, asansörlü nakliyat, eşya depolama ve şehirlerarası taşıma. Ücretsiz ekspertiz.",
   alternates: { canonical: `${site.domain}/hizmetlerimiz` },
 };
 
@@ -18,8 +19,8 @@ export default function HizmetlerimizPage() {
   return (
     <>
       <PageHero
-        title="Hizmetlerimiz"
-        subtitle="İstanbul içi ve şehirlerarası taşımacılıkta sigortalı, asansörlü ve marangozlu anahtar teslim çözümler."
+        title="Nakliyat Hizmetlerimiz"
+        subtitle="İstanbul içi ve şehirlerarası taşımacılıkta sözleşmeli, asansörlü ve marangozlu anahtar teslim çözümler."
         breadcrumb={[{ label: "Hizmetlerimiz" }]}
       />
 

@@ -28,8 +28,8 @@ export async function generateMetadata({ params }) {
   const district = getDistrict(ilce);
   if (!district) return {};
   return {
-    title: `${district.name} Nakliye`,
-    description: `${site.name} ile ${district.name} bölgesinde sigortalı, asansörlü evden eve nakliyat ve ofis taşıma hizmeti. Ücretsiz ekspertiz ve sabit fiyat için hemen arayın.`,
+    title: `${district.name} Evden Eve Nakliyat`,
+    description: `${district.name} evden eve nakliyat, parça eşya ve asansörlü taşıma. Sözleşmeli, faturalı hizmet; ücretsiz ekspertizle net fiyat için hemen arayın.`,
     alternates: { canonical: `${site.domain}/istanbul-nakliye/${ilce}` },
   };
 }
@@ -58,7 +58,7 @@ export default async function DistrictPage({ params }) {
     <>
       <PageHero
         title={`${district.name} Evden Eve Nakliyat`}
-        subtitle={`${district.name} ve çevresinde sigortalı, marangozlu ve asansörlü profesyonel taşımacılık hizmeti`}
+        subtitle={`${district.name} ve çevresinde sözleşmeli, marangozlu ve asansörlü evden eve nakliyat ile parça eşya taşıma`}
         breadcrumb={[{ href: "/istanbul-nakliye", label: "İstanbul Nakliye" }, { label: district.name }]}
       />
 
@@ -83,15 +83,13 @@ export default async function DistrictPage({ params }) {
 
             <div className="reveal space-y-4 text-lead text-muted">
               <p>
-                <strong className="font-bold text-navy-900">{site.name}</strong> olarak, {district.name} ilçesinde
-                yıllardır yüzlerce başarılı taşınma operasyonu gerçekleştirdik. Semtin sokak yapısı, site yönetimi
-                kuralları ve otopark koşullarını çok iyi bilen deneyimli ekibimizle sürecin aksamadan ilerlemesini
-                sağlıyoruz.
+                <strong className="font-bold text-navy-900">{site.name}</strong> olarak {district.name} evden eve
+                nakliyat ve parça eşya taşımalarında semtin sokak yapısını, site yönetimi kurallarını ve park
+                koşullarını önceden planlıyoruz. Böylece taşınma günü sürprizlerle değil, programla ilerler.
               </p>
               <p>
-                {district.name} nakliye hizmetimizde eşyalarınız birinci sınıf koruyucu ambalaj malzemeleriyle
-                sarılır, mobilyalarınız marangozlarımız tarafından sökülür ve yeni evinizde istediğiniz odaya
-                kurularak teslim edilir.
+                {district.name} nakliyatında eşyalarınız kaliteli ambalaj malzemeleriyle sarılır. Mobilyalarınızı
+                marangozlarımız söker ve yeni evinizde istediğiniz odaya kurar.
               </p>
             </div>
 
@@ -148,7 +146,7 @@ export default async function DistrictPage({ params }) {
                   href={`/istanbul-nakliye/${d.slug}`}
                   className="inline-flex min-h-11 items-center rounded-full bg-white px-4 text-[0.9375rem] font-medium text-ink ring-1 ring-inset ring-line transition-colors hover:text-copper-700 hover:ring-copper-500/60"
                 >
-                  {d.name} Nakliye
+                  {d.name} Nakliyat
                 </Link>
               </li>
             ))}

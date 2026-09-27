@@ -61,7 +61,7 @@ export default function IletisimPage() {
     <>
       <PageHero
         title="İletişim & Fiyat Teklifi"
-        subtitle="Taşınma detaylarınızı paylaşın, uzman ekibimiz en geç 15 dakika içinde sabit fiyat teklifinizi hazırlasın."
+        subtitle="Taşınma detaylarınızı paylaşın, ekibimiz eşyalarınızı değerlendirip net fiyat teklifinizi en kısa sürede iletsin."
         breadcrumb={[{ label: "İletişim" }]}
       />
 

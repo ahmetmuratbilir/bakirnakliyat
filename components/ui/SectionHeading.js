@@ -17,7 +17,7 @@ export default function SectionHeading({
   return (
     <div
       className={[
-        "mb-10 sm:mb-12",
+        "mb-7 sm:mb-10 lg:mb-12",
         centered ? "mx-auto max-w-2xl text-center" : "flex flex-col gap-5 md:flex-row md:items-end md:justify-between",
         className,
       ].join(" ")}

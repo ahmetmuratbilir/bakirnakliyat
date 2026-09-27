@@ -43,8 +43,9 @@ export const site = {
   ],
 
   slogan: "Güvenli Taşımacılığın Adresi",
+  // Meta açıklama (≤155 karakter) + şema açıklaması
   description:
-    "Bakır Nakliyat; İstanbul içi ve şehirlerarası evden eve nakliyat, ofis taşımacılığı, palet ve parsiyel yük taşıma hizmetleri sunar. Yazılı taşıma sözleşmesi, faturalı hizmet ve talep halinde nakliyat sigortası ile eşyanız ve yükünüz güvence altındadır.",
+    "İstanbul evden eve nakliyat, ofis taşıma, parça eşya ve paletli yük taşımada sözleşmeli, faturalı hizmet. Ücretsiz ekspertizle net fiyat teklifi alın.",
 
   // Sitede kullanılan güven ifadeleri tek yerden yönetilir; abartılı veya
   // doğrulanamayan iddia barındırmaz.

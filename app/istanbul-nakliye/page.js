@@ -6,8 +6,9 @@ import { site } from "@/data/site";
 import { districts } from "@/data/districts";
 
 export const metadata = {
-  title: "İstanbul Nakliye | 39 İlçe Evden Eve Nakliyat",
-  description: `${site.name} ile İstanbul'un 39 ilçesinde sigortalı, asansörlü ve marangozlu evden eve nakliyat hizmeti. İlçenizi seçip hemen sabit fiyat teklifi alın.`,
+  title: "İstanbul 39 İlçe Evden Eve Nakliyat",
+  description:
+    "İstanbul'un 39 ilçesinde evden eve nakliyat, parça eşya ve asansörlü taşıma. İlçenizi seçin; bölgenize özel bilgi ve net fiyat teklifi alın.",
   alternates: { canonical: `${site.domain}/istanbul-nakliye` },
 };
 
@@ -15,14 +16,14 @@ export default function IstanbulNakliyePage() {
   return (
     <>
       <PageHero
-        title="İstanbul 39 İlçe Nakliye Hizmeti"
-        subtitle="İstanbul genelinde Anadolu ve Avrupa yakasında aynı gün sigortalı evden eve ve ofis taşımacılığı."
+        title="İstanbul 39 İlçe Evden Eve Nakliyat"
+        subtitle="İstanbul genelinde Anadolu ve Avrupa yakasında aynı gün, sözleşmeli evden eve ve ofis taşımacılığı."
         breadcrumb={[{ label: "İstanbul Nakliye" }]}
       />
 
       <section className="section bg-white">
         <div className="container-page">
-          <p className="mb-10 max-w-2xl text-lead text-muted">
+          <p className="mb-8 max-w-2xl text-lead text-muted">
             {site.name} olarak İstanbul&apos;un her köşesini iyi biliyoruz. Dar sokaklar, bina asansörü kısıtlamaları
             veya park izinleri konusunda uzman ekiplerimizle sorunsuz bir taşıma sunuyoruz. İlçenizi seçerek bölgeye
             özel avantajları inceleyebilirsiniz:

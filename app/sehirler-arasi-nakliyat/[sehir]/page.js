@@ -17,8 +17,8 @@ export async function generateMetadata({ params }) {
   const city = getCity(sehir);
   if (!city) return {};
   return {
-    title: `İstanbul — ${city.name} Nakliyat`,
-    description: `${site.name} ile İstanbul - ${city.name} arası sigortalı, asansörlü ve garantili şehirlerarası nakliyat hizmeti. Net ve sabit fiyat garantisi.`,
+    title: `İstanbul ${city.name} Evden Eve Nakliyat`,
+    description: `İstanbul ${city.name} evden eve nakliyat ve parça eşya taşıma: kapalı kasa araç, yazılı sözleşme ve güzergaha özel net fiyat teklifi.`,
     alternates: { canonical: `${site.domain}/sehirler-arasi-nakliyat/${sehir}` },
   };
 }
@@ -30,7 +30,7 @@ const standards = [
     text: "Talep halinde şehirlerarası taşımanıza özel poliçe düzenlenir.",
   },
   { icon: PackageCheck, title: "Özel Ambalaj", text: "Uzun yol mukavemetli çift kat patpat naylonlama." },
-  { icon: MapPin, title: "Araç Takip", text: "Yolculuk boyunca anlık konum ve teslimat bilgilendirmesi." },
+  { icon: MapPin, title: "Konum Bilgisi", text: "Yolculuk boyunca WhatsApp üzerinden konum ve teslimat bilgisi paylaşılır." },
 ];
 
 export default async function CityPage({ params }) {
@@ -43,8 +43,8 @@ export default async function CityPage({ params }) {
   return (
     <>
       <PageHero
-        title={`İstanbul ⇄ ${city.name} Nakliyat`}
-        subtitle={`İstanbul ile ${city.name} arasında haftalık düzenli sigortalı ve sözleşmeli evden eve nakliye`}
+        title={`İstanbul – ${city.name} Evden Eve Nakliyat`}
+        subtitle={`İstanbul ile ${city.name} arasında sözleşmeli evden eve nakliyat ve parça eşya taşıma`}
         breadcrumb={[{ href: "/sehirler-arasi-nakliyat", label: "Şehirlerarası" }, { label: city.name }]}
       />
 
@@ -77,9 +77,8 @@ export default async function CityPage({ params }) {
                 gerçekleştirdiğimiz evden eve ve ofis taşımalarında tüm süreci A&apos;dan Z&apos;ye planlıyoruz.
               </p>
               <p>
-                Şehirlerarası yolculuk boyunca eşyalarınızın sarsıntıdan veya yol koşullarından etkilenmemesi için
-                araç içinde hidrolik askı ve sabitleme kayışları kullanılmaktadır. Eşyalarınız yeni adresinize
-                ulaştığında yine uzman montaj personelimiz tarafından odalarınıza kurulur.
+                Uzun yolda eşyalar sarsıntıdan etkilenmesin diye araç içinde kayışla sabitlenir ve battaniyelerle
+                korunur. Yeni adrese varınca montaj ekibimiz eşyalarınızı odalarınıza kurar.
               </p>
             </div>
 
@@ -113,7 +112,7 @@ export default async function CityPage({ params }) {
                       href={`/sehirler-arasi-nakliyat/${c.slug}`}
                       className="group flex min-h-11 items-center justify-between font-medium text-muted transition-colors hover:text-copper-700"
                     >
-                      İstanbul ⇄ {c.name}
+                      İstanbul – {c.name} Nakliyat
                       <ArrowRight
                         aria-hidden="true"
                         className="size-4 text-copper-600 transition-transform group-hover:translate-x-1"

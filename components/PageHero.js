@@ -22,7 +22,7 @@ export default function PageHero({ title, subtitle, breadcrumb }) {
         aria-hidden="true"
         className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/3 bg-[radial-gradient(circle_at_70%_30%,var(--color-copper-100),transparent_60%)] opacity-70 md:block"
       />
-      <div className="container-page relative py-7 sm:py-10 md:py-16">
+      <div className="container-page relative py-6 sm:py-9 md:py-14">
         {crumbs && (
           <>
             <script

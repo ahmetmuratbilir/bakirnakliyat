@@ -1,89 +1,118 @@
+// Hizmet içerikleri — anahtar kelime haritası (2026-09 araştırması, Google TR
+// otomatik tamamlama + ilk sayfa rakip başlıkları):
+//   evden-eve          -> "istanbul evden eve nakliyat", "evden eve nakliyat fiyatları"
+//   ofis               -> "ofis taşımacılığı istanbul", "ofis taşıma firmaları"
+//   sehir-ici          -> "şehir içi nakliye istanbul", "şehir içi nakliye ücretleri", "kamyonet nakliye"
+//   parca-esya         -> "parça eşya taşıma istanbul", "parça eşya taşıma fiyatları"
+//   hafriyat           -> "hafriyat taşıma", "moloz taşıma"
+//   asansorlu          -> "asansörlü nakliyat istanbul", "asansörlü nakliyat fiyatları"
+//   depolama           -> "eşya depolama istanbul", "eşya depolama fiyatları"
+// Kural: doğrulanamayan iddia yok (sigorta "talep halinde", filo = kamyonet +
+// panelvan, asansör/hafriyat aracı çözüm ortaklarıyla).
+//
+// seoTitle: <title> için (şablon " | Bakır Nakliyat" ekler, toplam ≤ 60 karakter)
+// metaDescription: ≤ 155 karakter
 export const services = [
   {
     slug: "evden-eve-nakliyat",
     title: "Evden Eve Nakliyat",
+    seoTitle: "İstanbul Evden Eve Nakliyat",
+    metaDescription:
+      "İstanbul evden eve nakliyat: ücretsiz ekspertiz, yazılı sözleşme, özenli ambalaj ve marangoz desteği. Net fiyat teklifi için hemen arayın.",
     icon: "house",
-    short: "Eşyalarınız profesyonel ellerde, sigortalı ve sözleşmeli olarak yeni adresinize taşınır.",
+    short: "İstanbul evden eve nakliyatta eşyalarınız sözleşmeli, ambalajlı ve marangoz desteğiyle taşınır.",
     bullets: [
       "Uzman Marangoz Desteği",
       "Tek Kullanımlık Ambalaj",
-      "Nakliye Sigortası",
+      "Talep Halinde Nakliyat Sigortası",
       "Anahtar Teslim Hizmet",
       "Ücretsiz Ekspertiz",
     ],
     description:
-      "Evden eve taşınmak sadece eşyaları bir yerden bir yere götürmekten ibaret değildir; bir yaşamın taşınmasıdır. Bakır Nakliyat olarak bu sorumluluğun bilincindeyiz. Deneyimli ekibimiz, eşyalarınızı söküp özenle paketler, araçlara güvenle yükler ve yeni adresinizde kurulumunu tamamlar. Tüm süreç nakliye sigortası kapsamında olup, başlangıçta imzalanan taşıma sözleşmesiyle her hakkınız güvence altına alınır. Taşınma günü geldiğinde siz sadece yeni evinizin keyfini çıkarın.",
+      "Taşınma günü, bir evin yıllarca biriktirdiği her şeyin birkaç saate sığdığı gündür. Bakır Nakliyat olarak İstanbul evden eve nakliyatta bu sorumluluğun bilincindeyiz. Ekibimiz mobilyaları söker, eşyaları özenle paketler, araca dikkatle yükler ve yeni evinizde kurulumu tamamlar. Taşıma başlamadan önce imzalanan yazılı sözleşme tarih, saat ve fiyatı güvence altına alır. Evden eve nakliyat fiyatı, ücretsiz ekspertizin ardından net olarak bildirilir.",
     longDescription: [
-      "Ekspertiz aşamasında taşınacak eşyalarınız yerinde veya video görüşme yoluyla değerlendirilerek en uygun araç ve ekip planlaması yapılır.",
-      "Paketleme gününde ekibimiz; kırılgan eşyalar için balonlu naylon, mobilyalar için koruyucu battaniye, küçük parçalar için özel karton kutular kullanarak her şeyi titizlikle ambalajlar.",
-      "Taşıma sürecinde eşyalarınız araç içinde özel sabitleme aparatlarıyla güvence altına alınır, böylece uzun mesafelerde bile hasar riski sıfıra indirilir.",
+      "Ücretsiz ekspertizde eşyalarınız yerinde ya da WhatsApp üzerinden görüntülü olarak değerlendirilir; oda sayısı, kat ve asansör durumuna göre araç ve ekip planlanır.",
+      "Paketleme gününde kırılacak eşyalar balonlu naylonla, mobilyalar koruyucu battaniyeyle, küçük parçalar karton kutularla ambalajlanır; her koli gideceği odaya göre işaretlenir.",
+      "Taşıma sırasında eşyalar araç içinde kayış ve sabitleme aparatlarıyla bağlanır; yeni adreste yerleşim, montaj ve son kontrol sizinle birlikte yapılır.",
     ],
   },
   {
     slug: "ofis-ve-buro-tasima",
     title: "Ofis ve Büro Taşımacılığı",
+    seoTitle: "İstanbul Ofis ve Büro Taşımacılığı",
+    metaDescription:
+      "İstanbul ofis taşımacılığı: mesai dışı ve hafta sonu seçeneği, etiketli planlama, bilgisayar ve arşiv taşıma. Faturalı kurumsal hizmet için teklif alın.",
     icon: "office",
-    short: "İş akışınız kesintisiz devam etsin. Planlı, hızlı ve gizlilik esaslı kurumsal taşıma.",
+    short: "İş akışınız aksamasın: planlı, hızlı ve gizlilik esaslı ofis ve büro taşımacılığı.",
     bullets: [
       "Mesai Dışı Taşıma Seçeneği",
       "Kurumsal Faturalı Hizmet",
-      "IT Ekipman Taşıma",
+      "Bilgisayar ve IT Ekipmanı",
       "Dosya ve Arşiv Düzeni",
       "Gizlilik Taahhüdü",
     ],
     description:
-      "Ofis taşımacılığında her saat iş kaybına dönüşebilir. Bu nedenle Bakır Nakliyat, kurumsal müşterileri için özel bir taşıma metodolojisi geliştirmiştir. Çalışma saatleri dışında veya hafta sonu gerçekleştirilen operasyonlarla iş sürekliliğiniz korunur. Sunucular, bilgisayarlar, ofis mobilyaları ve arşiv dosyaları ayrı ayrı etiketlenerek yeni ofiste aynı düzende yerleştirme yapılır. Tüm personeliniz kurumsal fatura talep edebilir.",
+      "Ofis taşımacılığında geçen her saat iş kaybı demektir. Bu yüzden İstanbul'daki ofis ve büro taşımalarını çalışma saatleri dışında veya hafta sonu planlıyoruz. Bilgisayarlar, ofis mobilyaları ve arşiv dosyaları birim birim etiketlenir; yeni ofiste aynı düzende yerleştirilir. Böylece ekibiniz pazartesi sabahı masasına oturup işine kaldığı yerden devam eder. Hizmet kurumsal faturayla sunulur.",
     longDescription: [
-      "Taşıma öncesi ofis planlaması yapılır; hangi birimin nereye yerleştirileceği haritaya dökülür ve tüm parçalar buna göre etiketlenir.",
-      "IT ekipmanları elektrostatik korumalı ambalajlarla taşınır; kablo yönetimi ve yerleşimde teknik destek ekibimizle koordineli çalışılır.",
-      "Taşıma sonrası imha listesi dışındaki tüm dosya ve demirbaşların eksiksiz teslim edildiğine dair tutanak imzalanır.",
+      "Taşıma öncesinde yeni ofisin yerleşim planı çıkarılır; hangi birimin nereye gideceği belirlenir ve tüm parçalar bu plana göre etiketlenir.",
+      "Bilgisayar, yazıcı ve ekranlar orijinal kutularında veya darbe emici ambalajla taşınır; kablolar gruplanıp etiketlenerek kurulum kolaylaştırılır.",
+      "Taşıma bitiminde dosya ve demirbaşların eksiksiz teslim edildiğini gösteren tutanak sizinle birlikte imzalanır.",
     ],
   },
   {
     slug: "sehir-ici-nakliye",
     title: "Şehir İçi Nakliye",
+    seoTitle: "İstanbul Şehir İçi Nakliye ve Kamyonet",
+    metaDescription:
+      "İstanbul şehir içi nakliye: 39 ilçede aynı gün taşıma, kamyonet ve panelvan seçeneği, trafiğe göre planlanan rota. Şehir içi nakliye ücreti için arayın.",
     icon: "truck",
-    short: "İstanbul'un 39 ilçesinde aynı gün hizmet, uygun fiyat ve deneyimli ekip.",
+    short: "İstanbul'un 39 ilçesinde aynı gün şehir içi nakliye, kamyonet ve panelvanla.",
     bullets: [
-      "Aynı Gün Teslimat",
-      "Trafik Optimizasyonu",
+      "Aynı Gün Taşıma",
+      "Trafiğe Göre Rota Planı",
       "Saatlik veya Götürü Fiyat",
-      "Küçük Yük Araçları",
+      "Kamyonet ve Panelvan",
       "Deneyimli Sürücüler",
     ],
     description:
-      "İstanbul'un karmaşık trafik yapısını yıllarca deneyimlemiş sürücülerimiz, her ilçeye en kısa ve en pratik güzergahı bilir. Şehir içi nakliye operasyonlarında zaman kaybını en aza indiren rota planlaması ile eşyalarınız beklenmedik gecikmeler olmaksızın teslim edilir. Küçük yükler için minibüs, büyük taşımalar için tam donanımlı kamyon alternatifleriyle her bütçeye uygun çözüm sunulur.",
+      "İstanbul'un yoğun trafiğini her gün yaşayan sürücülerimiz, ilçeler arasındaki en pratik güzergahları bilir. Şehir içi nakliyede rotayı trafiğe, dar sokaklara ve park koşullarına göre önceden planlıyoruz; böylece eşyalarınız zamanında teslim edilir. Az eşya için panelvan, daha büyük taşımalar için kapalı kasa kamyonet kullanılır. Şehir içi nakliye ücreti, eşya miktarına ve mesafeye göre belirlenir.",
     longDescription: [
-      "Taşıma öncesi sürücülerimiz rotayı analiz eder; trafik yoğunluğu, dar sokak ve otopark kısıtlamaları hesaba katılarak en uygun araç belirlenir.",
-      "Küçük hacimli taşımalarda saatlik ücretlendirme seçeneği mevcuttur; gereksiz masraf ödemezsiniz.",
-      "Eşyalar araçlara yüklendikten sonra Taşıma Takip Formu doldurulur; teslimatta karşılaştırmalı kontrol yapılır.",
+      "Taşıma öncesinde trafik yoğunluğu, dar sokak ve otopark kısıtları değerlendirilir; yüke ve adrese en uygun araç seçilir.",
+      "Küçük hacimli taşımalarda saatlik ücretlendirme seçeneği sunulur; boş kalan kapasite için ödeme yapmazsınız.",
+      "Eşyalar araca yüklenirken liste halinde kontrol edilir; teslimatta aynı liste üzerinden sizinle birlikte karşılaştırılır.",
     ],
   },
   {
     slug: "parca-esya-tasima",
-    title: "Parça Eşya Taşımacılığı",
+    title: "Parça Eşya Taşıma",
+    seoTitle: "Parça Eşya Taşıma İstanbul",
+    metaDescription:
+      "Parça eşya taşıma İstanbul: tek koltuk, beyaz eşya veya birkaç koli için komple araç ücreti ödemeyin. Fotoğrafla hızlı fiyat, aynı gün teslimat.",
     icon: "package",
-    short: "Birkaç koli veya tek bir mobilya için komple araç masrafı ödemek zorunda değilsiniz.",
+    short: "Birkaç koli veya tek mobilya için komple araç ücreti ödemeden parça eşya taşıma.",
     bullets: [
       "Ekonomik Fiyatlandırma",
       "Gün İçi Teslimat",
-      "Evden Eve Kalitesi",
-      "Hasarsız Taşıma Garantisi",
+      "Evden Eve Özeniyle Ambalaj",
+      "Fotoğrafla Hızlı Fiyat",
       "Kargo Alternatifi",
     ],
     description:
-      "Yeni aldığınız beyaz eşyayı, tek koltuğu veya birkaç karton kutuyu taşıtmak için komple nakliyat aracı kiralamak zorunda değilsiniz. Bakır Nakliyat'ın parça eşya hizmeti, yükünüzü uygun güzergah araçlarımıza entegre ederek hem sizin için hem de çevre için daha ekonomik ve verimli bir taşıma sunar. Eşyanızın boyutu ne olursa olsun, tam araç kalitesinde ambalaj ve özen uygulanır.",
+      "Yeni aldığınız beyaz eşyayı, tek bir koltuğu veya birkaç koliyi taşıtmak için komple nakliyat aracı tutmanız gerekmez. Parça eşya taşımada eşyanızı aynı yöne giden diğer işlerle tek seferde götürüyor, panelvan veya kamyonetle adresinize ulaştırıyoruz. Bu sayede parça eşya taşıma fiyatları komple araca göre daha ekonomik olur. Eşyanız küçük de olsa evden eve nakliyattaki ambalaj ve özen aynen uygulanır.",
     longDescription: [
-      "Taşınacak eşya fotoğrafla değerlendirilir; hacim ve ağırlığa göre sabit fiyat teklifi sunulur, taşıma günü sürpriz ücret çıkmaz.",
-      "Parça eşyalar araçlarda diğer yüklerden ayrı bölümlere, özel ayırıcılarla yerleştirilir; birbirine veya araca çarpma riski sıfıra indirilir.",
-      "Teslimatta alıcının imzaladığı hasar tespit tutanağı hazır tutulur; nakliye sigortası kapsamında tam koruma sağlanır.",
+      "Eşyanızın fotoğrafını WhatsApp'tan göndermeniz yeterlidir; hacim ve ağırlığa göre net fiyat verilir, taşıma günü sürpriz ücret çıkmaz.",
+      "Parça eşyalar araçta diğer yüklerden ayrılarak yerleştirilir ve kayışlarla sabitlenir; taşıma sırasında birbirine çarpmaları önlenir.",
+      "Teslimatta eşyanın durumu alıcıyla birlikte kontrol edilir; talep ederseniz taşımaya özel nakliyat sigortası düzenlenir.",
     ],
   },
   {
     slug: "hafriyat-tasimaciligi",
     title: "Hafriyat Taşımacılığı",
+    seoTitle: "Hafriyat ve Moloz Taşıma İstanbul",
+    metaDescription:
+      "İstanbul hafriyat ve moloz taşıma: belgeli çözüm ortaklarımızın izinli araçlarıyla şantiye ve tadilat atığı sevkiyatı, tek noktadan koordinasyon.",
     icon: "construction",
-    short: "İnşaat ve tadilat atıklarınız, belgeli çözüm ortaklarımızın izinli araçlarıyla yasal çerçevede taşınır ve bertaraf edilir.",
+    short: "İnşaat ve tadilat molozunuz, belgeli çözüm ortaklarımızın izinli araçlarıyla yasal çerçevede taşınır.",
     bullets: [
       "Belgeli Çözüm Ortakları",
       "Şantiye Koordinasyonu",
@@ -92,51 +121,57 @@ export const services = [
       "Faturalı Hizmet",
     ],
     description:
-      "Hafriyat taşımacılığı, sıradan nakliyattan farklı olarak yasal izin ve lisansların yanı sıra teknik bilgi gerektiren özel bir alandır. Bakır Nakliyat, izinli araçlara sahip belgeli çözüm ortaklarıyla şantiye ve tadilat hafriyatını ilgili yönetmeliklere uygun şekilde taşıtır. Boşaltma noktasının belirlenmesinden bertaraf belgesinin teminine kadar süreç tek noktadan firmamız tarafından koordine edilir.",
+      "Hafriyat taşıma, yasal izin ve teknik bilgi gerektiren özel bir alandır. Bakır Nakliyat bu işi, izinli araçlara sahip belgeli çözüm ortaklarıyla yürütür. Şantiye ve tadilat molozu yönetmeliklere uygun şekilde taşınır. Boşaltma noktasının belirlenmesinden bertaraf belgesine kadar süreci firmamız koordine eder. Siz yalnızca tek bir muhatapla görüşürsünüz.",
     longDescription: [
-      "Şantiye sahasında kamyon konumlandırması ve yükleme sıralaması, inşaat ekibinizle koordineli olarak planlanır; iş süreci aksatılmaz.",
+      "Şantiye sahasında araç konumlandırması ve yükleme sıralaması, inşaat ekibinizle koordineli olarak planlanır; iş süreci aksatılmaz.",
       "Taşımada yalnızca İstanbul Büyükşehir Belediyesi ve ilgili kurumlardan gerekli izinlere sahip araçlar kullanılır; denetimde sorun yaşanmaz.",
       "Bertaraf belgesi taşıma sonrası müşteriye teslim edilir; inşaat ruhsatı kapsamında zorunlu evrak arşivinizde hazır bulunur.",
     ],
   },
   {
     slug: "asansorlu-tasimacilik",
-    title: "Asansörlü Taşımacılık",
+    title: "Asansörlü Nakliyat",
+    seoTitle: "Asansörlü Nakliyat İstanbul",
+    metaDescription:
+      "Asansörlü nakliyat İstanbul: yüksek katlarda dış cephe asansörüyle hızlı taşıma, merdiven ve duvar hasarı riski yok. Asansörlü nakliyat fiyatı için arayın.",
     icon: "lift",
-    short: "Yüksek katlarda merdiven yerine güvenli, hızlı ve bina hasarı olmayan asansörlü çözüm.",
+    short: "Yüksek katlarda merdiven yerine dış cephe asansörüyle güvenli ve hızlı asansörlü nakliyat.",
     bullets: [
-      "Bina Dışı Asansör Platformu",
-      "Her Kata Erişim",
+      "Dış Cephe Asansör Platformu",
+      "Yüksek Katlara Erişim",
       "Merdiven ve Duvar Hasarı Yok",
       "Hızlı İndirme-Bindirme",
-      "Ağır Eşya Kapasitesi",
+      "Ağır Eşya Taşıma",
     ],
     description:
-      "Dar merdivenden koltuk veya buz dolabı çıkarmaya çalışmak hem zaman kaybettirir hem de ciddi hasar riskleri doğurur. Bakır Nakliyat'ın bina dışı asansör platformları, 5. kattan 20. kata kadar her yüksekliğe güvenli erişim sağlar. Özellikle İstanbul'un eski yapı stoğundaki dar merdiven boşlukları için vazgeçilmez olan bu hizmet, hem eşyalarınızı hem de binanızı koruma altına alır.",
+      "Dar merdivenden koltuk veya buzdolabı indirmek hem zaman kaybettirir hem de eşyaya ve binaya zarar verebilir. Asansörlü nakliyatta eşyalar, bina dışına kurulan asansör platformuyla doğrudan pencere veya balkondan indirilip bindirilir. Bu yöntem özellikle İstanbul'un eski binalarındaki dar merdivenlerde ve yüksek katlı sitelerde taşımayı hızlandırır.",
     longDescription: [
-      "Asansör platformu yerleştirilmeden önce bina cephesi ve çevre koşulları değerlendirilir; gerekirse komşu binayla koordinasyon sağlanır.",
-      "Platform operatörü sertifikalı personelimizden oluşur; iş güvenliği protokolleri eksiksiz uygulanır.",
-      "Bina yönetimi veya apartman sakinleriyle koordinasyon gerekiyorsa, firmamız bu iletişimi müşteri adına üstlenir.",
+      "Asansör kurulmadan önce bina cephesi, balkon ölçüleri ve araç park alanı değerlendirilir; gerekirse bina yönetimiyle görüşme sizin adınıza yapılır.",
+      "Asansör platformunu, bu işte deneyimli çözüm ortaklarımızın ekipleri kurar ve işletir; çalışma alanı şeritle çevrilir.",
+      "Asansörlü nakliyat fiyatı; kat yüksekliği, tek veya çift taraflı kurulum ve taşınacak eşya miktarına göre belirlenir.",
     ],
   },
   {
     slug: "esya-depolama",
     title: "Eşya Depolama",
+    seoTitle: "İstanbul Eşya Depolama Hizmeti",
+    metaDescription:
+      "İstanbul eşya depolama: taşınma arası, tadilat veya yurt dışı dönemi için eşyalarınızı ambalajlayıp güvenli depoda saklıyoruz. Esnek süre, net fiyat.",
     icon: "storage",
-    short: "7/24 güvenlikli, nem ve ısı kontrollü depolarımızda eşyalarınız istediğiniz süre güvende kalır.",
+    short: "Taşınma arası, tadilat veya yurt dışı dönemi için eşyalarınız ambalajlanıp güvenle saklanır.",
     bullets: [
-      "7/24 Kameralı Güvenlik",
-      "Nem ve Isı Kontrolü",
-      "Sigortalı Depolama",
+      "Güvenlikli Depo Alanı",
+      "Ambalajlı Teslim Alma",
+      "Talep Halinde Sigorta",
       "Esnek Depolama Süresi",
-      "Kolay Erişim İmkânı",
+      "Randevulu Erişim",
     ],
     description:
-      "Taşınma tarihleri arasındaki boşluk, yurt dışı görevi, tadilat süreci veya küçülen ev ihtiyacı… Eşya depolama ihtiyacı pek çok farklı sebepten kaynaklanabilir. Bakır Nakliyat'ın kameralı, nem kontrollü ve sigortalı depo alanlarında eşyalarınız aylarca veya yıllarca mükemmel koşullarda saklanır. Depo içindeki eşyalarınıza önceden randevu alarak erişebilir, dilediğinizde teslimat talep edebilirsiniz.",
+      "Taşınma tarihleri arasındaki boşluk, yurt dışı görevi, tadilat veya küçülen ev… Eşya depolama ihtiyacı pek çok sebepten doğabilir. Bakır Nakliyat, eşyalarınızı evinizden alır, ambalajlar ve güvenlikli depo alanında saklar. Depolanan eşyalar teslim alınırken listelenir ve fotoğraflanır. Önceden randevu alarak eşyalarınıza erişebilir, dilediğiniz tarihte yeni adresinize teslimat isteyebilirsiniz.",
     longDescription: [
-      "Depolamaya alınan her eşya fotoğraflanır, barkodlanır ve dijital envantere kaydedilir; giriş-çıkış işlemleri anlık takip edilir.",
-      "Depolarımız yıl boyunca sabit nem oranında tutulur; ahşap mobilyalar, elektronik eşyalar ve tekstil ürünleri için uygun koşullar sağlanır.",
-      "Aylık, üç aylık veya yıllık depolama paketleri mevcuttur; uzun dönem tercihlerde avantajlı fiyatlandırma uygulanır.",
+      "Depoya alınan her eşya listelenir ve fotoğraflanır; teslimatta aynı liste üzerinden sizinle birlikte kontrol yapılır.",
+      "Mobilyalar koruyucu örtülerle, hassas eşyalar kolilenerek depolanır; ahşap ve tekstil ürünleri zemine doğrudan temas etmeyecek şekilde yerleştirilir.",
+      "Eşya depolama fiyatları hacme ve süreye göre belirlenir; aylık, üç aylık veya yıllık seçeneklerde uzun süreli depolama daha avantajlıdır.",
     ],
   },
 ];

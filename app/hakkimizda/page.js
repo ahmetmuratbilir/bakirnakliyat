@@ -57,8 +57,8 @@ export default function HakkimizdaPage() {
             </p>
             <p>
               Bugün bünyemizdeki kapalı kasa kamyonet ve panelvanlar, ihtiyaç halinde çözüm ortaklarımızın dış
-              cephe asansörleri ve alanında uzman marangoz-taşıma personeliyle binlerce ailenin ve yüzlerce kurumsal firmanın taşınma sürecini başarıyla
-              yönettik.
+              cephe asansörleri ve alanında uzman marangoz-taşıma personeliyle pek çok ailenin ve kurumsal firmanın
+              taşınma sürecini başarıyla yönettik.
             </p>
           </div>
 
