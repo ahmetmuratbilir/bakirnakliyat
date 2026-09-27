@@ -56,13 +56,13 @@ export default function HakkimizdaPage() {
               ettik.
             </p>
             <p>
-              Bugün bünyemizdeki kapalı kasa araç filosu, teleskopik dış cephe asansörleri ve alanında uzman
-              marangoz-taşıma personeliyle binlerce ailenin ve yüzlerce kurumsal firmanın taşınma sürecini başarıyla
+              Bugün bünyemizdeki kapalı kasa kamyonet ve panelvanlar, ihtiyaç halinde çözüm ortaklarımızın dış
+              cephe asansörleri ve alanında uzman marangoz-taşıma personeliyle binlerce ailenin ve yüzlerce kurumsal firmanın taşınma sürecini başarıyla
               yönettik.
             </p>
           </div>
 
-          <figure className="reveal relative my-12 aspect-4/3 overflow-hidden rounded-panel bg-navy-50 shadow-lift sm:aspect-video">
+          <figure className="reveal relative my-12 aspect-16/10 overflow-hidden rounded-panel bg-navy-50 shadow-lift sm:aspect-video">
             <Photo slug="paletli-parsiyel-yuk-tasima" fill sizes="(min-width: 960px) 832px, calc(100vw - 2rem)" imgClassName="object-[50%_60%]" />
             <div
               aria-hidden="true"

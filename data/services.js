@@ -83,19 +83,19 @@ export const services = [
     slug: "hafriyat-tasimaciligi",
     title: "Hafriyat Taşımacılığı",
     icon: "construction",
-    short: "İnşaat ve tadilat atıklarınız lisanslı araç filomuzla yasal çerçevede taşınır ve bertaraf edilir.",
+    short: "İnşaat ve tadilat atıklarınız, belgeli çözüm ortaklarımızın izinli araçlarıyla yasal çerçevede taşınır ve bertaraf edilir.",
     bullets: [
-      "Lisanslı ve İzinli Araçlar",
+      "Belgeli Çözüm Ortakları",
       "Şantiye Koordinasyonu",
       "Çevre Mevzuatına Uyum",
       "Hızlı Sevkiyat",
       "Faturalı Hizmet",
     ],
     description:
-      "Hafriyat taşımacılığı, sıradan nakliyattan farklı olarak yasal izin ve lisansların yanı sıra teknik bilgi gerektiren özel bir alandır. Bakır Nakliyat, sahip olduğu lisanslı kamyon filosu ve deneyimli operatörleriyle şantiye ve tadilat hafriyatını ilgili yönetmeliklere tam uyum içinde taşır. Boşaltma noktasının belirlenmesinden bertaraf belgesinin teminine kadar tüm bürokratik süreç firmamız tarafından yönetilir.",
+      "Hafriyat taşımacılığı, sıradan nakliyattan farklı olarak yasal izin ve lisansların yanı sıra teknik bilgi gerektiren özel bir alandır. Bakır Nakliyat, izinli araçlara sahip belgeli çözüm ortaklarıyla şantiye ve tadilat hafriyatını ilgili yönetmeliklere uygun şekilde taşıtır. Boşaltma noktasının belirlenmesinden bertaraf belgesinin teminine kadar süreç tek noktadan firmamız tarafından koordine edilir.",
     longDescription: [
       "Şantiye sahasında kamyon konumlandırması ve yükleme sıralaması, inşaat ekibinizle koordineli olarak planlanır; iş süreci aksatılmaz.",
-      "Tüm hafriyat araçları, İstanbul Büyükşehir Belediyesi ve ilgili kurumlardan gerekli izinlere sahip olup denetimde sorun yaşanmaz.",
+      "Taşımada yalnızca İstanbul Büyükşehir Belediyesi ve ilgili kurumlardan gerekli izinlere sahip araçlar kullanılır; denetimde sorun yaşanmaz.",
       "Bertaraf belgesi taşıma sonrası müşteriye teslim edilir; inşaat ruhsatı kapsamında zorunlu evrak arşivinizde hazır bulunur.",
     ],
   },

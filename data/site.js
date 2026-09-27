@@ -59,7 +59,7 @@ export const site = {
     { value: String(YEARS), suffix: "+", label: "Yıl Saha Tecrübesi" },
     { value: "39", suffix: "", label: "İstanbul İlçesi" },
     { value: "7/24", suffix: "", label: "Acil Sevkiyat" },
-    { value: "2", suffix: "", label: "Özmal Araç" },
+    { value: "3", suffix: "", label: "Özmal Araç" },
   ],
 
   social: {

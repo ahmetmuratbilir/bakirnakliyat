@@ -158,7 +158,7 @@ function MobileMenu({ pathname, navLinks }) {
         aria-haspopup="dialog"
         aria-expanded={isOpen}
         aria-controls="mobil-menu"
-        className="grid size-11 place-items-center rounded-btn text-navy-900 ring-1 ring-inset ring-line transition-colors hover:bg-navy-50 lg:hidden"
+        className="-mr-2.5 grid size-11 place-items-center rounded-btn text-navy-900 transition-colors hover:bg-navy-50 active:bg-navy-100 lg:hidden"
       >
         <Menu aria-hidden="true" className="size-6" strokeWidth={2} />
         <span className="sr-only">Menüyü aç</span>
@@ -180,7 +180,7 @@ function MobileMenu({ pathname, navLinks }) {
             <button
               type="button"
               onClick={close}
-              className="grid size-11 place-items-center rounded-btn text-navy-900 ring-1 ring-inset ring-line transition-colors hover:bg-navy-50"
+              className="-mr-2.5 grid size-11 place-items-center rounded-btn text-navy-900 transition-colors hover:bg-navy-50 active:bg-navy-100"
             >
               <X aria-hidden="true" className="size-6" strokeWidth={2} />
               <span className="sr-only">Menüyü kapat</span>

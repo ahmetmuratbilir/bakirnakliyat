@@ -51,7 +51,7 @@ export default async function CityPage({ params }) {
       <section className="section bg-white">
         <div className="container-page grid gap-10 lg:grid-cols-12 lg:gap-12">
           <div className="min-w-0 space-y-12 lg:col-span-8">
-            <figure className="relative aspect-4/3 overflow-hidden rounded-panel bg-navy-50 shadow-lift sm:aspect-16/10">
+            <figure className="relative aspect-16/10 overflow-hidden rounded-panel bg-navy-50 shadow-lift">
               <Photo
                 slug="gece-sevkiyat-forklift-palet-yukleme"
                 alt={`İstanbul – ${city.name} şehirlerarası sevkiyat için araca gece yüklemesi`}

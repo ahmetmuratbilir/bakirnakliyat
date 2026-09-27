@@ -45,7 +45,7 @@ export default async function ServicePage({ params }) {
         <div className="container-page grid gap-10 lg:grid-cols-12 lg:gap-12">
           {/* Ana içerik */}
           <div className="space-y-12 lg:col-span-8">
-            <figure className="relative aspect-4/3 overflow-hidden rounded-panel bg-navy-50 shadow-lift sm:aspect-16/10">
+            <figure className="relative aspect-16/10 overflow-hidden rounded-panel bg-navy-50 shadow-lift">
               <Photo slug={photo} fill eager sizes="(min-width: 1200px) 740px, (min-width: 1024px) calc(66vw - 60px), calc(100vw - 2rem)" />
               <div
                 aria-hidden="true"

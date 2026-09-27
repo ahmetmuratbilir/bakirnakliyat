@@ -1,3 +1,4 @@
+import { Handshake } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import CtaBand from "@/components/CtaBand";
 import Photo from "@/components/ui/Photo";
@@ -9,18 +10,19 @@ export const metadata = {
   alternates: { canonical: `${site.domain}/kurumsal` },
 };
 
-// DOĞRULANMASI GEREKİYOR: bu adetler ve araç türleri kullanıcıdan teyit
-// alınmadan önceki siteden aynen taşındı (bkz. tasarim-v3 özeti).
+// Fotoğraflarda görülen araçlara göre (34 BJV 756 kamyonet; 34 PMF 075 ve
+// 34 RIL 010 panelvan). Önceki sitedeki 28 araçlık tablo abartılı bulundu.
 const fleet = [
-  { type: "Kapalı Kasa Panelvan & Kamyonet", count: "6 Adet", use: "Şehir içi parça eşya ve dar sokak taşımaları" },
-  { type: "Orta Boy Kapalı Kasa Kamyon", count: "9 Adet", use: "Standart 2+1 ve 3+1 evden eve nakliyat operasyonları" },
-  { type: "Büyük Boy Şehirlerarası Kamyon", count: "5 Adet", use: "Uzun mesafe komple ev ve ofis taşımacılığı" },
   {
-    type: "Bina Dışı Teleskopik Asansör Aracı",
-    count: "4 Adet",
-    use: "20. kata kadar dış cepheden güvenli eşya indirme-bindirme",
+    type: "Kapalı Kasa Kamyonet",
+    count: "1 Adet",
+    use: "Evden eve nakliyat, şehir içi taşıma ve paletli ticari yük",
   },
-  { type: "Ağır Yük & Hafriyat Kamyonu", count: "4 Adet", use: "Şantiye, moloz ve tadilat atığı sevkiyatı" },
+  {
+    type: "Yüksek Tavanlı Panelvan",
+    count: "2 Adet",
+    use: "Koli, parça eşya ve parsiyel sevkiyat; dar sokak taşımaları",
+  },
 ];
 
 const photos = [
@@ -108,7 +110,7 @@ export default function KurumsalPage() {
                       <th scope="row" className="px-5 py-4 font-semibold text-navy-900 max-sm:p-0">
                         {item.type}
                       </th>
-                      <td className="whitespace-nowrap px-5 py-4 font-bold text-copper-700 tabular-nums max-sm:p-0 max-sm:text-right">
+                      <td className="px-5 py-4 font-bold text-copper-700 tabular-nums sm:whitespace-nowrap max-sm:p-0 max-sm:text-right">
                         {item.count}
                       </td>
                       <td className="px-5 py-4 text-muted max-sm:col-span-2 max-sm:p-0 max-sm:pt-1">{item.use}</td>
@@ -117,6 +119,11 @@ export default function KurumsalPage() {
                 </tbody>
               </table>
             </div>
+            <p className="mt-4 flex items-start gap-2.5 text-muted">
+              <Handshake aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-copper-600" strokeWidth={1.9} />
+              Dış cephe asansörü, büyük kamyon veya hafriyat aracı gerektiren işler belgeli çözüm ortaklarımızla,
+              tek noktadan koordine edilerek yürütülür.
+            </p>
           </div>
         </div>
       </section>

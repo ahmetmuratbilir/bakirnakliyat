@@ -125,7 +125,7 @@ export default function HomePage() {
           aria-hidden="true"
           className="pointer-events-none absolute -right-40 -top-40 size-144 rounded-full bg-copper-100/60 blur-3xl"
         />
-        <div className="container-page relative grid items-center gap-10 py-10 sm:py-14 lg:grid-cols-12 lg:gap-12 lg:py-20">
+        <div className="container-page relative grid items-center gap-8 py-8 sm:py-12 lg:grid-cols-12 lg:gap-12 lg:py-20">
           <div className="lg:col-span-6">
             <p className="eyebrow">İstanbul&apos;da {site.yearsOfExperience} Yıllık Saha Tecrübesi</p>
             <h1 className="mt-4 text-display font-extrabold text-navy-900">
@@ -146,9 +146,13 @@ export default function HomePage() {
               </Button>
             </div>
 
-            <ul className="mt-9 grid gap-3 border-t border-line pt-6 sm:grid-cols-3">
+            {/* Mobilde tek satır, 3 sütun (ikon üstte) — alt alta dizilince ~150px yer kaplıyordu */}
+            <ul className="mt-8 grid grid-cols-3 gap-2 border-t border-line pt-5 sm:mt-9 sm:gap-3 sm:pt-6">
               {heroBadges.map(({ icon: Icon, label }) => (
-                <li key={label} className="flex items-center gap-2.5 text-base font-semibold text-navy-900">
+                <li
+                  key={label}
+                  className="flex flex-col items-center gap-1.5 text-center text-sm font-semibold leading-tight text-navy-900 sm:flex-row sm:gap-2.5 sm:text-left sm:text-base"
+                >
                   <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-copper-50 text-copper-600 ring-1 ring-copper-100">
                     <Icon aria-hidden="true" className="size-5" strokeWidth={1.9} />
                   </span>
@@ -160,7 +164,7 @@ export default function HomePage() {
 
           <div className="lg:col-span-6">
             <div className="relative lg:pl-6">
-              <div className="relative aspect-4/3 overflow-hidden rounded-panel bg-navy-50 shadow-float sm:aspect-5/4 lg:aspect-4/5">
+              <div className="relative aspect-3/2 overflow-hidden rounded-panel bg-navy-50 shadow-float sm:aspect-16/10 lg:aspect-4/5">
                 <Photo
                   slug="evden-eve-nakliyat-beyaz-esya-tasima"
                   mobileSlug="evden-eve-nakliyat-beyaz-esya-tasima-yatay"

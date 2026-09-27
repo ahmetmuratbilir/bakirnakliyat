@@ -22,14 +22,14 @@ export default function PageHero({ title, subtitle, breadcrumb }) {
         aria-hidden="true"
         className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/3 bg-[radial-gradient(circle_at_70%_30%,var(--color-copper-100),transparent_60%)] opacity-70 md:block"
       />
-      <div className="container-page relative py-12 md:py-16">
+      <div className="container-page relative py-7 sm:py-10 md:py-16">
         {crumbs && (
           <>
             <script
               type="application/ld+json"
               dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
             />
-            <nav aria-label="Sayfa konumu" className="mb-5">
+            <nav aria-label="Sayfa konumu" className="mb-3 sm:mb-5">
               <ol className="flex flex-wrap items-center gap-1.5 text-sm text-subtle">
                 {crumbs.map((c, i) => (
                   <li key={i} className="flex items-center gap-1.5">
@@ -52,7 +52,7 @@ export default function PageHero({ title, subtitle, breadcrumb }) {
 
         <h1 className="max-w-4xl text-display font-extrabold text-navy-900">{title}</h1>
 
-        {subtitle && <p className="mt-4 max-w-2xl text-lead text-muted">{subtitle}</p>}
+        {subtitle && <p className="mt-3 max-w-2xl text-lead text-muted sm:mt-4">{subtitle}</p>}
       </div>
     </section>
   );
