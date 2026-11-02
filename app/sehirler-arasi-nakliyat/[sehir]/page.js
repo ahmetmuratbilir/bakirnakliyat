@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, MapPin, PackageCheck, Route, ShieldCheck } from "lucide-react";
+import { ArrowRight, CircleCheck, MapPin, PackageCheck, Route, ShieldCheck } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import CtaBand from "@/components/CtaBand";
 import QuoteCard from "@/components/QuoteCard";
 import Photo from "@/components/ui/Photo";
 import { cities, getCity } from "@/data/cities";
+import { cityContent } from "@/data/city-content";
 import { site } from "@/data/site";
 
 export function generateStaticParams() {
@@ -18,7 +19,9 @@ export async function generateMetadata({ params }) {
   if (!city) return {};
   return {
     title: `İstanbul ${city.name} Evden Eve Nakliyat`,
-    description: `İstanbul ${city.name} evden eve nakliyat ve parça eşya taşıma: kapalı kasa araç, yazılı sözleşme ve güzergaha özel net fiyat teklifi.`,
+    description:
+      cityContent[sehir]?.meta ??
+      `İstanbul ${city.name} evden eve nakliyat ve parça eşya taşıma: kapalı kasa araç, yazılı sözleşme ve güzergaha özel net fiyat teklifi.`,
     alternates: { canonical: `${site.domain}/sehirler-arasi-nakliyat/${sehir}` },
   };
 }
@@ -39,6 +42,18 @@ export default async function CityPage({ params }) {
   if (!city) return notFound();
 
   const otherCities = cities.filter((c) => c.slug !== sehir);
+  const content = cityContent[sehir];
+  const faqJsonLd = content?.faq?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: content.faq.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      }
+    : null;
 
   return (
     <>
@@ -47,6 +62,9 @@ export default async function CityPage({ params }) {
         subtitle={`İstanbul ile ${city.name} arasında sözleşmeli evden eve nakliyat ve parça eşya taşıma`}
         breadcrumb={[{ href: "/sehirler-arasi-nakliyat", label: "Şehirlerarası" }, { label: city.name }]}
       />
+      {faqJsonLd && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      )}
 
       <section className="section bg-white">
         <div className="container-page grid gap-10 lg:grid-cols-12 lg:gap-12">
@@ -71,6 +89,36 @@ export default async function CityPage({ params }) {
               </figcaption>
             </figure>
 
+            {content ? (
+              <>
+                <div className="reveal space-y-4 text-lead text-muted">
+                  {content.intro.map((p) => (
+                    <p key={p.slice(0, 24)}>{p}</p>
+                  ))}
+                </div>
+                <dl className="reveal grid gap-3 rounded-card border border-line bg-surface p-5 sm:grid-cols-2">
+                  <div>
+                    <dt className="text-sm font-semibold text-subtle">Mesafe</dt>
+                    <dd className="font-bold text-navy-900">{content.km}</dd>
+                  </div>
+                  <div>
+                    <dt className="text-sm font-semibold text-subtle">Güzergah</dt>
+                    <dd className="font-bold text-navy-900">{content.route}</dd>
+                  </div>
+                </dl>
+                <div className="reveal">
+                  <h2 className="text-xl font-bold text-navy-900">İstanbul – {city.name} Taşınmasında Dikkat Ettiklerimiz</h2>
+                  <ul className="mt-4 space-y-3">
+                    {content.tips.map((t) => (
+                      <li key={t} className="flex items-start gap-3 text-ink">
+                        <CircleCheck aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-copper-600" strokeWidth={2} />
+                        {t}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </>
+            ) : (
             <div className="reveal space-y-4 text-lead text-muted">
               <p>
                 <strong className="font-bold text-navy-900">İstanbul – {city.name}</strong> güzergahında
@@ -81,6 +129,7 @@ export default async function CityPage({ params }) {
                 korunur. Yeni adrese varınca montaj ekibimiz eşyalarınızı odalarınıza kurar.
               </p>
             </div>
+            )}
 
             <ul className="reveal grid gap-4 sm:grid-cols-3">
               {standards.map(({ icon: Icon, title, text }) => (
@@ -93,6 +142,20 @@ export default async function CityPage({ params }) {
                 </li>
               ))}
             </ul>
+
+            {content?.faq?.length > 0 && (
+              <div className="reveal">
+                <h2 className="text-xl font-bold text-navy-900">İstanbul – {city.name} Nakliyat Hakkında Sık Sorulanlar</h2>
+                <div className="mt-4 divide-y divide-line rounded-card border border-line bg-white">
+                  {content.faq.map((f) => (
+                    <details key={f.q} className="group p-5">
+                      <summary className="cursor-pointer list-none font-semibold text-navy-900">{f.q}</summary>
+                      <p className="mt-2 text-muted">{f.a}</p>
+                    </details>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           <aside className="min-w-0 space-y-6 lg:sticky lg:top-28 lg:col-span-4 lg:self-start">

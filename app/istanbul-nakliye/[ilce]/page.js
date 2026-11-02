@@ -1,12 +1,13 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowRight, CircleCheck } from "lucide-react";
+import { ArrowRight, CircleCheck, MapPin } from "lucide-react";
 import PageHero from "@/components/PageHero";
 import CtaBand from "@/components/CtaBand";
 import QuoteCard from "@/components/QuoteCard";
 import Photo from "@/components/ui/Photo";
 import ServiceIcon from "@/components/icons/ServiceIcon";
-import { districts, getDistrict } from "@/data/districts";
+import { districts } from "@/data/districts";
+import { districtContent, semtler } from "@/data/district-content";
 import { services } from "@/data/services";
 import { site } from "@/data/site";
 
@@ -19,8 +20,12 @@ const DISTRICT_PHOTOS = [
   "yapi-market-boya-teslimat",
 ];
 
+// 39 ilçe + İkitelli, Hadımköy gibi öncelikli semtler aynı rotada yayınlanır
+const allAreas = [...districts, ...semtler];
+const getDistrict = (slug) => allAreas.find((d) => d.slug === slug);
+
 export function generateStaticParams() {
-  return districts.map((d) => ({ ilce: d.slug }));
+  return allAreas.map((d) => ({ ilce: d.slug }));
 }
 
 export async function generateMetadata({ params }) {
@@ -28,8 +33,10 @@ export async function generateMetadata({ params }) {
   const district = getDistrict(ilce);
   if (!district) return {};
   return {
-    title: `${district.name} Evden Eve Nakliyat`,
-    description: `${district.name} evden eve nakliyat, parça eşya ve asansörlü taşıma. Sözleşmeli, faturalı hizmet; ücretsiz ekspertizle net fiyat için hemen arayın.`,
+    title: district.parent ? `${district.name} Nakliyat ve Evden Eve Taşıma` : `${district.name} Evden Eve Nakliyat`,
+    description:
+      districtContent[ilce]?.meta ??
+      `${district.name} evden eve nakliyat, parça eşya ve asansörlü taşıma. Sözleşmeli, faturalı hizmet; ücretsiz ekspertizle net fiyat için hemen arayın.`,
     alternates: { canonical: `${site.domain}/istanbul-nakliye/${ilce}` },
   };
 }
@@ -39,11 +46,28 @@ export default async function DistrictPage({ params }) {
   const district = getDistrict(ilce);
   if (!district) return notFound();
 
-  // Alfabetik ilk 10 yerine: bu ilçeden sonraki 10 ilçe (döngüsel).
-  // Böylece 39 ilçenin hepsi eşit iç bağlantı alır.
-  const index = districts.findIndex((d) => d.slug === ilce);
-  const nearbyDistricts = Array.from({ length: 10 }, (_, i) => districts[(index + 1 + i) % districts.length]);
+  const content = districtContent[ilce];
+  const parent = district.parent ? getDistrict(district.parent) : null;
+  // İç bağlantılar: önce gerçek komşu ilçe/semtler, sonra döngüsel sıradaki ilçelerle 10'a tamamlanır
+  const index = allAreas.findIndex((d) => d.slug === ilce);
+  const neighborList = (content?.neighbors ?? []).map(getDistrict).filter(Boolean);
+  const fill = Array.from({ length: allAreas.length }, (_, i) => allAreas[(index + 1 + i) % allAreas.length]).filter(
+    (d) => d.slug !== ilce && !neighborList.includes(d)
+  );
+  const nearbyDistricts = [...neighborList, ...fill].slice(0, 10);
   const photo = DISTRICT_PHOTOS[index % DISTRICT_PHOTOS.length];
+
+  const faqJsonLd = content?.faq?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: content.faq.map((f) => ({
+          "@type": "Question",
+          name: f.q,
+          acceptedAnswer: { "@type": "Answer", text: f.a },
+        })),
+      }
+    : null;
 
   const standards = [
     `${district.name} için aynı gün ücretsiz ekspertiz`,
@@ -59,8 +83,15 @@ export default async function DistrictPage({ params }) {
       <PageHero
         title={`${district.name} Evden Eve Nakliyat`}
         subtitle={`${district.name} ve çevresinde sözleşmeli, marangozlu ve asansörlü evden eve nakliyat ile parça eşya taşıma`}
-        breadcrumb={[{ href: "/istanbul-nakliye", label: "İstanbul Nakliye" }, { label: district.name }]}
+        breadcrumb={[
+          { href: "/istanbul-nakliye", label: "İstanbul Nakliye" },
+          ...(parent ? [{ href: `/istanbul-nakliye/${parent.slug}`, label: parent.name }] : []),
+          { label: district.name },
+        ]}
       />
+      {faqJsonLd && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      )}
 
       <section className="section bg-white">
         <div className="container-page grid gap-10 lg:grid-cols-12 lg:gap-12">
@@ -82,21 +113,54 @@ export default async function DistrictPage({ params }) {
             </figure>
 
             <div className="reveal space-y-4 text-lead text-muted">
-              <p>
-                <strong className="font-bold text-navy-900">{site.name}</strong> olarak {district.name} evden eve
-                nakliyat ve parça eşya taşımalarında semtin sokak yapısını, site yönetimi kurallarını ve park
-                koşullarını önceden planlıyoruz. Böylece taşınma günü sürprizlerle değil, programla ilerler.
-              </p>
-              <p>
-                {district.name} nakliyatında eşyalarınız kaliteli ambalaj malzemeleriyle sarılır. Mobilyalarınızı
-                marangozlarımız söker ve yeni evinizde istediğiniz odaya kurar.
-              </p>
+              {content ? (
+                content.intro.map((p) => <p key={p.slice(0, 24)}>{p}</p>)
+              ) : (
+                <p>
+                  <strong className="font-bold text-navy-900">{site.name}</strong> olarak {district.name} evden eve
+                  nakliyat ve parça eşya taşımalarında semtin sokak yapısını, site yönetimi kurallarını ve park
+                  koşullarını önceden planlıyoruz.
+                </p>
+              )}
             </div>
 
+            {content?.mahalleler?.length > 0 && (
+              <div className="reveal">
+                <h2 className="text-xl font-bold text-navy-900">
+                  {district.name} İçinde Hizmet Verdiğimiz Başlıca Bölgeler
+                </h2>
+                <ul className="mt-4 flex flex-wrap gap-2">
+                  {content.mahalleler.map((m) => (
+                    <li
+                      key={m}
+                      className="inline-flex items-center gap-1.5 rounded-full bg-surface px-3.5 py-2 text-[0.9375rem] text-ink ring-1 ring-inset ring-line"
+                    >
+                      <MapPin aria-hidden="true" className="size-4 text-copper-600" strokeWidth={2} />
+                      {m}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {content?.notes?.length > 0 && (
+              <div className="reveal">
+                <h2 className="text-xl font-bold text-navy-900">{district.name} Taşınmalarında Nelere Dikkat Ediyoruz?</h2>
+                <ul className="mt-4 space-y-3">
+                  {content.notes.map((n) => (
+                    <li key={n} className="flex items-start gap-3 text-ink">
+                      <CircleCheck aria-hidden="true" className="mt-0.5 size-5 shrink-0 text-copper-600" strokeWidth={2} />
+                      {n}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
             <div className="reveal">
-              <h3 className="text-xl font-bold text-navy-900">
+              <h2 className="text-xl font-bold text-navy-900">
                 {district.name} Bölgesinde Standart Sunduklarımız
-              </h3>
+              </h2>
               <ul className="mt-5 grid gap-3 sm:grid-cols-2">
                 {standards.map((item) => (
                   <li key={item} className="flex items-start gap-3 rounded-card border border-line bg-surface p-4 text-ink">
@@ -106,6 +170,20 @@ export default async function DistrictPage({ params }) {
                 ))}
               </ul>
             </div>
+
+            {content?.faq?.length > 0 && (
+              <div className="reveal">
+                <h2 className="text-xl font-bold text-navy-900">{district.name} Nakliyat Hakkında Sık Sorulanlar</h2>
+                <div className="mt-4 divide-y divide-line rounded-card border border-line bg-white">
+                  {content.faq.map((f) => (
+                    <details key={f.q} className="group p-5">
+                      <summary className="cursor-pointer list-none font-semibold text-navy-900">{f.q}</summary>
+                      <p className="mt-2 text-muted">{f.a}</p>
+                    </details>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
 
           <aside className="min-w-0 space-y-6 lg:sticky lg:top-28 lg:col-span-4 lg:self-start">
@@ -138,7 +216,7 @@ export default async function DistrictPage({ params }) {
 
       <section className="border-t border-line bg-surface py-12 sm:py-14">
         <div className="container-page">
-          <h3 className="font-bold text-navy-900">Diğer İstanbul İlçelerindeki Hizmetlerimiz</h3>
+          <h2 className="font-bold text-navy-900">{district.name} Çevresindeki Bölgelerde Nakliyat</h2>
           <ul className="mt-4 flex flex-wrap gap-2">
             {nearbyDistricts.map((d) => (
               <li key={d.slug}>

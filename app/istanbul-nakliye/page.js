@@ -4,6 +4,7 @@ import PageHero from "@/components/PageHero";
 import CtaBand from "@/components/CtaBand";
 import { site } from "@/data/site";
 import { districts } from "@/data/districts";
+import { semtler } from "@/data/district-content";
 
 export const metadata = {
   title: "İstanbul 39 İlçe Evden Eve Nakliyat",
@@ -42,6 +43,20 @@ export default function IstanbulNakliyePage() {
                     className="size-4 shrink-0 text-subtle transition-transform group-hover:translate-x-0.5 group-hover:text-copper-600"
                     strokeWidth={2.25}
                   />
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          <h2 className="mt-12 text-xl font-bold text-navy-900">Öne Çıkan Sanayi ve Ticaret Bölgeleri</h2>
+          <ul className="mt-4 flex flex-wrap gap-2">
+            {semtler.map((s) => (
+              <li key={s.slug}>
+                <Link
+                  href={`/istanbul-nakliye/${s.slug}`}
+                  className="inline-flex min-h-11 items-center rounded-full bg-white px-4 font-semibold text-navy-900 ring-1 ring-inset ring-line transition-colors hover:text-copper-700 hover:ring-copper-500/60"
+                >
+                  {s.name} Nakliyat
                 </Link>
               </li>
             ))}

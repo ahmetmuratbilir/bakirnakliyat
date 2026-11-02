@@ -1,4 +1,5 @@
 import { districts } from "@/data/districts";
+import { semtler } from "@/data/district-content";
 import { cities } from "@/data/cities";
 import { services } from "@/data/services";
 import { posts } from "@/data/posts";
@@ -28,7 +29,7 @@ export default function sitemap() {
     lastModified: new Date(),
   }));
 
-  const districtRoutes = districts.map((d) => ({
+  const districtRoutes = [...districts, ...semtler].map((d) => ({
     url: `${site.domain}/istanbul-nakliye/${d.slug}`,
     lastModified: new Date(),
   }));
