@@ -27,6 +27,10 @@ import Gallery from "@/components/gallery/Gallery";
 import CtaBand from "@/components/CtaBand";
 import { WhatsAppIcon } from "@/components/icons/BrandIcons";
 
+export const metadata = {
+  alternates: { canonical: site.domain },
+};
+
 const heroBadges = [
   { icon: ClipboardCheck, label: "Ücretsiz Ekspertiz" },
   { icon: FileSignature, label: "Sözleşmeli Hizmet" },
