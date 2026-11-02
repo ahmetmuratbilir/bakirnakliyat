@@ -33,7 +33,9 @@ export async function generateMetadata({ params }) {
   const district = getDistrict(ilce);
   if (!district) return {};
   return {
-    title: district.parent ? `${district.name} Nakliyat ve Evden Eve Taşıma` : `${district.name} Evden Eve Nakliyat`,
+    title:
+      districtContent[ilce]?.title ??
+      (district.parent ? `${district.name} Nakliyat ve Evden Eve Taşıma` : `${district.name} Evden Eve Nakliyat`),
     description:
       districtContent[ilce]?.meta ??
       `${district.name} evden eve nakliyat, parça eşya ve asansörlü taşıma. Sözleşmeli, faturalı hizmet; ücretsiz ekspertizle net fiyat için hemen arayın.`,

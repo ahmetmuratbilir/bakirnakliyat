@@ -6,6 +6,7 @@
 export const districtContent = {
   // ───────────── Öncelikli bölge: İkitelli / Başakşehir çevresi ─────────────
   basaksehir: {
+    title: "Başakşehir Asansörlü Evden Eve Nakliyat",
     meta: "Başakşehir evden eve nakliyat: Kayaşehir, Bahçeşehir, Altınşehir ve İkitelli'de site ve yüksek blok taşımaları. Başakşehir merkezli ekip, ücretsiz ekspertiz.",
     intro: [
       "Ekibimiz Başakşehir merkezli çalıştığı için Başakşehir evden eve nakliyat taşımalarında bölgeye hızlı ulaşabiliyoruz. Ekspertiz için aynı gün adrese gelebilir, taşınma gününü site yönetiminin uygun saatlerine göre planlayabiliriz.",
@@ -69,6 +70,7 @@ export const districtContent = {
   },
 
   esenyurt: {
+    title: "Esenyurt Asansörlü Evden Eve Nakliyat",
     meta: "Esenyurt evden eve nakliyat: yüksek bloklarda asansörlü taşıma, site yönetimi koordinasyonu, Kıraç'ta ticari yük. Ücretsiz ekspertiz, sözleşmeli hizmet.",
     intro: [
       "Esenyurt, İstanbul'un en kalabalık ilçesi ve konut stoğunun büyük kısmı son yıllarda yapılmış yüksek bloklardan oluşuyor. Esenyurt evden eve nakliyat taşımalarında en çok karşılaştığımız konular yüksek kat, sınırlı yük asansörü ve site içi araç giriş kuralları.",
@@ -88,6 +90,7 @@ export const districtContent = {
   },
 
   arnavutkoy: {
+    title: "Arnavutköy Asansörlü Evden Eve Nakliyat",
     meta: "Arnavutköy evden eve nakliyat: Hadımköy, Taşoluk, Bolluca ve Haraççı'da müstakil ev, site ve depo taşımaları. Başakşehir'e komşu ekip, ücretsiz ekspertiz.",
     intro: [
       "Arnavutköy geniş bir alana yayılan, bir yanda müstakil evler ve köy yerleşimleri, diğer yanda yeni site projeleri ve Hadımköy sanayi bölgesini barındıran bir ilçe. Arnavutköy evden eve nakliyat taşımalarında adresler arası mesafe uzun olabildiği için rota planlaması önemli.",
@@ -107,6 +110,7 @@ export const districtContent = {
   },
 
   kucukcekmece: {
+    title: "Küçükçekmece Asansörlü Evden Eve Nakliyat",
     meta: "Küçükçekmece evden eve nakliyat: Halkalı, Atakent, Sefaköy, Cennet ve Kanarya'da apartman ve site taşımaları. Başakşehir'e komşu ekip, sözleşmeli hizmet.",
     intro: [
       "Küçükçekmece, Halkalı ve Atakent'teki yeni site projelerinden Sefaköy, Cennet ve Kanarya'daki eski apartmanlara kadar çok farklı konut tiplerini bir arada barındırıyor. Küçükçekmece evden eve nakliyat taşımalarında bu yüzden her adres için ayrı planlama yapıyoruz.",
@@ -126,6 +130,7 @@ export const districtContent = {
   },
 
   avcilar: {
+    title: "Avcılar Asansörlü Evden Eve Nakliyat",
     meta: "Avcılar evden eve nakliyat: Ambarlı, Cihangir, Denizköşkler ve Firuzköy'de apartman ve site taşıma. Asansörlü, sözleşmeli nakliyat; ücretsiz ekspertiz.",
     intro: [
       "Avcılar'da konut stoğu, merkezdeki eski apartmanlarla Firuzköy ve Denizköşkler çevresindeki daha yeni sitelerden oluşuyor. Üniversite çevresinde öğrenci evleri de yoğun; bu yüzden Avcılar evden eve nakliyat taleplerinin bir kısmı parça eşya ve küçük hacimli taşımalar.",
@@ -145,6 +150,7 @@ export const districtContent = {
   },
 
   beylikduzu: {
+    title: "Beylikdüzü Asansörlü Evden Eve Nakliyat",
     meta: "Beylikdüzü evden eve nakliyat: Yakuplu, Kavaklı, Adnan Kahveci ve Gürpınar'da site ve yüksek blok taşımaları. Asansörlü, sigorta seçenekli nakliyat.",
     intro: [
       "Beylikdüzü, büyük ölçüde son yirmi yılda yapılmış güvenlikli sitelerden ve yüksek bloklardan oluşan planlı bir ilçe. Beylikdüzü evden eve nakliyat taşımalarında site yönetimi kuralları, yük asansörü randevusu ve otopark giriş yüksekliği en önemli planlama konuları.",
@@ -797,3 +803,9 @@ export const districtContent = {
 export const semtler = Object.entries(districtContent)
   .filter(([, c]) => c.semt)
   .map(([slug, c]) => ({ slug, name: c.name, parent: c.parent }));
+
+// Yaka ayrımı (ilçe listesi sayfası için)
+export const anadoluYakasi = [
+  "adalar", "atasehir", "beykoz", "cekmekoy", "kadikoy", "kartal", "maltepe",
+  "pendik", "sancaktepe", "sultanbeyli", "sile", "tuzla", "umraniye", "uskudar",
+];

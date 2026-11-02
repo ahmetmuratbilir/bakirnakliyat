@@ -56,10 +56,31 @@ export default async function BlogPostPage({ params }) {
         <div className="container-page grid gap-12 lg:grid-cols-12">
           <article className="min-w-0 lg:col-span-8">
             <div className="max-w-prose space-y-6 text-lead text-ink/85">
-              {post.content.map((para, i) => (
-                <p key={i}>{para}</p>
-              ))}
+              {post.content.map((para, i) =>
+                para.startsWith("## ") ? (
+                  <h2 key={i} className="pt-4 text-2xl font-extrabold text-navy-900">
+                    {para.slice(3)}
+                  </h2>
+                ) : (
+                  <p key={i}>{para}</p>
+                )
+              )}
             </div>
+
+            {post.links?.length > 0 && (
+              <div className="mt-10 rounded-card border border-line bg-surface p-6">
+                <h2 className="font-bold text-navy-900">İlgili Sayfalar</h2>
+                <ul className="mt-3 space-y-2">
+                  {post.links.map((l) => (
+                    <li key={l.href}>
+                      <Link href={l.href} className="font-medium text-copper-700 underline-offset-4 hover:underline">
+                        {l.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
 
             <div className="mt-12 flex flex-col gap-5 border-t border-line pt-8 sm:flex-row sm:items-center sm:justify-between">
               <p className="text-sm text-subtle">
